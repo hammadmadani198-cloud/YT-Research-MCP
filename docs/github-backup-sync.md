@@ -8,11 +8,15 @@
 
 The source `.git` history, `.venv`, `.env` secrets, SQLite snapshots, downloaded video/image media, tunnel configuration, personal data under `data`, and separate WatchMCP engine are excluded. A credential-pattern check aborts uploads if common real API tokens or private-key blocks are detected. Always review before making the repository public.
 
-## Setup once
+## GitHub backup activated — 5 November 2026
 
-1. Sign in to GitHub CLI on this Windows computer with `gh auth login --web` (approve the login in your own browser; do not share device codes or tokens).
-2. Create a *new private* GitHub repository from the local mirror: `gh repo create hammadmadani198-cloud/YT-Research-MCP --private --source D:\LocalMCPs\YT-Research-GitHub --remote origin --push`.
-3. Install local auto-sync: `D:\LocalMCPs\YouTubeNicheFinderMCP\.venv\Scripts\python.exe D:\LocalMCPs\YouTubeNicheFinderMCP\scripts\sync-github-share.py --install-hook`.
+- GitHub repository: https://github.com/hammadmadani198-cloud/YT-Research-MCP
+- Visibility: **Private**, default branch: `main`.
+- Initial source upload: completed, with a clean, separate Git history.
+- GitHub CLI: authenticated as `hammadmadani198-cloud`.
+- Post-commit hook: installed at `.git/hooks/post-commit` in the original Windows project.
+- Local mirror: `D:\LocalMCPs\YT-Research-GitHub`.
+- Manual recovery: `python scripts/sync-github-share.py --push` from the source project, with GitHub authentication.
 
 ## After future edits
 

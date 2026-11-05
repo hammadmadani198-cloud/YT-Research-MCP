@@ -32,10 +32,10 @@ On Windows, scripts/run-yt-research.ps1 also sets the general-research profile.
 ## Sharing and future updates
 GitHub repository starts private. Share by inviting collaborators.
 For public sharing, first review privacy, copyrights and dependencies.
-To sync future committed changes, configure a GitHub remote and install
+To sync future committed changes, authorize GitHub CLI and install
 the source post-commit hook using:
   python scripts/sync-github-share.py --install-hook
-This mirrors the committed source and pushes it when GitHub is authenticated.
+Each push uses a temporary checkout (removed afterwards), not a permanent local copy.
 
 No open-source license has been selected. Public visibility by itself
 does not grant third-party reuse rights.

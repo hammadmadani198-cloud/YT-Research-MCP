@@ -1,0 +1,235 @@
+{
+  "scope": "offline synthetic fixtures; no live timing claim",
+  "measurements": [
+    {
+      "tool": "youtube_niche_discover",
+      "seconds": 0.017919500009156764,
+      "queries": 7,
+      "bytes": 1971,
+      "state": "available",
+      "channels": 4,
+      "videos": 24
+    },
+    {
+      "tool": "youtube_niche_research",
+      "seconds": 1.227917400014121,
+      "queries": 3360,
+      "bytes": 45825,
+      "state": "insufficient_evidence",
+      "channels": 4,
+      "videos": 24
+    },
+    {
+      "tool": "youtube_niche_compare",
+      "seconds": 1.2707580999995116,
+      "queries": 3438,
+      "bytes": 15598,
+      "state": "available",
+      "channels": 4,
+      "videos": 24
+    },
+    {
+      "tool": "youtube_niche_outliers",
+      "seconds": 0.7080430000205524,
+      "queries": 1718,
+      "bytes": 60338,
+      "state": "insufficient_evidence",
+      "channels": 4,
+      "videos": 24
+    },
+    {
+      "tool": "youtube_niche_content_gaps",
+      "seconds": 0.7020980000088457,
+      "queries": 1745,
+      "bytes": 61272,
+      "state": "insufficient_evidence",
+      "channels": 4,
+      "videos": 24
+    },
+    {
+      "tool": "youtube_niche_packaging",
+      "seconds": 0.6811826000048313,
+      "queries": 1745,
+      "bytes": 51980,
+      "state": "insufficient_evidence",
+      "channels": 4,
+      "videos": 24
+    },
+    {
+      "tool": "youtube_niche_audience_demand",
+      "seconds": 0.7659580999752507,
+      "queries": 1717,
+      "bytes": 66449,
+      "state": "insufficient_evidence",
+      "channels": 4,
+      "videos": 24
+    },
+    {
+      "tool": "youtube_niche_sustainability",
+      "seconds": 0.8351030999911018,
+      "queries": 1717,
+      "bytes": 63433,
+      "state": "insufficient_evidence",
+      "channels": 4,
+      "videos": 24
+    },
+    {
+      "tool": "youtube_niche_risk",
+      "seconds": 0.7335405000194442,
+      "queries": 1717,
+      "bytes": 63870,
+      "state": "insufficient_evidence",
+      "channels": 4,
+      "videos": 24
+    },
+    {
+      "tool": "youtube_niche_geo_language",
+      "seconds": 0.704543100000592,
+      "queries": 1806,
+      "bytes": 47955,
+      "state": "insufficient_evidence",
+      "channels": 4,
+      "videos": 24
+    },
+    {
+      "tool": "youtube_niche_history",
+      "seconds": 0.6176010000053793,
+      "queries": 1717,
+      "bytes": 37995,
+      "state": "history_unavailable",
+      "channels": 4,
+      "videos": 24
+    },
+    {
+      "tool": "youtube_niche_watchlist",
+      "seconds": 0.005682200018782169,
+      "queries": 7,
+      "bytes": 1344,
+      "state": "configured",
+      "channels": 4,
+      "videos": 24
+    },
+    {
+      "tool": "youtube_competitor_analyze",
+      "seconds": 0.6339305999863427,
+      "queries": 1807,
+      "bytes": 9339,
+      "state": "available",
+      "channels": 4,
+      "videos": 24
+    },
+    {
+      "tool": "youtube_competitor_compare",
+      "seconds": 0.7432874999940395,
+      "queries": 1897,
+      "bytes": 9633,
+      "state": "available",
+      "channels": 4,
+      "videos": 24
+    },
+    {
+      "tool": "youtube_competitor_watch",
+      "seconds": 0.005918600014410913,
+      "queries": 6,
+      "bytes": 1388,
+      "state": "configured",
+      "channels": 4,
+      "videos": 24
+    },
+    {
+      "tool": "standard_new_research",
+      "seconds": 5.154003000003286,
+      "bytes": 50227,
+      "channels": 4,
+      "videos": 24
+    },
+    {
+      "tool": "quick_decision_synthesis",
+      "seconds": 1.2965546999766957,
+      "channels": 4,
+      "videos": 24
+    }
+  ],
+  "maximum": {
+    "comparison_seconds": 2.3964415000227746,
+    "comparison_bytes": 74094,
+    "competitor_bytes": 29989,
+    "research_rows": 10,
+    "competitor_rows": 10,
+    "page_rows": [
+      20,
+      4
+    ]
+  },
+  "large_frame": {
+    "channels": 25,
+    "videos": 250,
+    "fixture_and_synthesis_seconds": 9.560263599996688,
+    "projection_seconds": 6.584323299990501,
+    "projection_queries": 16026,
+    "bytes": 47176,
+    "state": "insufficient_evidence"
+  },
+  "stdio_sizes": [
+    {
+      "tool": "youtube_niche_discover",
+      "mcp_result_bytes": 2264
+    },
+    {
+      "tool": "youtube_niche_research",
+      "mcp_result_bytes": 46126
+    },
+    {
+      "tool": "youtube_niche_compare",
+      "mcp_result_bytes": 15891
+    },
+    {
+      "tool": "youtube_niche_outliers",
+      "mcp_result_bytes": 60639
+    },
+    {
+      "tool": "youtube_niche_content_gaps",
+      "mcp_result_bytes": 61573
+    },
+    {
+      "tool": "youtube_niche_packaging",
+      "mcp_result_bytes": 52281
+    },
+    {
+      "tool": "youtube_niche_audience_demand",
+      "mcp_result_bytes": 66750
+    },
+    {
+      "tool": "youtube_niche_sustainability",
+      "mcp_result_bytes": 63734
+    },
+    {
+      "tool": "youtube_niche_risk",
+      "mcp_result_bytes": 64171
+    },
+    {
+      "tool": "youtube_niche_geo_language",
+      "mcp_result_bytes": 48256
+    },
+    {
+      "tool": "youtube_niche_history",
+      "mcp_result_bytes": 38296
+    },
+    {
+      "tool": "youtube_niche_watchlist",
+      "mcp_result_bytes": 1623
+    },
+    {
+      "tool": "youtube_competitor_analyze",
+      "mcp_result_bytes": 9642
+    },
+    {
+      "tool": "youtube_competitor_compare",
+      "mcp_result_bytes": 9921
+    },
+    {
+      "tool": "youtube_competitor_watch",
+      "mcp_result_bytes": 1667
+    }
+  ]
+}

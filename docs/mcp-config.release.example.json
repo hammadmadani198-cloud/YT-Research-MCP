@@ -1,0 +1,71 @@
+{
+  "stored_only": {
+    "mcpServers": {
+      "youtube-niche-finder": {
+        "type": "stdio",
+        "command": "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "args": [
+          "-m",
+          "youtube_niche_mcp.server"
+        ],
+        "cwd": "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP",
+        "env": {
+          "YTNMCP_DB_PATH": "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\data\\research.sqlite3",
+          "YTNMCP_LOG_LEVEL": "INFO",
+          "YTNMCP_DB_TIMEOUT_SECONDS": "10",
+          "YTNMCP_API_TIMEOUT_SECONDS": "20",
+          "YTNMCP_API_MAX_RETRIES": "0",
+          "YTNMCP_NEXLEV_TIMEOUT_SECONDS": "20",
+          "YTNMCP_NEXLEV_SIMILARITY_TIMEOUT_SECONDS": "300"
+        }
+      }
+    }
+  },
+  "official_youtube": {
+    "mcpServers": {
+      "youtube-niche-finder": {
+        "type": "stdio",
+        "command": "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "args": [
+          "-m",
+          "youtube_niche_mcp.server"
+        ],
+        "cwd": "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP",
+        "env": {
+          "YTNMCP_DB_PATH": "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\data\\research.sqlite3",
+          "YTNMCP_LOG_LEVEL": "INFO",
+          "YTNMCP_DB_TIMEOUT_SECONDS": "10",
+          "YTNMCP_API_TIMEOUT_SECONDS": "20",
+          "YTNMCP_API_MAX_RETRIES": "0",
+          "YTNMCP_NEXLEV_TIMEOUT_SECONDS": "20",
+          "YTNMCP_NEXLEV_SIMILARITY_TIMEOUT_SECONDS": "300",
+          "YOUTUBE_API_KEY": "REPLACE_WITH_PROCESS_SECRET"
+        }
+      }
+    }
+  },
+  "hybrid": {
+    "mcpServers": {
+      "youtube-niche-finder": {
+        "type": "stdio",
+        "command": "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "args": [
+          "-m",
+          "youtube_niche_mcp.server"
+        ],
+        "cwd": "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP",
+        "env": {
+          "YTNMCP_DB_PATH": "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\data\\research.sqlite3",
+          "YTNMCP_LOG_LEVEL": "INFO",
+          "YTNMCP_DB_TIMEOUT_SECONDS": "10",
+          "YTNMCP_API_TIMEOUT_SECONDS": "20",
+          "YTNMCP_API_MAX_RETRIES": "0",
+          "YTNMCP_NEXLEV_TIMEOUT_SECONDS": "20",
+          "YTNMCP_NEXLEV_SIMILARITY_TIMEOUT_SECONDS": "300",
+          "YOUTUBE_API_KEY": "REPLACE_WITH_PROCESS_SECRET",
+          "NEXLEV_API_KEY": "REPLACE_WITH_PROCESS_SECRET"
+        }
+      }
+    }
+  }
+}

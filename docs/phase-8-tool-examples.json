@@ -1,0 +1,134 @@
+[
+  {
+    "name": "youtube_niche_discover",
+    "arguments": {
+      "request": {
+        "query": "industrial history documentary",
+        "mode": "quick"
+      }
+    }
+  },
+  {
+    "name": "youtube_niche_research",
+    "arguments": {
+      "request": {
+        "query": "industrial history documentary",
+        "mode": "quick"
+      }
+    }
+  },
+  {
+    "name": "youtube_niche_compare",
+    "arguments": {
+      "request": {
+        "research_ids": [
+          "retained-a",
+          "retained-b"
+        ]
+      }
+    }
+  },
+  {
+    "name": "youtube_niche_outliers",
+    "arguments": {
+      "request": {
+        "research_id": "retained-a"
+      }
+    }
+  },
+  {
+    "name": "youtube_niche_content_gaps",
+    "arguments": {
+      "request": {
+        "research_id": "retained-a"
+      }
+    }
+  },
+  {
+    "name": "youtube_niche_packaging",
+    "arguments": {
+      "request": {
+        "research_id": "retained-a"
+      }
+    }
+  },
+  {
+    "name": "youtube_niche_audience_demand",
+    "arguments": {
+      "request": {
+        "research_id": "retained-a"
+      }
+    }
+  },
+  {
+    "name": "youtube_niche_sustainability",
+    "arguments": {
+      "request": {
+        "research_id": "retained-a"
+      }
+    }
+  },
+  {
+    "name": "youtube_niche_risk",
+    "arguments": {
+      "request": {
+        "research_id": "retained-a"
+      }
+    }
+  },
+  {
+    "name": "youtube_niche_geo_language",
+    "arguments": {
+      "request": {
+        "research_id": "retained-a"
+      }
+    }
+  },
+  {
+    "name": "youtube_niche_history",
+    "arguments": {
+      "request": {
+        "research_id": "retained-a"
+      }
+    }
+  },
+  {
+    "name": "youtube_niche_watchlist",
+    "arguments": {
+      "request": {
+        "action": "list",
+        "owner_context": "local"
+      }
+    }
+  },
+  {
+    "name": "youtube_competitor_analyze",
+    "arguments": {
+      "request": {
+        "channel_id": "UC0000000000000000000001",
+        "research_id": "retained-a"
+      }
+    }
+  },
+  {
+    "name": "youtube_competitor_compare",
+    "arguments": {
+      "request": {
+        "channel_ids": [
+          "UC0000000000000000000001",
+          "UC0000000000000000000002"
+        ],
+        "research_id": "retained-a"
+      }
+    }
+  },
+  {
+    "name": "youtube_competitor_watch",
+    "arguments": {
+      "request": {
+        "action": "list",
+        "owner_context": "local"
+      }
+    }
+  }
+]

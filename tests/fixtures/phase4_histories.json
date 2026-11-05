@@ -1,0 +1,15 @@
+{
+  "synthetic": true,
+  "H1": {"case": "accelerating video", "values": [0, 1000, 3000], "hours": [0, 24, 48], "test": "test_actual_rates_and_acceleration"},
+  "H2": {"case": "decelerating video", "values": [0, 2000, 3000], "hours": [0, 24, 48], "test": "test_actual_rates_and_acceleration"},
+  "H3": {"case": "positive demand momentum", "older": 10000, "newer": 15000, "ratio": "1.5", "test": "test_H3_H4_demand_direction"},
+  "H4": {"case": "flat demand", "older": 10000, "newer": 10000, "ratio": "1", "test": "test_H3_H4_demand_direction"},
+  "H5": {"case": "rising observed supply", "older_channels": 2, "newer_channels": 3, "change": "0.5", "test": "test_H5_supply_named_quantities"},
+  "H6": {"case": "coverage expansion fake supply rise", "state": "coverage_not_comparable", "test": "test_H6_H12_panel_changes"},
+  "H7": {"case": "durable older catalog", "old_increment": 30000, "new_increment": 70000, "share": "0.3", "test": "test_H7_incremental_catalog_contribution"},
+  "H8": {"case": "post-hit ordinary baseline lift", "pre": [1000, 2000, 2000, 3000, 4000], "post": [2000, 3000, 4000, 5000, 100000], "ratio": "4001/2001", "test": "test_H8_H9_post_hit_baseline"},
+  "H9": {"case": "no post-hit lift", "post": [100, 200, 300, 400, 100000], "ratio": "301/2001", "test": "test_H8_H9_post_hit_baseline"},
+  "H10": {"case": "winner replacement", "prior": [1], "later": [2], "replacement": "1", "test": "test_winner_dynamics_denominators"},
+  "H11": {"case": "incumbent persistence", "prior": [1], "later": [1], "persistence": "1", "test": "test_winner_dynamics_denominators"},
+  "H12": {"case": "ambiguous history", "states": ["insufficient_panel_history", "unstable_discovery_protocol"], "test": "test_H6_H12_panel_changes"}
+}

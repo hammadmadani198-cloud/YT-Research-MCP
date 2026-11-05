@@ -1,0 +1,35 @@
+{
+  "offline_acceptance": {
+    "state": "passed",
+    "recorded_at": "2026-10-03T09:02:40.874627+00:00",
+    "checks": 48,
+    "full_tests": 859
+  },
+  "local_security_privacy": {
+    "state": "passed",
+    "recorded_at": "2026-10-03T09:04:47.082413+00:00",
+    "scope": "source review and offline adversarial tests; common secret scan; external dependency advisories pending refresh"
+  },
+  "provider_contract_refresh": {
+    "state": "passed",
+    "recorded_at": "2026-10-03T09:11:24.982803+00:00",
+    "youtube_routes": 8,
+    "nexlev_routes": 17,
+    "runtime_changes_required": false,
+    "material_contradiction_found": false
+  },
+  "dependency_review": {
+    "state": "passed_with_scope_limit",
+    "advisories_compared": 14,
+    "upgrades": []
+  },
+  "controlled_live": {
+    "state": "skipped_not_configured",
+    "recorded_at": "2026-10-03T09:13:55.871830+00:00",
+    "requests": 0
+  },
+  "real_niche": {
+    "state": "unverified_live_gap",
+    "recorded_at": "2026-10-03T09:13:55.871830+00:00"
+  }
+}

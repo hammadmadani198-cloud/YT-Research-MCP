@@ -1,0 +1,136 @@
+{
+  "phase": 0,
+  "recorded_at": "2026-10-02T08:08:13.778364+00:00",
+  "checks": [
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "exit_code": 0,
+      "stdout": "No broken requirements found.\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "-q",
+        "--tb=short",
+        "--basetemp=C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.pytest-tmp\\acceptance-e33f827475634c5b86fb6bb25246f53a"
+      ],
+      "exit_code": 0,
+      "stdout": "........................................................                 [100%]\n56 passed in 2.99s\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "check",
+        "."
+      ],
+      "exit_code": 0,
+      "stdout": "All checks passed!\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "."
+      ],
+      "exit_code": 0,
+      "stdout": "40 files already formatted\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-c",
+        "import importlib, pkgutil, youtube_niche_mcp; modules = list(pkgutil.walk_packages(youtube_niche_mcp.__path__, youtube_niche_mcp.__name__ + '.')); [importlib.import_module(m.name) for m in modules if not m.name.endswith('__main__')]; print('Package imports passed')"
+      ],
+      "exit_code": 0,
+      "stdout": "Package imports passed\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-m",
+        "youtube_niche_mcp",
+        "--version"
+      ],
+      "exit_code": 0,
+      "stdout": "0.1.0\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-m",
+        "youtube_niche_mcp",
+        "config",
+        "check"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"db_path\": \"C:\\\\Users\\\\hp\\\\Documents\\\\ChatGPT\\\\Develpment\\\\YouTubeNicheFinderMCP\\\\data\\\\research.sqlite3\",\n  \"log_level\": \"INFO\",\n  \"db_timeout_seconds\": 10,\n  \"youtube_api_key_present\": false,\n  \"live_api_required\": false\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-m",
+        "youtube_niche_mcp",
+        "tool",
+        "list"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"initialized\": true,\n  \"registered_tools\": [],\n  \"planned_tool_count\": 15,\n  \"planned_tools\": [\n    \"youtube_niche_research\",\n    \"youtube_niche_discover\",\n    \"youtube_niche_compare\",\n    \"youtube_niche_outliers\",\n    \"youtube_niche_content_gaps\",\n    \"youtube_niche_packaging\",\n    \"youtube_niche_audience_demand\",\n    \"youtube_niche_sustainability\",\n    \"youtube_niche_risk\",\n    \"youtube_niche_geo_language\",\n    \"youtube_niche_watchlist\",\n    \"youtube_niche_history\",\n    \"youtube_competitor_analyze\",\n    \"youtube_competitor_compare\",\n    \"youtube_competitor_watch\"\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-m",
+        "youtube_niche_mcp",
+        "db",
+        "status"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"schema_version\": 1,\n  \"expected_schema_version\": 1,\n  \"migration_state\": \"current\",\n  \"journal_mode\": \"wal\",\n  \"foreign_keys\": true,\n  \"tables\": [\n    \"app_metadata\",\n    \"schema_migrations\"\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-m",
+        "youtube_niche_mcp",
+        "db",
+        "integrity"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"integrity_check\": [\n    \"ok\"\n  ],\n  \"foreign_key_violations\": []\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-m",
+        "youtube_niche_mcp",
+        "verify"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"phase\": 0,\n  \"checks\": [\n    {\n      \"name\": \"imports\",\n      \"passed\": true,\n      \"detail\": {\n        \"ok\": true\n      }\n    },\n    {\n      \"name\": \"configuration\",\n      \"passed\": true,\n      \"detail\": {\n        \"db_path\": \"C:\\\\Users\\\\hp\\\\Documents\\\\ChatGPT\\\\Develpment\\\\YouTubeNicheFinderMCP\\\\data\\\\research.sqlite3\",\n        \"log_level\": \"INFO\",\n        \"db_timeout_seconds\": 10,\n        \"youtube_api_key_present\": false,\n        \"live_api_required\": false\n      }\n    },\n    {\n      \"name\": \"schemas\",\n      \"passed\": true,\n      \"detail\": {\n        \"validated_models\": 4\n      }\n    },\n    {\n      \"name\": \"database\",\n      \"passed\": true,\n      \"detail\": {\n        \"schema_version\": 1,\n        \"expected_schema_version\": 1,\n        \"migration_state\": \"current\",\n        \"journal_mode\": \"wal\",\n        \"foreign_keys\": true,\n        \"tables\": [\n          \"app_metadata\",\n          \"schema_migrations\"\n        ],\n        \"integrity\": {\n          \"ok\": true,\n          \"integrity_check\": [\n            \"ok\"\n          ],\n          \"foreign_key_violations\": []\n        }\n      }\n    },\n    {\n      \"name\": \"mcp_initialization_and_registration\",\n      \"passed\": true,\n      \"detail\": {\n        \"initialized\": true,\n        \"registered_tools\": [],\n        \"planned_tool_count\": 15\n      }\n    }\n  ]\n}\n",
+      "stderr": ""
+    }
+  ],
+  "ok": true
+}

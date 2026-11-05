@@ -1,0 +1,1518 @@
+# BUILD A NEW YOUTUBE NICHE FINDER MCP FROM SCRATCH
+
+## PROJECT NAME
+
+`YouTubeNicheFinderMCP`
+
+This is a **NEW clean implementation**.
+
+Do not attempt to recover or depend on any previous inaccessible Codex workspace.
+
+The old implementation is considered unavailable.
+
+Build the new project entirely from the supplied research specification.
+
+---
+
+# 1. PRIMARY OBJECTIVE
+
+Build a production-quality MCP server that helps identify promising:
+
+- English-language
+- faceless
+- long-form
+- YouTube niches
+- for new/small creators
+- oriented toward relatively fast growth
+- repeatable production
+- sustainable topic supply
+- realistic production burden
+- public-data-based analysis
+
+The system must prioritize:
+
+**reliable opportunity research**
+
+over:
+
+- viral-video hunting
+- CPM lists
+- guru heuristics
+- opaque opportunity scores
+
+---
+
+# 2. AUTHORITATIVE RESEARCH SPECIFICATION
+
+Before writing implementation logic, read completely:
+
+1. `Faceless_YouTube_Research_Blueprint.md`
+2. `YouTube_Evidence_Ledger.md`
+3. `MCP_Feasibility_Matrix.md`
+4. `Faceless_Niche_Deep_Research_Prompt_Updated.txt`
+5. `Third_Pass_Gap_Audit.md`
+6. `Third_Pass_Evidence_Ledger.md`
+7. `C90_Plus_Feasibility_Delta.md`
+
+Treat them as the authoritative requirements.
+
+The original research defines:
+
+- C01–C89
+- F1–F18
+
+The third-pass delta additionally defines:
+
+- C90 paired attempt/calendar exposure
+- C91 post-hit ordinary baseline change, merged into C26/C28/C29
+- C92 winner replacement / entrant composition, history-first
+- C93 pilot downside / evidence runway, optional
+- F19–F23
+
+Do not invent contradictory rules.
+
+---
+
+# 3. NON-NEGOTIABLE RESEARCH PRINCIPLES
+
+The system must NEVER pretend to know public competitor:
+
+- impressions
+- CTR
+- audience retention
+- average percentage viewed
+- watch time
+- returning viewers
+- actual audience overlap
+- traffic-source breakdown
+- private search terms
+- actual RPM
+- actual revenue
+- per-video subscriber conversion
+- recommendation exposure
+
+Do not estimate them as facts.
+
+The following must also be enforced:
+
+- current subscriber count ≠ subscriber count at breakout
+- account creation date ≠ niche-entry date
+- current lifetime views ≠ historical V(30)
+- missing ≠ zero
+- immature outcome ≠ failure
+- playlist membership ≠ binge behavior
+- provider labels ≠ verified truth
+- search result totals ≠ search volume
+- low supply ≠ automatically low competition opportunity
+- one viral video ≠ repeatable niche
+- high competition ≠ automatically bad niche
+- faceless ≠ easy
+- AI-assisted ≠ automatically cheap
+- public asset availability ≠ reuse permission
+- confidence ≠ success probability
+
+---
+
+# 4. CREATE A NEW CLEAN REPOSITORY
+
+Create the project in:
+
+`/workspace/YouTubeNicheFinderMCP`
+
+If this path already exists in the new workspace, inspect it first.
+
+Do not overwrite unrelated work.
+
+Initialize Git immediately.
+
+Create an initial commit after the clean project skeleton is verified.
+
+If GitHub access is available and a private remote can be safely created/used, prepare the repository for backup, but do not expose secrets.
+
+The project must never again depend only on an ephemeral cloud workspace.
+
+---
+
+# 5. TECHNOLOGY
+
+Use:
+
+- Python 3.12+ if compatible with available environment
+- MCP Python SDK / FastMCP-compatible current approach
+- SQLite for persistent local research history
+- Pydantic models
+- httpx or equivalent async HTTP client
+- pytest
+- Ruff
+- structured logging
+
+Prefer standard-library functionality when practical.
+
+Avoid unnecessary frameworks.
+
+---
+
+# 6. PACKAGE STRUCTURE
+
+Create a clear structure approximately like:
+
+`src/youtube_niche_mcp/`
+
+with modules for:
+
+- `server.py`
+- `cli.py`
+- `config.py`
+
+- `api/`
+  - YouTube client
+  - endpoint models
+  - quota tracking
+
+- `collectors/`
+  - discovery
+  - channels
+  - videos
+  - uploads
+  - comments
+  - playlists
+  - snapshots
+
+- `domain/`
+  - channel models
+  - video models
+  - niche models
+  - evidence states
+  - eligibility
+  - provenance
+
+- `cohorts/`
+  - entrant cohort construction
+  - channel grouping
+  - weak-case retention
+  - niche boundaries
+
+- `analysis/`
+  - outliers
+  - demand
+  - competition
+  - failure floor
+  - repeatability
+  - concentration
+  - topics
+  - packaging
+  - series
+  - production
+  - risk
+  - confidence
+  - robustness
+  - historical metrics
+
+- `history/`
+  - snapshots
+  - maturity
+  - known-at-time logic
+  - metric regimes
+
+- `db/`
+  - connection
+  - schema
+  - migrations
+  - repositories
+
+- `services/`
+  - orchestration for MCP tools
+
+- `schemas/`
+  - tool inputs
+  - tool outputs
+
+- `tests/`
+
+Adjust if a better architecture is justified.
+
+Do not create one giant analyzer file.
+
+---
+
+# 7. DATA MODEL FIRST
+
+Before implementing niche scores, build the data foundation.
+
+At minimum, preserve separately:
+
+## Channel identity
+
+- canonical channel ID
+- current title
+- account creation date
+- first observed date
+- first observed niche-entry date
+- current subscriber count
+- hidden subscriber state
+- subscriber precision
+- source
+- observed_at
+
+## Video identity
+
+- canonical video ID
+- channel ID
+- public publication timestamp
+- upload/index/provider timestamps if different
+- duration
+- live state
+- Shorts eligibility state
+- language state
+- niche/topic labels
+- eligibility state
+- observed_at
+
+## Public metric snapshots
+
+- video ID/channel ID
+- metric
+- value
+- observed_at
+- metric definition version
+- source
+- precision
+- missing state
+
+## Discovery manifest
+
+For every discovery route record:
+
+- query
+- route/provider
+- order
+- filters
+- locale
+- page/cursor
+- fetch timestamp
+- result rank
+- research mode
+- collection version
+
+## Eligibility decisions
+
+Store:
+
+- long-form classification
+- Shorts/live status
+- English confidence
+- faceless confidence
+- niche membership
+- small/new state
+- decision source
+- decision version
+- reason
+- uncertainty
+
+## Provenance
+
+Every important observation must identify:
+
+- source
+- timestamp
+- precision
+- whether public API, provider, human annotation, derived value, or creator input
+
+---
+
+# 8. STRUCTURED UNKNOWN STATES
+
+Implement explicit states such as:
+
+- `available`
+- `approximate`
+- `partial_coverage`
+- `pending_maturity`
+- `insufficient_sample`
+- `insufficient_history`
+- `classification_unknown`
+- `source_conflict`
+- `policy_permission_required`
+- `owner_authorization_required`
+- `not_publicly_available`
+
+Do not replace any of these with numeric zero.
+
+This is a core invariant.
+
+---
+
+# 9. KNOWN-AT-TIME INTEGRITY
+
+Implement temporal provenance from the beginning.
+
+Historical evaluation must never use information that became known later.
+
+For any derived historical decision support, preserve:
+
+- `published_at`
+- `observed_at`
+- `available_at`
+- source/version
+- maturity date
+
+Examples that must be prevented:
+
+- current subscriber count used as publication-time size
+- later uploads entering an earlier outlier baseline
+- later title/category changes used as if known earlier
+- current lifetime views reconstructed as exact V(30)
+
+Create tests for these invariants.
+
+---
+
+# 10. API IMPLEMENTATION
+
+Implement current official YouTube Data API access carefully.
+
+Support relevant methods including:
+
+- `search.list`
+- `channels.list`
+- `videos.list`
+- `playlistItems.list`
+- `playlists.list`
+- `commentThreads.list`
+- `comments.list`
+
+If `videos.batchGetStats` is appropriate and available in the current environment/API contract, implement it behind a capability abstraction.
+
+Do not assume its undocumented limits.
+
+Do not use captions as if arbitrary public transcript download were allowed.
+
+Environment variable:
+
+`YOUTUBE_API_KEY`
+
+Never hard-code secrets.
+
+---
+
+# 11. QUOTA MODEL
+
+Implement quota-aware collection.
+
+Keep search quota logically separate from other collection where current official behavior requires it.
+
+Do not retain the historical assumption that every search necessarily costs 100 general quota units.
+
+Make quota assumptions configurable and versioned.
+
+Record request counts.
+
+---
+
+# 12. ELIGIBILITY FOUNDATION
+
+Implement reusable eligibility primitives for:
+
+## Long-form
+
+Default research heuristic:
+
+`>= 8 minutes`
+
+with sensitivity options:
+
+- 6 minutes
+- 10 minutes
+
+Long-form bands:
+
+- 8–15
+- 15–30
+- 30–60
+- 60+
+
+Do not use duration alone as universal Shorts proof.
+
+## Live
+
+Distinguish:
+
+- live
+- archived live
+- ordinary VOD
+- unknown
+
+## Language
+
+Metadata may support a clue.
+
+Do not treat ASCII English title as verified English narration.
+
+Return confidence/source.
+
+## Faceless
+
+Faceless means a recurring on-camera host is not central.
+
+Provider classifications may be used only as tentative evidence.
+
+Allow:
+
+- verified
+- likely
+- mixed/hybrid
+- unknown
+
+Do not automatically classify an entire channel from one thumbnail.
+
+---
+
+# 13. NEW/SMALL CHANNEL MODEL
+
+Implement distinct concepts:
+
+- account age
+- first visible upload
+- first observed niche upload
+- first MCP discovery
+- current subscriber size
+- subscriber size near publication if historically observed
+
+Default size emphasis:
+
+- <50k
+- sensitivity <100k
+
+But these are analysis bands, not universal truth.
+
+Entry age bands:
+
+- 0–6 months
+- 6–12
+- 12–24
+- 24–36
+
+Unknown niche entry remains unknown.
+
+---
+
+# 14. CORE FORMULAS
+
+Implement the research formulas only when their required inputs exist.
+
+Preserve formula IDs internally where useful.
+
+## F1
+Relative lift with leave-one-out comparable baseline.
+
+## F2
+Cold-start pooled baseline.
+
+## F3
+Absolute goal attainment.
+
+Goal must be user/configurable.
+
+## F4
+Channel success fraction.
+
+Never label selected-cohort results as platform success probability.
+
+## F5
+Channel-balanced floor.
+
+Also expose video-weighted floor.
+
+## F6
+Top-hit dependence.
+
+Report:
+
+- top1 share
+- top3 share
+
+## F7
+Next-5 and next-10 repeatability.
+
+Respect maturity and actual number of uploads.
+
+## F8
+Independent demand breadth.
+
+## F9
+Concentration.
+
+Use sample-scoped HHI/top shares.
+
+## F10
+Velocity and acceleration.
+
+Only from actual snapshots.
+
+## F11
+Demand momentum.
+
+Only with valid comparable historical publication cohorts.
+
+## F12
+Observed supply change.
+
+Stable discovery protocol required.
+
+## F13
+Older-catalog contribution.
+
+Only from incremental observations.
+
+## F14
+Public engagement descriptors.
+
+Never call them retention/satisfaction.
+
+## F15
+Idea feasibility.
+
+Human/model generated ideas require validation.
+
+## F16
+Production burden/capacity.
+
+Creator specific.
+
+## F17
+Optional opportunity index.
+
+IMPORTANT:
+
+Never use it as the sole approval/rejection mechanism.
+
+It is optional sorting only.
+
+## F18
+Robustness.
+
+Store variant results and decision flips.
+
+---
+
+# 15. THIRD-PASS FORMULAS
+
+## F19 / C90 — paired attempt/calendar exposure
+
+For an entrant cohort report together:
+
+- channels with >=1 goal hit
+- total eligible uploads
+- uploads hitting the goal
+- attempts per creator
+- elapsed time
+- zero/low-output entrants
+- unresolved outcomes
+
+Never present channel ever-hit fraction alone.
+
+Support first:
+
+- 5 uploads
+- 10 uploads
+
+and calendar windows such as 90 days.
+
+## F20 / C91 — post-hit baseline change
+
+Merge into failure-floor/follow-up analysis.
+
+Compare:
+
+- pre-hit mature median
+- post-hit mature median
+- same outcome age
+- anchor excluded
+
+Return `insufficient_history` when required observations do not exist.
+
+Do not claim causal audience transfer.
+
+## F21 / C92 — winner replacement
+
+Implement schema/support now.
+
+Analytics should return `insufficient_history` until comparable windows exist.
+
+Eventually report:
+
+- replacement share
+- incumbent persistence
+- verified entrant share
+
+Do not invent historical values.
+
+## F22 — finite-frame missing-outcome bounds
+
+For an enumerated cohort:
+
+`lower = known_success / total_frame`
+
+`upper = (known_success + unknown) / total_frame`
+
+Return these as bounds over the researched frame.
+
+Do not call them confidence intervals or population probabilities.
+
+## F23 / C93 — pilot downside/evidence runway
+
+Optional creator-input module.
+
+Allow voluntary:
+
+- available hours
+- setup cost
+- per-video cost
+- max acceptable loss
+- revision range
+- pilot size
+
+Do not convert public views into expected income.
+
+---
+
+# 16. FAILURE FLOOR IS CORE
+
+The system must not be winner-only.
+
+Every appropriate analysis should expose:
+
+- median
+- Q25 where sample allows
+- low-view fraction
+- top1 share
+- top3 share
+- channel-balanced results
+- video-weighted results
+- weak cases
+- stopped/stagnant states
+- pending outcomes
+
+A niche with a few enormous hits and a very weak ordinary floor must be visibly different from a niche with broad healthy performance.
+
+---
+
+# 17. NEXT-5 / NEXT-10
+
+For breakout analysis:
+
+Track the next:
+
+- 5
+- 10
+
+eligible uploads in chronological order.
+
+For each distinguish:
+
+- mature
+- pending maturity
+- absent because no upload occurred
+- unavailable/deleted
+- excluded format
+
+Do not turn missing future uploads into zero-view failures.
+
+---
+
+# 18. DISCOVERY / SURVIVORSHIP CONTROL
+
+Build multiple discovery routes.
+
+At minimum support:
+
+- query variants
+- relevance-based discovery
+- recent/date discovery
+- known-channel upload enumeration
+- low-popularity/weak-case routes where possible
+
+Preserve the manifest.
+
+Do not claim complete YouTube coverage.
+
+Search totals must not be used as market census.
+
+---
+
+# 19. CHANNEL-BALANCED ANALYSIS
+
+Any metric vulnerable to prolific-channel domination should expose:
+
+- video-weighted result
+- channel-balanced result
+
+when practical.
+
+This is especially important for:
+
+- floor
+- hit frequency
+- demand breadth
+- concentration
+
+---
+
+# 20. TOPIC MODEL
+
+Represent the hierarchy:
+
+Category
+→ Niche
+→ Sub-niche
+→ Micro-niche
+→ Topic Family
+→ Video Premise
+
+Allow multi-label membership.
+
+Do not force every video into exactly one arbitrary cluster.
+
+Niche boundary/version must be part of analysis provenance.
+
+---
+
+# 21. CONTENT GAP
+
+A content gap requires all three:
+
+1. positive demand evidence
+2. inadequately served need
+3. feasible differentiated treatment
+
+Few exact results alone are NOT a content gap.
+
+Return evidence cards.
+
+---
+
+# 22. PACKAGING
+
+Publicly analyze:
+
+- titles
+- thumbnail structure if images are available/permitted
+- title mechanisms
+- similarity
+- saturation of conventions
+
+But never infer competitor CTR.
+
+Separate:
+
+- topic
+- viewer promise
+- title mechanism
+- visual execution
+
+Do not score “copy this thumbnail.”
+
+---
+
+# 23. SERIES / BINGE
+
+Analyze:
+
+- playlist structure
+- recurring formats
+- series coherence
+- sequel outcomes
+- natural follow-up ideas
+
+Never claim actual binge behavior or returning viewers from public structure alone.
+
+---
+
+# 24. PRODUCTION / FACELESS FIT
+
+Include separate assessment for:
+
+- research burden
+- fact-checking
+- source access
+- scripting
+- visuals
+- asset rights
+- editing
+- animation/maps
+- narration
+- expertise
+- update pressure
+- revision burden
+- cadence feasibility
+
+Production fit must be creator-resource-aware.
+
+---
+
+# 25. RISK MODEL
+
+Keep distinct:
+
+- factual risk
+- source/access risk
+- rights/licensing risk
+- policy risk
+- advertiser-suitability exposure
+- synthetic-media disclosure need
+- production risk
+
+Do not collapse everything into one accusation-style score.
+
+---
+
+# 26. CONFIDENCE MODEL
+
+Confidence must be separate from opportunity.
+
+Assess:
+
+- sample coverage
+- independent channels
+- comparability
+- history maturity
+- timestamp precision
+- classification quality
+- query sensitivity
+- source agreement
+- missing outcomes
+- known-at-time integrity
+
+Return:
+
+- High
+- Moderate
+- Low
+
+with reasons.
+
+Do NOT return “82% confidence of success.”
+
+---
+
+# 27. ROBUSTNESS
+
+Support reasonable sensitivity runs such as:
+
+- remove largest video
+- remove largest channel
+- remove top creator group
+- remove top 5%
+- alternate query route
+- alternate channel-size band
+- alternate entry-age band
+- alternate outcome age
+- alternate duration threshold
+- alternate niche boundary
+
+Return decision flips.
+
+---
+
+# 28. RECOMMENDATION OUTPUT
+
+Do not return only one numeric score.
+
+Return separate axes such as:
+
+- Opportunity
+- Evidence confidence
+- Entrant accessibility
+- Demand
+- Downside/failure floor
+- Repeatability
+- Competition pressure
+- Topic depth
+- Production fit
+- Durability
+- Risk
+
+Also include:
+
+- strongest supporting evidence
+- strongest counterexample
+- unknowns
+- likely failure mode
+- what would change the conclusion
+
+Suggested decision states:
+
+- `promising_for_pilot`
+- `promising_but_unproven`
+- `research_more`
+- `weak_under_goal`
+- `reject_proposed_method`
+
+---
+
+# 29. PUBLIC MCP TOOL SURFACE
+
+Target a clean 15-tool public surface compatible with the earlier project concept:
+
+1. `youtube_niche_research`
+2. `youtube_niche_discover`
+3. `youtube_niche_compare`
+4. `youtube_niche_outliers`
+5. `youtube_niche_content_gaps`
+6. `youtube_niche_packaging`
+7. `youtube_niche_audience_demand`
+8. `youtube_niche_sustainability`
+9. `youtube_niche_risk`
+10. `youtube_niche_geo_language`
+11. `youtube_niche_watchlist`
+12. `youtube_niche_history`
+13. `youtube_competitor_analyze`
+14. `youtube_competitor_compare`
+15. `youtube_competitor_watch`
+
+You may refine internal schemas and implementation.
+
+Do NOT add dozens of narrowly overlapping public tools.
+
+Prefer shared internal primitives.
+
+---
+
+# 30. RESEARCH MODES
+
+Support:
+
+## Quick
+
+Approximate target:
+
+- 15–25 channels
+- 100–250 eligible videos
+- limited enrichment
+
+Output may be Low/Moderate confidence.
+
+## Standard
+
+Approximate target:
+
+- 30–50 channels
+- 300–800 videos
+
+Include winners and weak cases.
+
+## Deep
+
+Approximate target:
+
+- 60–100 channels
+- 1,000–3,000 videos
+
+Include broader query routes and historical/qualitative enrichment when available.
+
+These are research budgets, not statistical guarantees.
+
+---
+
+# 31. WATCHLIST / HISTORY
+
+Watchlists must collect prospective history.
+
+Do not fabricate backfill.
+
+Support snapshot schedules/config for:
+
+- selected video metrics
+- channel metrics
+- newly discovered entrants
+
+A historical metric with insufficient observations must return:
+
+`insufficient_history`
+
+---
+
+# 32. DATABASE
+
+Use SQLite.
+
+Enable:
+
+- WAL where appropriate
+- foreign keys
+- migrations
+- integrity checks
+
+Design normalized tables for:
+
+- channels
+- channel_observations
+- videos
+- video_observations
+- discovery_runs
+- discovery_results
+- eligibility_decisions
+- niche_memberships
+- watchlists
+- snapshots
+- analysis runs
+- source conflicts
+- optional creator resource profiles
+
+Do not store plaintext secrets.
+
+---
+
+# 33. CACHE
+
+Implement safe cache behavior.
+
+Distinguish:
+
+- live metadata cache
+- stored historical observation
+- derived analysis cache
+
+Refreshing current metadata must not overwrite old historical observations.
+
+Support:
+
+- cache reuse
+- expiry
+- stale fallback where safe
+- provenance
+
+---
+
+# 34. API FAILURE BEHAVIOR
+
+Handle:
+
+- quota exhaustion
+- missing video IDs
+- deleted/private videos
+- hidden subscribers
+- comments disabled
+- partial pagination
+- provider/source disagreement
+- transient network failure
+
+Return structured errors/states.
+
+Do not silently drop records from denominators.
+
+---
+
+# 35. TEST-FIRST EXPECTATIONS
+
+Build extensive tests.
+
+At minimum test:
+
+## Data semantics
+
+- unknown never becomes zero
+- pending maturity remains pending
+- publication and observation timestamps are distinct
+- current subscribers never backfill historical subscribers
+- snapshots are append-only historical observations
+
+## Outlier
+
+- leave-one-out baseline
+- tiny baseline
+- candidate excluded
+- absolute and relative reach separated
+
+## Floor
+
+- channel-balanced median/Q25
+- prolific-channel weighting does not dominate balanced output
+
+## Repeatability
+
+- next5
+- next10
+- fewer than K uploads
+- pending videos
+- deleted/unavailable video
+
+## C90 / F19
+
+- high channel ever-hit vs low upload hit fraction
+- low-output entrants retained
+- zero-attempt observed entrant behavior
+- mixed maturity
+
+## F20
+
+- pre/post median
+- anchor excluded
+- no history returns insufficient_history
+
+## F22
+
+- finite-frame bounds
+
+## Concentration
+
+- HHI
+- top shares
+
+## History
+
+- velocity requires actual snapshots
+- acceleration requires enough points
+
+## Confidence
+
+- missing history lowers evidence confidence
+- source conflict visible
+- query sensitivity visible
+
+## Recommendation
+
+- optional F17 cannot auto-approve
+- confidence separate from opportunity
+
+## API
+
+- pagination
+- failed IDs
+- quota errors
+- hidden subscribers
+- comments disabled
+
+---
+
+# 36. CLI
+
+Implement useful commands such as:
+
+- `verify`
+- `db status`
+- `db integrity`
+- `migrate`
+- `tool list`
+- `config check`
+
+`verify` should be non-destructive.
+
+It should check:
+
+- imports
+- configuration
+- DB accessibility
+- migration state
+- tool registration
+- schema validity
+
+Do not require live YouTube API usage for basic verify.
+
+---
+
+# 37. WINDOWS SUPPORT
+
+Create simple Windows helper scripts if practical for:
+
+- setup
+- verify
+- run server
+
+Do not embed secrets.
+
+Use environment variables.
+
+---
+
+# 38. DOCUMENTATION
+
+Create:
+
+- `README.md`
+- architecture overview
+- tool reference
+- environment setup
+- database/history explanation
+- research methodology note
+- public-data limitations
+- backup/restore instructions
+
+Include clear warning:
+
+Historical metrics only become strong after prospective observation accumulates.
+
+---
+
+# 39. GIT SAFETY
+
+This project must be backed up incrementally.
+
+After each major successful phase:
+
+- run tests
+- run Ruff
+- commit working state
+
+Do not make one giant uncommitted cloud-only project.
+
+If a private GitHub remote is available, push verified milestones.
+
+Never commit:
+
+- `.env`
+- API keys
+- tokens
+- credentials
+
+---
+
+# 40. IMPLEMENTATION PHASES
+
+Execute in this order.
+
+## PHASE 0 — Project skeleton
+
+Build:
+
+- repository
+- package
+- config
+- DB foundation
+- basic server
+- basic CLI
+- tests
+- Git baseline
+
+Acceptance:
+
+- imports pass
+- CLI runs
+- MCP server initializes
+- DB initializes
+- Ruff passes
+- tests pass
+
+STOP and report before continuing if foundational architecture is broken.
+
+## PHASE 1 — Data/provenance foundation
+
+Build:
+
+- YouTube clients
+- canonical entities
+- observations
+- snapshots
+- discovery manifest
+- missing states
+- known-at-time integrity
+- cache
+
+## PHASE 2 — Cohort/eligibility
+
+Build:
+
+- long-form
+- live/Shorts
+- language confidence
+- small/new
+- niche entry
+- faceless states
+- weak-case retention
+- niche/topic hierarchy
+
+## PHASE 3 — Core opportunity analytics
+
+Implement:
+
+- F1–F9
+- failure floor
+- next5/10
+- concentration
+- C90/F19
+- F22
+- demand breadth
+
+## PHASE 4 — Historical analytics
+
+Implement code paths for:
+
+- F10–F13
+- F20
+- F21/C92
+
+but return `insufficient_history` until actual data exists.
+
+## PHASE 5 — Qualitative/production/risk
+
+Implement:
+
+- content gaps
+- packaging
+- topic depth
+- series
+- faceless production fit
+- production burden
+- rights/policy
+- C93 optional profile
+
+## PHASE 6 — Confidence/robustness/recommendation
+
+Implement:
+
+- F18
+- confidence
+- sensitivity
+- final multi-axis evidence card
+
+F17 stays optional sorting only.
+
+## PHASE 7 — Tool completion
+
+Finish all 15 public MCP tools using the shared primitives.
+
+## PHASE 8 — Verification
+
+Run:
+
+- full pytest
+- Ruff
+- import checks
+- CLI verify
+- DB integrity
+- migration test
+- MCP tool registration test
+- stdio MCP session test if supported
+
+---
+
+# 41. NO UNCONTROLLED LIVE RESEARCH YET
+
+During build/testing:
+
+Prefer mocks/fixtures.
+
+Do not consume significant YouTube quota until the implementation is verified.
+
+A small explicit live smoke test may be performed only after core tests pass and only if a valid `YOUTUBE_API_KEY` is present.
+
+Never print the key.
+
+---
+
+# 42. ACCEPTANCE REQUIREMENTS
+
+The rebuild is NOT complete merely because server starts.
+
+At minimum require:
+
+- all 15 tools registered
+- current public-data logic works
+- historical-only features return honest insufficient-history states
+- no unknown-to-zero conversion
+- no private metric fabrication
+- no current-size-as-breakout-size logic
+- no search-total-as-demand logic
+- failure-floor and weak cases retained
+- C90/F19 implemented
+- F22 implemented
+- C91/F20 architecture ready
+- C92/F21 history-ready
+- C93 optional
+- confidence separated from opportunity
+- F17 cannot auto-recommend
+- provenance visible
+- tests cover core invariants
+- DB integrity passes
+- Git backup exists
+
+---
+
+# 43. PROJECT STATE FILE
+
+Maintain:
+
+`PROJECT_STATE.md`
+
+After each completed phase update it with:
+
+- current version
+- phase completed
+- architecture
+- paths
+- schema version
+- migrations
+- tool list
+- tests/results
+- commands
+- current known limitations
+- pending phase
+- Git commit SHA
+- backup state
+
+This file must allow a fresh Codex/ChatGPT session to continue the project safely.
+
+---
+
+# 44. DO NOT INVENT IMPLEMENTATION SUCCESS
+
+Every claimed completion must be backed by:
+
+- command output
+- test
+- code path
+- schema inspection
+
+Clearly classify actions:
+
+- proposed
+- implemented
+- tested
+- passed
+- failed
+- deferred
+- history unavailable
+- policy gated
+
+---
+
+# 45. FIRST EXECUTION TASK
+
+Start with **PHASE 0 only**.
+
+Do NOT attempt the entire project in one uncontrolled pass.
+
+For Phase 0:
+
+1. create clean repository
+2. build package structure
+3. configuration
+4. SQLite connection/migration framework
+5. core domain state models
+6. MCP server skeleton
+7. CLI skeleton
+8. test infrastructure
+9. Ruff configuration
+10. Git initialization
+11. README
+12. PROJECT_STATE.md
+
+Then run all Phase-0 acceptance checks.
+
+Return:
+
+- created tree
+- architecture summary
+- exact commands run
+- tests passed/failed
+- Ruff result
+- MCP initialization result
+- DB result
+- Git commit SHA
+- next planned Phase 1 work
+
+Then STOP.
+
+Do NOT begin Phase 1 until the Phase-0 result is reviewed.
+
+**BEGIN PHASE 0 OF THE CLEAN YOUTUBE NICHE FINDER MCP REBUILD.**

@@ -1,0 +1,162 @@
+[
+  {
+    "path": "research_specs/C90_Plus_Feasibility_Delta.md",
+    "sha256": "5415ea7fca736c5a1f0b2b106d21436067799d2713e28f3340a76c1f4c1f22ce",
+    "lines": 207
+  },
+  {
+    "path": "research_specs/Faceless_Niche_Deep_Research_Prompt_Updated.txt",
+    "sha256": "1431b91cee1789a6ae6a5aa94e1379035e81a43c2960f465af57cfdc8f47f892",
+    "lines": 2823
+  },
+  {
+    "path": "research_specs/Faceless_YouTube_Research_Blueprint.md",
+    "sha256": "17fc814a181dd6d5d7faf9d4e897251361dfd7645298fb9187b40cb46dad3558",
+    "lines": 428
+  },
+  {
+    "path": "research_specs/MCP_Feasibility_Matrix.md",
+    "sha256": "cd51997ecb3f5484cc46fbbe0cd076c98fb6f183e8b9ce483eb010f8ac630ec1",
+    "lines": 240
+  },
+  {
+    "path": "research_specs/Third_Pass_Evidence_Ledger.md",
+    "sha256": "3e5c75f6e9ea38a36a1ca1d0679e1c4dbef79af94b6544fe879d35eefab5d3a3",
+    "lines": 111
+  },
+  {
+    "path": "research_specs/Third_Pass_Gap_Audit.md",
+    "sha256": "e3ada4c68e743a9b1e9f6f163db8092a35d00b804c3282ab11d7bef0e6954ddf",
+    "lines": 278
+  },
+  {
+    "path": "research_specs/YouTube_Evidence_Ledger.md",
+    "sha256": "d4bc5ad694e1b71e883dce9fb30dc9786b009233031b96551fdd8987a3228f36",
+    "lines": 427
+  },
+  {
+    "path": "docs/nexlev-api-contract.md",
+    "sha256": "20b72f4ea02769270cab08a030915e1860ade6015fc60e3cca138dcea5fa7e0e",
+    "lines": 84
+  },
+  {
+    "path": "docs/nexlev-integration.md",
+    "sha256": "f60bde4eb147769db2a0a93cd4e427c0130859f6f788e41c6166fc7d8cc4a23e",
+    "lines": 85
+  },
+  {
+    "path": "docs/nexlev-trust-model.md",
+    "sha256": "db64bed82bb110e9c4fd7af7eeeaf927501fe68e2cae6bd177755cb161670fd1",
+    "lines": 59
+  },
+  {
+    "path": "docs/phase-2-5-verification.md",
+    "sha256": "9b8f7d0f8e41f2c7d19460d39d946b13ce473dc14019a68616bf8b13a3026738",
+    "lines": 49
+  },
+  {
+    "path": "docs/phase-2-verification.md",
+    "sha256": "03591064f2fd5b8ad917f7cdfe7d31752f1c083a8297c00f003074c9a19c4485",
+    "lines": 82
+  },
+  {
+    "path": "docs/phase-3-analytics.md",
+    "sha256": "40d5a9dc421d8a30a8bd3e80b29743818374ee29dae90558e77df0a9bc3fc57c",
+    "lines": 135
+  },
+  {
+    "path": "docs/phase-3-formula-contract.md",
+    "sha256": "55c41e7ead8ca4db5d010d8af09982d6db61412deaea8b97541d39f831c7d708",
+    "lines": 85
+  },
+  {
+    "path": "docs/phase-3-verification.md",
+    "sha256": "0e7f7f816be5c50194419bdf09da3e8ee2d59bfbf919879544eddbb44f344b2b",
+    "lines": 61
+  },
+  {
+    "path": "docs/phase-4-formula-contract.md",
+    "sha256": "12561491311e06b33341950c7d487e0a89dbb1cd2c0c4a33608b698684227a73",
+    "lines": 18
+  },
+  {
+    "path": "docs/phase-4-historical-analytics.md",
+    "sha256": "95e7adb5d8b830c0f3e7e30cf89e1e1d066778ad7c23588db4a4115a40999ed0",
+    "lines": 40
+  },
+  {
+    "path": "docs/phase-4-verification.md",
+    "sha256": "b4f544afc5fd95af1dbb61086570eec53f981b20884a25ca1e4545e4b41e2dba",
+    "lines": 17
+  },
+  {
+    "path": "docs/phase-5-analytics.md",
+    "sha256": "6dca534fb341783838a2141a4f15e92833e8b9557f497eb6860a448cb5fa1a7e",
+    "lines": 30
+  },
+  {
+    "path": "docs/phase-5-content-gaps.md",
+    "sha256": "9f169865c4396f60fccbecf9ef2c5a5e142649f86acece60b7dfde532424c315",
+    "lines": 45
+  },
+  {
+    "path": "docs/phase-5-production-risk.md",
+    "sha256": "b26e94b5ee24ba49027eaa44b707313ac200483fa285dc959c0c4aa26c667e97",
+    "lines": 51
+  },
+  {
+    "path": "docs/phase-5-qualitative-contract.md",
+    "sha256": "6fcd687e7c2da0d2859ed9b3c03dafd4fcd5ec7133e904cebcc9f4e2425ba384",
+    "lines": 53
+  },
+  {
+    "path": "docs/phase-5-verification.md",
+    "sha256": "b34b1871627f415c39ea2f02a32c449108c1ed99b200e4dfed9d3342a51b36e7",
+    "lines": 56
+  },
+  {
+    "path": "docs/phase-6-analytics.md",
+    "sha256": "a9c91f46ef26b7bc249b7cce6d1f194a1c4f0cadca30c23a2427c43e1e6e99b1",
+    "lines": 8
+  },
+  {
+    "path": "docs/phase-6-decision-contract.md",
+    "sha256": "aa95f0bdf7b71a6da97557347873db774fb93ccf45365810dcaf8fcf229bf3d3",
+    "lines": 120
+  },
+  {
+    "path": "docs/phase-6-decision-synthesis.md",
+    "sha256": "c49960fcfc5b30eb41ad542ddc6aa7532fc4613d257dd0b0529677327ad5af35",
+    "lines": 60
+  },
+  {
+    "path": "docs/phase-6-qualitative.md",
+    "sha256": "40277452ac7f3fb6215e8fd5552d089038b2aa7491c082e6cdb16ea2fd6e309a",
+    "lines": 11
+  },
+  {
+    "path": "docs/phase-6-robustness.md",
+    "sha256": "f0ca8646be85369f87056646e02631f2e73dac2db966d5c079dded42c0c7c7aa",
+    "lines": 64
+  },
+  {
+    "path": "docs/phase-6-sensitivity.md",
+    "sha256": "c10a0c8048b9adee62972d799f3582a1cc6687f60685d80957c27c91793667de",
+    "lines": 51
+  },
+  {
+    "path": "docs/phase-6-verification.md",
+    "sha256": "fb44ba683d01730b62377ddccda8ae982c887eb6ce9495eea2452a30030088d6",
+    "lines": 31
+  },
+  {
+    "path": "docs/provider-architecture.md",
+    "sha256": "5078cb70dd286e02fb10a3fd8f4a1f84193fdf27702d153fa49cc6db07e5deeb",
+    "lines": 19
+  },
+  {
+    "path": "docs/tools.md",
+    "sha256": "9ff078adf8af8e5a64a4480598fe88f6c7271f179fc4830aa33437db7487be76",
+    "lines": 25
+  }
+]

@@ -1,0 +1,18 @@
+{
+  "note": "Synthetic fixtures model documented diagnostic patterns; not live factual assertions.",
+  "dustrialize_video": "ZP7jTDAHryQ",
+  "publication_dates": ["2026-08-01T00:00:00Z", "2026-08-15T00:00:00Z"],
+  "bridged_channel": "UCzCwu6s8xCNTJgvf_2IdcQA",
+  "bridged_video": "SsdfHbZYMNk",
+  "faceless": true,
+  "faceless_confidence": 0.98,
+  "independent_sample": "Presenter speaks directly to viewer at 01:04–01:10; recurrence unreviewed",
+  "spoken_language": "hi",
+  "englishOnly": true,
+  "weak_subscribers": 0,
+  "weak_views": 7,
+  "monetization": [true, false],
+  "modeled_monthly_revenue": 3400,
+  "daily_subscribers": [1000, 400, 1400, -2],
+  "daily_offsets": [14, 13, 11, 10]
+}

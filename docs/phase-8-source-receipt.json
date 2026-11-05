@@ -1,0 +1,16 @@
+{
+  "starting_sha": "61305079c14f3196e1b28a517079f9bad7e29820",
+  "request_path": "C:\\Users\\hp\\.codex\\attachments\\84867c8d-e0f0-4c22-a57f-6a49fba95542\\Pasted text.txt",
+  "request_sha256": "1141ffbbd3494aba4ff34950bd10fd179708cc0a5b9750bc733868159ada957c",
+  "prior_tags": {
+    "refs/tags/phase-0-verified": "f7e7b88656d6091ce5bb396dcc35a709fa759baa",
+    "refs/tags/phase-1-verified": "a2c017ab722bca0dccdd07acb702526de901f8d0",
+    "refs/tags/phase-2-verified": "efd96e0f15344a3a0e92a69372864598636a4385",
+    "refs/tags/phase-2.5-verified": "5a0437d9621819f921bdd7788470530dca6de5a1",
+    "refs/tags/phase-3-verified": "a1f50f3f442af4a2847a3beb72d6da3897993a2a",
+    "refs/tags/phase-4-verified": "b53e5bfacf33ce581f3f7ba7e5eaeaee990f5486",
+    "refs/tags/phase-5-verified": "99c90d6dec642b74ce4942130d1e4fe18ec35009",
+    "refs/tags/phase-6-verified": "8ce01aa05b1c56be93305fc57672d8fb792e35be",
+    "refs/tags/phase-7-verified": "61305079c14f3196e1b28a517079f9bad7e29820"
+  }
+}

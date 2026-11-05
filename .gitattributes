@@ -1,0 +1,7 @@
+* text=auto
+*.py text eol=lf
+*.md text eol=lf
+*.toml text eol=lf
+*.ps1 text eol=lf
+# Preserve authoritative research bytes and their recorded SHA-256 on restore.
+research_specs/** -text

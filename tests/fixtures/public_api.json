@@ -1,0 +1,13 @@
+{
+  "channel": {"id": "UCaaaaaaaaaaaaaaaaaaaaaa", "snippet": {"title": "Fixture channel", "publishedAt": "2020-01-02T03:04:05Z"}, "statistics": {"subscriberCount": "12300", "hiddenSubscriberCount": false, "viewCount": "500000", "videoCount": "25"}, "contentDetails": {"relatedPlaylists": {"uploads": "UUaaaaaaaaaaaaaaaaaaaaaa"}}},
+  "hidden_channel": {"id": "UCbbbbbbbbbbbbbbbbbbbbbb", "snippet": {"title": "Hidden fixture"}, "statistics": {"hiddenSubscriberCount": true, "subscriberCount": "900", "videoCount": "2"}},
+  "video": {"id": "aaaaaaaaaaa", "snippet": {"channelId": "UCaaaaaaaaaaaaaaaaaaaaaa", "title": "Fixture video", "publishedAt": "2026-09-20T12:00:00Z"}, "statistics": {"viewCount": "100", "likeCount": "3", "commentCount": "1"}, "contentDetails": {"duration": "PT12M34S"}, "status": {"privacyStatus": "public"}},
+  "missing_video": {"items": []},
+  "comments_disabled": {"error": {"errors": [{"reason": "commentsDisabled"}], "message": "Comments unavailable"}},
+  "uploads_pages": [{"items": [{"id": "playlist-item-1", "snippet": {"publishedAt": "2026-09-21T00:00:00Z", "resourceId": {"videoId": "aaaaaaaaaaa"}}, "contentDetails": {"videoId": "aaaaaaaaaaa", "videoPublishedAt": "2026-09-20T12:00:00Z"}}], "nextPageToken": "page-2"}, {"items": [{"contentDetails": {"videoId": "bbbbbbbbbbb"}}]}],
+  "discovery_pages": [{"items": [{"id": {"videoId": "aaaaaaaaaaa"}}, {"id": {"videoId": "bbbbbbbbbbb"}}], "nextPageToken": "page-2"}, {"items": [{"id": {"videoId": "aaaaaaaaaaa"}}, {"id": {}}, {"id": {"videoId": "bad-id"}}]}],
+  "batch": {"items": [{"id": "aaaaaaaaaaa", "snippet": {"publishTime": "2026-09-18T12:00:00Z"}, "statistics": {"viewCount": "150"}, "contentDetails": {"duration": "PT12M34S"}}], "summary": {"requestedVideoCount": 2, "succeededVideoCount": 1, "failedVideoCount": 1, "failedVideoIds": ["bbbbbbbbbbb"]}},
+  "provider_timestamp": "2026-09-18T12:00:00Z",
+  "transient": {"error": {"errors": [{"reason": "backendError"}]}},
+  "quota": {"error": {"errors": [{"reason": "quotaExceeded"}]}}
+}

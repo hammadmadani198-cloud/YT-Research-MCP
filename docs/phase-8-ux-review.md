@@ -1,0 +1,22 @@
+# Phase 8 integrated UX and performance review
+
+The release fixture stores synthetic, immutable source/cohort/review/decision records: four channels and 24 videos. All 15 public tools run through the actual PublicSurface dispatcher and real subprocess stdio using the same saved records, including a cwd and database path containing spaces. Fixture research IDs and watch IDs identify release validation. No fixture is represented as a real niche or live response.
+
+Discovery is available with retained boundary/candidate IDs. Quantitative research and focused evidence explain insufficient_evidence for this frame rather than converting missing evidence to a favorable recommendation; the history view returns history_unavailable. Watch creation returns configured and preserves intent/revision/scheduler=absent; the workflow explicitly disables its test watches after completion. Compatible compare returns available with winner=null and independent multi-axis/F18 states. Competitor rows preserve requested channel IDs and unknown/missing observations; ordering cannot override a recommendation or creator fit. New Standard research and retained replay execute canonical services and retain identity/zero HTTP semantics.
+
+Release fixes: both provider secrets and authorization strings are redacted in logs; generic research lookup skips capacity-specific runs; public profiles omit private capacity IDs/inputs; oversized results compact detail before primary rows; watch projection preserves up to 100 primary targets; pre-SDK input size is bounded; database errors return fixed actionable states, including future-schema migration errors. Structured output remains authoritative; SDK text carries the short summary instead of duplicating the full JSON. A 116000-byte PublicResult budget reserves space for the 120000-byte MCP/JSON-RPC envelope. Actual all-15 stdio results measured 1623-66750 bytes. No new research formula or success model was introduced. The historical formula catalog retains public_tools=0 for its internal Phase 3 scope and now names that scope plus registered_public_tools=15, preserving its frozen integration assertion.
+
+| Maximum case | Actual observed result |
+| --- | --- |
+| Ten research runs | All ten IDs and F18 retained; 74094 bytes; about 2.40 seconds |
+| Ten competitor targets | All ten IDs retained, including unknown channels; 29989 bytes |
+| Outlier page | 20 rows then four with disjoint primary video IDs and context-bound cursor |
+| Watch targets | 100 exact target IDs preserved through create/read and reopen |
+| Oversized detail | Twenty primary subjects and confidence states retained under 120000 UTF-8 bytes; explicit compaction/omission metadata |
+| Quick ceiling fixture | 25 channels/250 videos; about 9.56 seconds fixture setup+synthesis, 6.58 seconds projection; 47176 bytes; 16026 validation/read SQL statements |
+
+The ordinary 4/24 projections in phase-8-performance.json took 0.006-1.28 seconds and stayed below 67 KB on the final envelope regression. Standard new research was about 5.15 seconds, Quick synthesis about 1.30 seconds; these are small synthetic measurements, not live-provider or universal latency promises. See exact unrounded rows in that JSON and the acceptance stdout. Timing varies by concurrent load. Source/dependency validity checks account for substantial SQL reads at the Quick ceiling; request-local context caching avoids duplicate hydration within each tool request, but large-frame query batching is a future optimization. It is not a reason to change the frozen equations. Deep-mode production-scale timing and remote latency remain unverified.
+
+All 15 tools reject malformed/oversized input without echoing private paths/keys/SQL. The failure matrix preserves the saved research identity for YouTube/NexLev 401/403/429/503/network/timeout outcomes, sanitized warnings and attempted-request ledger entries; tests block real HTTP. Existing suites cover partial hydration, missing/private/hidden IDs, source conflicts, permission gating, unavailable REST routes, quota retries and retention/purge/revocation. A current cumulative count never fills missing historical V(30), publication time never becomes proven niche entry, and text/provider language never becomes full spoken-language review.
+
+Real public query testing is a separate, credential-gated workflow. Synthetic all-15 success verifies local integration only. Global host wiring remains a separate explicit action.

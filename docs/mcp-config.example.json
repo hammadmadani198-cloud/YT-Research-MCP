@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "youtube-niche-finder": {
+      "type": "stdio",
+      "command": "<absolute-repository-path>/.venv/Scripts/python.exe",
+      "args": [
+        "-m",
+        "youtube_niche_mcp.server"
+      ],
+      "cwd": "<absolute-repository-path>",
+      "env": {
+        "YTNMCP_DB_PATH": "<absolute-repository-path>/data/research.sqlite3",
+        "YTNMCP_LOG_LEVEL": "INFO"
+      }
+    }
+  }
+}

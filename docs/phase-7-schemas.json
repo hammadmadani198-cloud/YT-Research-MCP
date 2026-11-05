@@ -1,0 +1,6784 @@
+{
+  "youtube_niche_research": {
+    "description": "Research a niche using retained evidence and the frozen eligibility, analytics, qualitative and decision services. Reuse a research ID or resolve a stored boundary/query; explicit advanced profiles create immutable runs. Quick/standard/deep are bounded research budgets. Stored-only by default; refresh is explicit and permission-gated. Returns multi-axis state and F18, never a success forecast.",
+    "inputSchema": {
+      "$defs": {
+        "Acquisition": {
+          "additionalProperties": false,
+          "description": "Explicit bounded acquisition, separate from immutable analytical cutoffs.",
+          "properties": {
+            "refresh": {
+              "default": false,
+              "title": "Refresh",
+              "type": "boolean"
+            },
+            "request_id": {
+              "anyOf": [
+                {
+                  "maxLength": 128,
+                  "minLength": 1,
+                  "pattern": "^[\\w.:-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Request Id"
+            },
+            "provider_policy": {
+              "default": "official_only",
+              "enum": [
+                "official_only",
+                "prefer_nexlev"
+              ],
+              "title": "Provider Policy",
+              "type": "string"
+            },
+            "channel_ids": {
+              "default": [],
+              "items": {
+                "pattern": "^UC[A-Za-z0-9_-]{22}$",
+                "type": "string"
+              },
+              "maxItems": 100,
+              "title": "Channel Ids",
+              "type": "array"
+            },
+            "video_ids": {
+              "default": [],
+              "items": {
+                "pattern": "^[A-Za-z0-9_-]{11}$",
+                "type": "string"
+              },
+              "maxItems": 150,
+              "title": "Video Ids",
+              "type": "array"
+            },
+            "search": {
+              "default": false,
+              "title": "Search",
+              "type": "boolean"
+            },
+            "similar_channel": {
+              "anyOf": [
+                {
+                  "pattern": "^UC[A-Za-z0-9_-]{22}$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Similar Channel"
+            }
+          },
+          "title": "Acquisition",
+          "type": "object"
+        },
+        "AnalysisOptions": {
+          "additionalProperties": false,
+          "properties": {
+            "cutoff": {
+              "format": "date-time",
+              "title": "Cutoff",
+              "type": "string"
+            },
+            "age_days": {
+              "exclusiveMinimum": 0,
+              "title": "Age Days",
+              "type": "integer"
+            },
+            "tolerance_seconds": {
+              "maximum": 604800,
+              "minimum": 0,
+              "title": "Tolerance Seconds",
+              "type": "integer"
+            },
+            "goal": {
+              "minimum": 0,
+              "title": "Goal",
+              "type": "integer"
+            },
+            "low_threshold": {
+              "minimum": 0,
+              "title": "Low Threshold",
+              "type": "integer"
+            },
+            "own_minimum": {
+              "minimum": 1,
+              "title": "Own Minimum",
+              "type": "integer"
+            },
+            "peer_video_minimum": {
+              "minimum": 1,
+              "title": "Peer Video Minimum",
+              "type": "integer"
+            },
+            "peer_channel_minimum": {
+              "minimum": 1,
+              "title": "Peer Channel Minimum",
+              "type": "integer"
+            },
+            "pooling_k": {
+              "exclusiveMinimum": 0,
+              "title": "Pooling K",
+              "type": "integer"
+            },
+            "breadth_k": {
+              "minimum": 1,
+              "title": "Breadth K",
+              "type": "integer"
+            },
+            "classification_minimum": {
+              "anyOf": [
+                {
+                  "maximum": 1.0,
+                  "minimum": 0.0,
+                  "type": "number"
+                },
+                {
+                  "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                  "type": "string"
+                }
+              ],
+              "title": "Classification Minimum"
+            },
+            "exposure_days": {
+              "exclusiveMinimum": 0,
+              "title": "Exposure Days",
+              "type": "integer"
+            },
+            "first_k": {
+              "anyOf": [
+                {
+                  "enum": [
+                    5,
+                    10
+                  ],
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "First K"
+            },
+            "finite_frame_reference": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Finite Frame Reference"
+            },
+            "coverage": {
+              "default": [],
+              "items": {
+                "$ref": "#/$defs/CatalogCoverage"
+              },
+              "title": "Coverage",
+              "type": "array"
+            },
+            "candidate_id": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Candidate Id"
+            },
+            "baseline_cutoff": {
+              "anyOf": [
+                {
+                  "format": "date-time",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Baseline Cutoff"
+            },
+            "anchor_id": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Anchor Id"
+            },
+            "anchor_channel_id": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Anchor Channel Id"
+            },
+            "anchor_cutoff": {
+              "anyOf": [
+                {
+                  "format": "date-time",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Anchor Cutoff"
+            },
+            "independence_policy": {
+              "const": "frozen_groups_unknown_provisional",
+              "default": "frozen_groups_unknown_provisional",
+              "title": "Independence Policy",
+              "type": "string"
+            },
+            "missing_policy": {
+              "const": "never_zero_never_miss",
+              "default": "never_zero_never_miss",
+              "title": "Missing Policy",
+              "type": "string"
+            },
+            "quantile_version": {
+              "const": "type7-v1",
+              "default": "type7-v1",
+              "title": "Quantile Version",
+              "type": "string"
+            },
+            "observation_policy": {
+              "const": "official-exact-forward-window-v1",
+              "default": "official-exact-forward-window-v1",
+              "title": "Observation Policy",
+              "type": "string"
+            }
+          },
+          "required": [
+            "cutoff",
+            "age_days",
+            "tolerance_seconds",
+            "goal",
+            "low_threshold",
+            "own_minimum",
+            "peer_video_minimum",
+            "peer_channel_minimum",
+            "pooling_k",
+            "breadth_k",
+            "classification_minimum",
+            "exposure_days",
+            "first_k"
+          ],
+          "title": "AnalysisOptions",
+          "type": "object"
+        },
+        "Boundary": {
+          "additionalProperties": false,
+          "properties": {
+            "boundary_id": {
+              "title": "Boundary Id",
+              "type": "string"
+            },
+            "taxonomy_version": {
+              "title": "Taxonomy Version",
+              "type": "string"
+            },
+            "node_ids": {
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1,
+              "title": "Node Ids",
+              "type": "array"
+            },
+            "include_descendants": {
+              "default": true,
+              "title": "Include Descendants",
+              "type": "boolean"
+            },
+            "inclusion_rules": {
+              "default": [
+                "documented subject membership"
+              ],
+              "items": {
+                "type": "string"
+              },
+              "title": "Inclusion Rules",
+              "type": "array"
+            },
+            "exclusion_rules": {
+              "default": [
+                "explicit unrelated subject"
+              ],
+              "items": {
+                "type": "string"
+              },
+              "title": "Exclusion Rules",
+              "type": "array"
+            },
+            "semantic_scope": {
+              "additionalProperties": {
+                "$ref": "#/$defs/JsonValue"
+              },
+              "title": "Semantic Scope",
+              "type": "object"
+            },
+            "classifier_version": {
+              "title": "Classifier Version",
+              "type": "string"
+            },
+            "uncertainties": {
+              "default": [],
+              "items": {
+                "type": "string"
+              },
+              "title": "Uncertainties",
+              "type": "array"
+            }
+          },
+          "required": [
+            "boundary_id",
+            "taxonomy_version",
+            "node_ids",
+            "classifier_version"
+          ],
+          "title": "Boundary",
+          "type": "object"
+        },
+        "CatalogCoverage": {
+          "additionalProperties": false,
+          "properties": {
+            "channel_id": {
+              "title": "Channel Id",
+              "type": "string"
+            },
+            "through": {
+              "format": "date-time",
+              "title": "Through",
+              "type": "string"
+            },
+            "available_at": {
+              "format": "date-time",
+              "title": "Available At",
+              "type": "string"
+            },
+            "evidence_reference": {
+              "minLength": 1,
+              "title": "Evidence Reference",
+              "type": "string"
+            }
+          },
+          "required": [
+            "channel_id",
+            "through",
+            "available_at",
+            "evidence_reference"
+          ],
+          "title": "CatalogCoverage",
+          "type": "object"
+        },
+        "CohortDefinition": {
+          "additionalProperties": false,
+          "properties": {
+            "cohort_id": {
+              "minLength": 1,
+              "title": "Cohort Id",
+              "type": "string"
+            },
+            "kind": {
+              "enum": [
+                "eligible_long_form",
+                "small_channel",
+                "entrant"
+              ],
+              "title": "Kind",
+              "type": "string"
+            },
+            "created_at": {
+              "format": "date-time",
+              "title": "Created At",
+              "type": "string"
+            },
+            "known_at": {
+              "format": "date-time",
+              "title": "Known At",
+              "type": "string"
+            },
+            "research_run": {
+              "title": "Research Run",
+              "type": "string"
+            },
+            "boundary": {
+              "$ref": "#/$defs/Boundary"
+            },
+            "publication_start": {
+              "format": "date-time",
+              "title": "Publication Start",
+              "type": "string"
+            },
+            "publication_end": {
+              "format": "date-time",
+              "title": "Publication End",
+              "type": "string"
+            },
+            "entry_start": {
+              "anyOf": [
+                {
+                  "format": "date-time",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Entry Start"
+            },
+            "entry_end": {
+              "anyOf": [
+                {
+                  "format": "date-time",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Entry End"
+            },
+            "long_form_rule": {
+              "default": "long_form_v1_8m",
+              "enum": [
+                "long_form_v1_6m",
+                "long_form_v1_8m",
+                "long_form_v1_10m"
+              ],
+              "title": "Long Form Rule",
+              "type": "string"
+            },
+            "small_rule": {
+              "default": "current_small_v1_50k",
+              "enum": [
+                "current_small_v1_50k",
+                "current_small_v1_100k"
+              ],
+              "title": "Small Rule",
+              "type": "string"
+            },
+            "allow_archived_live": {
+              "default": false,
+              "title": "Allow Archived Live",
+              "type": "boolean"
+            },
+            "include_uncertain": {
+              "default": true,
+              "title": "Include Uncertain",
+              "type": "boolean"
+            },
+            "format_rule": {
+              "default": "surface_format_v1",
+              "title": "Format Rule",
+              "type": "string"
+            },
+            "live_rule": {
+              "default": "live_status_v1",
+              "title": "Live Rule",
+              "type": "string"
+            },
+            "language_rule": {
+              "default": "spoken_language_v1",
+              "title": "Language Rule",
+              "type": "string"
+            },
+            "faceless_rule": {
+              "default": "faceless_v1",
+              "title": "Faceless Rule",
+              "type": "string"
+            },
+            "entry_rule": {
+              "default": "niche_entry_v1",
+              "title": "Entry Rule",
+              "type": "string"
+            }
+          },
+          "required": [
+            "cohort_id",
+            "kind",
+            "created_at",
+            "known_at",
+            "research_run",
+            "boundary",
+            "publication_start",
+            "publication_end"
+          ],
+          "title": "CohortDefinition",
+          "type": "object"
+        },
+        "CohortVariant": {
+          "additionalProperties": false,
+          "properties": {
+            "variant_id": {
+              "minLength": 1,
+              "title": "Variant Id",
+              "type": "string"
+            },
+            "family": {
+              "enum": [
+                "threshold",
+                "boundary"
+              ],
+              "title": "Family",
+              "type": "string"
+            },
+            "label": {
+              "enum": [
+                "6m",
+                "8m",
+                "10m",
+                "50k",
+                "100k",
+                "broad",
+                "practical",
+                "narrow"
+              ],
+              "title": "Label",
+              "type": "string"
+            },
+            "cohort_id": {
+              "title": "Cohort Id",
+              "type": "string"
+            },
+            "video_cohort_id": {
+              "title": "Video Cohort Id",
+              "type": "string"
+            },
+            "declared_at": {
+              "format": "date-time",
+              "title": "Declared At",
+              "type": "string"
+            },
+            "omissions": {
+              "default": [],
+              "items": {
+                "type": "string"
+              },
+              "title": "Omissions",
+              "type": "array"
+            },
+            "research_reference": {
+              "minLength": 1,
+              "title": "Research Reference",
+              "type": "string"
+            },
+            "contextual_run_ids": {
+              "default": [],
+              "items": {
+                "type": "string"
+              },
+              "maxItems": 12,
+              "title": "Contextual Run Ids",
+              "type": "array"
+            }
+          },
+          "required": [
+            "variant_id",
+            "family",
+            "label",
+            "cohort_id",
+            "video_cohort_id",
+            "declared_at",
+            "research_reference"
+          ],
+          "title": "CohortVariant",
+          "type": "object"
+        },
+        "CreatorCapacity": {
+          "additionalProperties": false,
+          "properties": {
+            "profile_id": {
+              "minLength": 1,
+              "title": "Profile Id",
+              "type": "string"
+            },
+            "declared_at": {
+              "format": "date-time",
+              "title": "Declared At",
+              "type": "string"
+            },
+            "expires_at": {
+              "format": "date-time",
+              "title": "Expires At",
+              "type": "string"
+            },
+            "hours_per_week": {
+              "anyOf": [
+                {
+                  "minimum": 0.0,
+                  "type": "number"
+                },
+                {
+                  "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Hours Per Week"
+            },
+            "monthly_cash": {
+              "anyOf": [
+                {
+                  "minimum": 0.0,
+                  "type": "number"
+                },
+                {
+                  "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Monthly Cash"
+            },
+            "currency": {
+              "pattern": "^[A-Z]{3}$",
+              "title": "Currency",
+              "type": "string"
+            },
+            "releases_per_week": {
+              "anyOf": [
+                {
+                  "minimum": 0.0,
+                  "type": "number"
+                },
+                {
+                  "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Releases Per Week"
+            },
+            "skills": {
+              "anyOf": [
+                {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Skills"
+            },
+            "narration": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Narration"
+            },
+            "animation": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Animation"
+            },
+            "footage_access": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Footage Access"
+            },
+            "team_size": {
+              "anyOf": [
+                {
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Team Size"
+            }
+          },
+          "required": [
+            "profile_id",
+            "declared_at",
+            "expires_at",
+            "currency"
+          ],
+          "title": "CreatorCapacity",
+          "type": "object"
+        },
+        "DecisionRubric": {
+          "additionalProperties": false,
+          "properties": {
+            "version": {
+              "minLength": 1,
+              "title": "Version",
+              "type": "string"
+            },
+            "rules": {
+              "items": {
+                "$ref": "#/$defs/MetricRule"
+              },
+              "maxItems": 40,
+              "title": "Rules",
+              "type": "array"
+            },
+            "required_axes": {
+              "default": [
+                "performance",
+                "ordinary_floor",
+                "repeatability",
+                "entrant_accessibility",
+                "demand_breadth",
+                "idea_depth",
+                "production",
+                "sources",
+                "rights",
+                "platform_policy",
+                "factual_risk"
+              ],
+              "items": {
+                "type": "string"
+              },
+              "title": "Required Axes",
+              "type": "array"
+            },
+            "required_history": {
+              "default": [
+                "F10",
+                "F11",
+                "F12",
+                "F13",
+                "F20",
+                "F21"
+              ],
+              "items": {
+                "enum": [
+                  "F10",
+                  "F11",
+                  "F12",
+                  "F13",
+                  "F20",
+                  "F21"
+                ],
+                "type": "string"
+              },
+              "title": "Required History",
+              "type": "array"
+            }
+          },
+          "required": [
+            "version",
+            "rules"
+          ],
+          "title": "DecisionRubric",
+          "type": "object"
+        },
+        "HistoricalOptions": {
+          "additionalProperties": false,
+          "properties": {
+            "historical_version": {
+              "const": "phase4-v1",
+              "default": "phase4-v1",
+              "title": "Historical Version",
+              "type": "string"
+            },
+            "cutoff": {
+              "format": "date-time",
+              "title": "Cutoff",
+              "type": "string"
+            },
+            "age_days": {
+              "exclusiveMinimum": 0,
+              "title": "Age Days",
+              "type": "integer"
+            },
+            "goal": {
+              "minimum": 0,
+              "title": "Goal",
+              "type": "integer"
+            },
+            "tolerance_seconds": {
+              "default": 0,
+              "maximum": 604800,
+              "minimum": 0,
+              "title": "Tolerance Seconds",
+              "type": "integer"
+            },
+            "older": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Panel"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "newer": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Panel"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "observation_window": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Window"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "catalog_window": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Window"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "catalog_start_cohort": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Catalog Start Cohort"
+            },
+            "old_age_days": {
+              "default": 90,
+              "minimum": 90,
+              "title": "Old Age Days",
+              "type": "integer"
+            },
+            "pre_anchor_cohort": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Pre Anchor Cohort"
+            },
+            "anchor_id": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Anchor Id"
+            },
+            "anchor_channel_id": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Anchor Channel Id"
+            },
+            "anchor_at": {
+              "anyOf": [
+                {
+                  "format": "date-time",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Anchor At"
+            },
+            "first_k": {
+              "default": 5,
+              "enum": [
+                5,
+                10
+              ],
+              "title": "First K",
+              "type": "integer"
+            },
+            "recent_entry": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Window"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "creator_group_version": {
+              "minLength": 1,
+              "title": "Creator Group Version",
+              "type": "string"
+            },
+            "provider_history_policy": {
+              "default": "exclude",
+              "enum": [
+                "exclude",
+                "separate_auxiliary"
+              ],
+              "title": "Provider History Policy",
+              "type": "string"
+            },
+            "missing_policy": {
+              "const": "never_zero_never_miss",
+              "default": "never_zero_never_miss",
+              "title": "Missing Policy",
+              "type": "string"
+            },
+            "annotation": {
+              "additionalProperties": {
+                "$ref": "#/$defs/JsonValue"
+              },
+              "title": "Annotation",
+              "type": "object"
+            }
+          },
+          "required": [
+            "cutoff",
+            "age_days",
+            "goal",
+            "creator_group_version"
+          ],
+          "title": "HistoricalOptions",
+          "type": "object"
+        },
+        "JsonValue": {},
+        "MetricRule": {
+          "additionalProperties": false,
+          "properties": {
+            "formula_id": {
+              "title": "Formula Id",
+              "type": "string"
+            },
+            "path": {
+              "default": [],
+              "items": {
+                "type": "string"
+              },
+              "title": "Path",
+              "type": "array"
+            },
+            "direction": {
+              "enum": [
+                "at_least",
+                "at_most"
+              ],
+              "title": "Direction",
+              "type": "string"
+            },
+            "threshold": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                  "type": "string"
+                }
+              ],
+              "title": "Threshold"
+            },
+            "reference": {
+              "minLength": 1,
+              "title": "Reference",
+              "type": "string"
+            },
+            "material_tolerance": {
+              "anyOf": [
+                {
+                  "minimum": 0.0,
+                  "type": "number"
+                },
+                {
+                  "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Material Tolerance"
+            }
+          },
+          "required": [
+            "formula_id",
+            "direction",
+            "threshold",
+            "reference"
+          ],
+          "title": "MetricRule",
+          "type": "object"
+        },
+        "Panel": {
+          "additionalProperties": false,
+          "properties": {
+            "cohort_id": {
+              "title": "Cohort Id",
+              "type": "string"
+            },
+            "video_cohort_id": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Video Cohort Id"
+            },
+            "cutoff": {
+              "format": "date-time",
+              "title": "Cutoff",
+              "type": "string"
+            },
+            "publication": {
+              "$ref": "#/$defs/Window"
+            },
+            "age_days": {
+              "exclusiveMinimum": 0,
+              "title": "Age Days",
+              "type": "integer"
+            },
+            "goal": {
+              "minimum": 0,
+              "title": "Goal",
+              "type": "integer"
+            },
+            "tolerance_seconds": {
+              "default": 0,
+              "maximum": 604800,
+              "minimum": 0,
+              "title": "Tolerance Seconds",
+              "type": "integer"
+            },
+            "discovery_run_ids": {
+              "default": [],
+              "items": {
+                "type": "string"
+              },
+              "title": "Discovery Run Ids",
+              "type": "array"
+            },
+            "capability_mode": {
+              "minLength": 1,
+              "title": "Capability Mode",
+              "type": "string"
+            },
+            "provider_source_version": {
+              "minLength": 1,
+              "title": "Provider Source Version",
+              "type": "string"
+            },
+            "coverage_reference": {
+              "minLength": 1,
+              "title": "Coverage Reference",
+              "type": "string"
+            },
+            "coverage_epoch": {
+              "minLength": 1,
+              "title": "Coverage Epoch",
+              "type": "string"
+            },
+            "creator_group_version": {
+              "minLength": 1,
+              "title": "Creator Group Version",
+              "type": "string"
+            }
+          },
+          "required": [
+            "cohort_id",
+            "cutoff",
+            "publication",
+            "age_days",
+            "goal",
+            "capability_mode",
+            "provider_source_version",
+            "coverage_reference",
+            "coverage_epoch",
+            "creator_group_version"
+          ],
+          "title": "Panel",
+          "type": "object"
+        },
+        "PilotProfile": {
+          "additionalProperties": false,
+          "properties": {
+            "profile_id": {
+              "minLength": 1,
+              "title": "Profile Id",
+              "type": "string"
+            },
+            "declared_at": {
+              "format": "date-time",
+              "title": "Declared At",
+              "type": "string"
+            },
+            "expires_at": {
+              "format": "date-time",
+              "title": "Expires At",
+              "type": "string"
+            },
+            "currency": {
+              "pattern": "^[A-Z]{3}$",
+              "title": "Currency",
+              "type": "string"
+            },
+            "setup_at": {
+              "format": "date-time",
+              "title": "Setup At",
+              "type": "string"
+            },
+            "setup_cash": {
+              "anyOf": [
+                {
+                  "minimum": 0.0,
+                  "type": "number"
+                },
+                {
+                  "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                  "type": "string"
+                }
+              ],
+              "title": "Setup Cash"
+            },
+            "setup_hours": {
+              "anyOf": [
+                {
+                  "minimum": 0.0,
+                  "type": "number"
+                },
+                {
+                  "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                  "type": "string"
+                }
+              ],
+              "title": "Setup Hours"
+            },
+            "releases": {
+              "items": {
+                "$ref": "#/$defs/PilotRelease"
+              },
+              "maxItems": 100,
+              "minItems": 1,
+              "title": "Releases",
+              "type": "array"
+            },
+            "evaluation_hours": {
+              "anyOf": [
+                {
+                  "minimum": 0.0,
+                  "type": "number"
+                },
+                {
+                  "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                  "type": "string"
+                }
+              ],
+              "default": "0",
+              "title": "Evaluation Hours"
+            },
+            "overhead_hours": {
+              "anyOf": [
+                {
+                  "minimum": 0.0,
+                  "type": "number"
+                },
+                {
+                  "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                  "type": "string"
+                }
+              ],
+              "default": "0",
+              "title": "Overhead Hours"
+            },
+            "contracted_overhead_cash": {
+              "anyOf": [
+                {
+                  "minimum": 0.0,
+                  "type": "number"
+                },
+                {
+                  "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                  "type": "string"
+                }
+              ],
+              "default": "0",
+              "title": "Contracted Overhead Cash"
+            },
+            "overhead_at": {
+              "format": "date-time",
+              "title": "Overhead At",
+              "type": "string"
+            },
+            "cash_limit": {
+              "anyOf": [
+                {
+                  "minimum": 0.0,
+                  "type": "number"
+                },
+                {
+                  "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Cash Limit"
+            },
+            "hour_limit": {
+              "anyOf": [
+                {
+                  "minimum": 0.0,
+                  "type": "number"
+                },
+                {
+                  "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Hour Limit"
+            },
+            "runway_until": {
+              "anyOf": [
+                {
+                  "format": "date-time",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Runway Until"
+            },
+            "outcome_age_days": {
+              "exclusiveMinimum": 0,
+              "title": "Outcome Age Days",
+              "type": "integer"
+            },
+            "break_even_criteria_reference": {
+              "anyOf": [
+                {
+                  "maxLength": 200,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Break Even Criteria Reference"
+            }
+          },
+          "required": [
+            "profile_id",
+            "declared_at",
+            "expires_at",
+            "currency",
+            "setup_at",
+            "setup_cash",
+            "setup_hours",
+            "releases",
+            "overhead_at",
+            "outcome_age_days"
+          ],
+          "title": "PilotProfile",
+          "type": "object"
+        },
+        "PilotRelease": {
+          "additionalProperties": false,
+          "properties": {
+            "release_id": {
+              "title": "Release Id",
+              "type": "string"
+            },
+            "publication_at": {
+              "format": "date-time",
+              "title": "Publication At",
+              "type": "string"
+            },
+            "delay_days": {
+              "default": 0,
+              "minimum": 0,
+              "title": "Delay Days",
+              "type": "integer"
+            },
+            "cash_outflow_at": {
+              "anyOf": [
+                {
+                  "format": "date-time",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Cash Outflow At"
+            },
+            "tasks": {
+              "items": {
+                "$ref": "#/$defs/Task"
+              },
+              "minItems": 1,
+              "title": "Tasks",
+              "type": "array"
+            }
+          },
+          "required": [
+            "release_id",
+            "publication_at",
+            "tasks"
+          ],
+          "title": "PilotRelease",
+          "type": "object"
+        },
+        "ResearchProfile": {
+          "additionalProperties": false,
+          "description": "Advanced explicit research conventions, never hidden universal thresholds.",
+          "properties": {
+            "measurement": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/AnalysisOptions"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "channel_frame": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/CohortDefinition"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "video_frame": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/CohortDefinition"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "rubric": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/DecisionRubric"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "historical": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/HistoricalOptions"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "review": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/ReviewPlan"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "sensitivity": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/SensitivityPlan"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            }
+          },
+          "title": "ResearchProfile",
+          "type": "object"
+        },
+        "ResearchRequest": {
+          "additionalProperties": false,
+          "properties": {
+            "limit": {
+              "default": 10,
+              "maximum": 20,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            },
+            "cursor": {
+              "anyOf": [
+                {
+                  "maxLength": 256,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Cursor"
+            },
+            "query": {
+              "anyOf": [
+                {
+                  "maxLength": 500,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Query"
+            },
+            "boundary_id": {
+              "anyOf": [
+                {
+                  "maxLength": 128,
+                  "minLength": 1,
+                  "pattern": "^[\\w.:-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Boundary Id"
+            },
+            "research_id": {
+              "anyOf": [
+                {
+                  "maxLength": 128,
+                  "minLength": 1,
+                  "pattern": "^[\\w.:-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Research Id"
+            },
+            "mode": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "quick",
+                    "standard",
+                    "deep"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Mode"
+            },
+            "target_spoken_language": {
+              "anyOf": [
+                {
+                  "const": "en",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Target Spoken Language"
+            },
+            "geographic_context": {
+              "anyOf": [
+                {
+                  "maxLength": 120,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Geographic Context"
+            },
+            "history_preference": {
+              "default": "available",
+              "enum": [
+                "available",
+                "required",
+                "exclude"
+              ],
+              "title": "History Preference",
+              "type": "string"
+            },
+            "creator_profile": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/CreatorCapacity"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "sorting": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/SortConfig"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "advanced": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/ResearchProfile"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "acquisition": {
+              "$ref": "#/$defs/Acquisition"
+            }
+          },
+          "title": "ResearchRequest",
+          "type": "object"
+        },
+        "ReviewPlan": {
+          "additionalProperties": false,
+          "properties": {
+            "review_ids": {
+              "default": [],
+              "items": {
+                "maxLength": 128,
+                "minLength": 1,
+                "pattern": "^[\\w.:-]+$",
+                "type": "string"
+              },
+              "maxItems": 500,
+              "title": "Review Ids",
+              "type": "array"
+            },
+            "premise_ids": {
+              "default": [],
+              "items": {
+                "maxLength": 128,
+                "minLength": 1,
+                "pattern": "^[\\w.:-]+$",
+                "type": "string"
+              },
+              "maxItems": 500,
+              "title": "Premise Ids",
+              "type": "array"
+            },
+            "production_case_id": {
+              "anyOf": [
+                {
+                  "maxLength": 128,
+                  "minLength": 1,
+                  "pattern": "^[\\w.:-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Production Case Id"
+            },
+            "pilot": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/PilotProfile"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            }
+          },
+          "title": "ReviewPlan",
+          "type": "object"
+        },
+        "SensitivityPlan": {
+          "additionalProperties": false,
+          "properties": {
+            "version": {
+              "const": "phase6-oat-v1",
+              "default": "phase6-oat-v1",
+              "title": "Version",
+              "type": "string"
+            },
+            "mode": {
+              "default": "standard",
+              "enum": [
+                "quick",
+                "standard",
+                "deep"
+              ],
+              "title": "Mode",
+              "type": "string"
+            },
+            "declared_at": {
+              "format": "date-time",
+              "title": "Declared At",
+              "type": "string"
+            },
+            "goals": {
+              "default": [],
+              "items": {
+                "type": "integer"
+              },
+              "maxItems": 4,
+              "title": "Goals",
+              "type": "array"
+            },
+            "cohorts": {
+              "default": [],
+              "items": {
+                "$ref": "#/$defs/CohortVariant"
+              },
+              "maxItems": 8,
+              "title": "Cohorts",
+              "type": "array"
+            },
+            "required_families": {
+              "default": [
+                "route",
+                "provider",
+                "threshold",
+                "boundary",
+                "missingness",
+                "ownership",
+                "qualitative"
+              ],
+              "items": {
+                "enum": [
+                  "route",
+                  "provider",
+                  "threshold",
+                  "boundary",
+                  "missingness",
+                  "ownership",
+                  "qualitative"
+                ],
+                "type": "string"
+              },
+              "title": "Required Families",
+              "type": "array"
+            },
+            "max_runs": {
+              "default": 24,
+              "maximum": 48,
+              "minimum": 1,
+              "title": "Max Runs",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "declared_at"
+          ],
+          "title": "SensitivityPlan",
+          "type": "object"
+        },
+        "SortConfig": {
+          "additionalProperties": false,
+          "properties": {
+            "version": {
+              "minLength": 1,
+              "title": "Version",
+              "type": "string"
+            },
+            "dimensions": {
+              "items": {
+                "$ref": "#/$defs/SortDimension"
+              },
+              "maxItems": 12,
+              "minItems": 1,
+              "title": "Dimensions",
+              "type": "array"
+            },
+            "allow_partial": {
+              "default": false,
+              "title": "Allow Partial",
+              "type": "boolean"
+            },
+            "normalization": {
+              "const": "external_linear_clamped_v1",
+              "default": "external_linear_clamped_v1",
+              "title": "Normalization",
+              "type": "string"
+            }
+          },
+          "required": [
+            "version",
+            "dimensions"
+          ],
+          "title": "SortConfig",
+          "type": "object"
+        },
+        "SortDimension": {
+          "additionalProperties": false,
+          "properties": {
+            "formula_id": {
+              "enum": [
+                "F1",
+                "F2",
+                "F3",
+                "F4",
+                "F5",
+                "F6",
+                "F7",
+                "F8",
+                "F9",
+                "F15",
+                "F16",
+                "F19"
+              ],
+              "title": "Formula Id",
+              "type": "string"
+            },
+            "weight": {
+              "anyOf": [
+                {
+                  "exclusiveMinimum": 0.0,
+                  "type": "number"
+                },
+                {
+                  "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                  "type": "string"
+                }
+              ],
+              "title": "Weight"
+            },
+            "low": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                  "type": "string"
+                }
+              ],
+              "title": "Low"
+            },
+            "high": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                  "type": "string"
+                }
+              ],
+              "title": "High"
+            },
+            "direction": {
+              "enum": [
+                "higher",
+                "lower"
+              ],
+              "title": "Direction",
+              "type": "string"
+            },
+            "essential": {
+              "default": true,
+              "title": "Essential",
+              "type": "boolean"
+            },
+            "benchmark_reference": {
+              "minLength": 1,
+              "title": "Benchmark Reference",
+              "type": "string"
+            }
+          },
+          "required": [
+            "formula_id",
+            "weight",
+            "low",
+            "high",
+            "direction",
+            "benchmark_reference"
+          ],
+          "title": "SortDimension",
+          "type": "object"
+        },
+        "Task": {
+          "additionalProperties": false,
+          "properties": {
+            "category": {
+              "enum": [
+                "research",
+                "sourcing_fact_check",
+                "script",
+                "visuals",
+                "rights",
+                "edit_animation",
+                "narration",
+                "expertise",
+                "updates",
+                "revisions_overhead"
+              ],
+              "title": "Category",
+              "type": "string"
+            },
+            "hours": {
+              "anyOf": [
+                {
+                  "minimum": 0.0,
+                  "type": "number"
+                },
+                {
+                  "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                  "type": "string"
+                }
+              ],
+              "title": "Hours"
+            },
+            "cash": {
+              "anyOf": [
+                {
+                  "minimum": 0.0,
+                  "type": "number"
+                },
+                {
+                  "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                  "type": "string"
+                }
+              ],
+              "title": "Cash"
+            },
+            "required_skills": {
+              "default": [],
+              "items": {
+                "type": "string"
+              },
+              "title": "Required Skills",
+              "type": "array"
+            },
+            "evidence_ids": {
+              "default": [],
+              "items": {
+                "type": "string"
+              },
+              "title": "Evidence Ids",
+              "type": "array"
+            },
+            "reason": {
+              "maxLength": 300,
+              "minLength": 1,
+              "title": "Reason",
+              "type": "string"
+            },
+            "confidence": {
+              "enum": [
+                "low",
+                "medium",
+                "high",
+                "unknown"
+              ],
+              "title": "Confidence",
+              "type": "string"
+            }
+          },
+          "required": [
+            "category",
+            "hours",
+            "cash",
+            "reason",
+            "confidence"
+          ],
+          "title": "Task",
+          "type": "object"
+        },
+        "Window": {
+          "additionalProperties": false,
+          "properties": {
+            "start": {
+              "format": "date-time",
+              "title": "Start",
+              "type": "string"
+            },
+            "end": {
+              "format": "date-time",
+              "title": "End",
+              "type": "string"
+            }
+          },
+          "required": [
+            "start",
+            "end"
+          ],
+          "title": "Window",
+          "type": "object"
+        }
+      },
+      "properties": {
+        "request": {
+          "$ref": "#/$defs/ResearchRequest"
+        }
+      },
+      "required": [
+        "request"
+      ],
+      "title": "youtube_niche_researchInput",
+      "type": "object"
+    },
+    "outputSchema": {
+      "$defs": {
+        "JsonValue": {},
+        "MetricCard": {
+          "additionalProperties": false,
+          "properties": {
+            "dimension": {
+              "title": "Dimension",
+              "type": "string"
+            },
+            "state": {
+              "title": "State",
+              "type": "string"
+            },
+            "value": {
+              "$ref": "#/$defs/JsonValue",
+              "default": null
+            },
+            "numerator": {
+              "$ref": "#/$defs/JsonValue",
+              "default": null
+            },
+            "denominator": {
+              "$ref": "#/$defs/JsonValue",
+              "default": null
+            },
+            "unit": {
+              "title": "Unit",
+              "type": "string"
+            },
+            "age_days": {
+              "title": "Age Days",
+              "type": "integer"
+            },
+            "goal": {
+              "title": "Goal",
+              "type": "integer"
+            },
+            "mature": {
+              "title": "Mature",
+              "type": "integer"
+            },
+            "pending": {
+              "title": "Pending",
+              "type": "integer"
+            },
+            "unknown": {
+              "title": "Unknown",
+              "type": "integer"
+            },
+            "details": {
+              "additionalProperties": {
+                "$ref": "#/$defs/JsonValue"
+              },
+              "title": "Details",
+              "type": "object"
+            },
+            "warnings": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Warnings",
+              "type": "array"
+            }
+          },
+          "required": [
+            "dimension",
+            "state",
+            "unit",
+            "age_days",
+            "goal",
+            "mature",
+            "pending",
+            "unknown"
+          ],
+          "title": "MetricCard",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "state": {
+          "title": "State",
+          "type": "string"
+        },
+        "summary": {
+          "title": "Summary",
+          "type": "string"
+        },
+        "research_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Research Id"
+        },
+        "reused_run": {
+          "default": false,
+          "title": "Reused Run",
+          "type": "boolean"
+        },
+        "boundary": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Boundary",
+          "type": "object"
+        },
+        "metrics": {
+          "items": {
+            "$ref": "#/$defs/MetricCard"
+          },
+          "title": "Metrics",
+          "type": "array"
+        },
+        "evidence": {
+          "items": {
+            "additionalProperties": {
+              "$ref": "#/$defs/JsonValue"
+            },
+            "type": "object"
+          },
+          "title": "Evidence",
+          "type": "array"
+        },
+        "confidence": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Confidence",
+          "type": "object"
+        },
+        "supports": {
+          "items": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Supports",
+          "type": "array"
+        },
+        "concerns": {
+          "items": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Concerns",
+          "type": "array"
+        },
+        "unknowns": {
+          "items": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Unknowns",
+          "type": "array"
+        },
+        "warnings": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Warnings",
+          "type": "array"
+        },
+        "provenance": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Provenance",
+          "type": "object"
+        },
+        "quota": {
+          "items": {
+            "additionalProperties": {
+              "$ref": "#/$defs/JsonValue"
+            },
+            "type": "object"
+          },
+          "title": "Quota",
+          "type": "array"
+        },
+        "capabilities": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Capabilities",
+          "type": "object"
+        },
+        "data": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Data",
+          "type": "object"
+        },
+        "next_cursor": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Next Cursor"
+        },
+        "next_available_actions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Next Available Actions",
+          "type": "array"
+        }
+      },
+      "required": [
+        "state",
+        "summary"
+      ],
+      "title": "PublicResult",
+      "type": "object"
+    }
+  },
+  "youtube_niche_discover": {
+    "description": "Find stored taxonomy candidates and their official/provider discovery routes, weak cases and coverage. Candidate generation does not imply opportunity or rank by viral scores. Explicit refresh can collect bounded official search or documented NexLev similar-channel evidence.",
+    "inputSchema": {
+      "$defs": {
+        "Acquisition": {
+          "additionalProperties": false,
+          "description": "Explicit bounded acquisition, separate from immutable analytical cutoffs.",
+          "properties": {
+            "refresh": {
+              "default": false,
+              "title": "Refresh",
+              "type": "boolean"
+            },
+            "request_id": {
+              "anyOf": [
+                {
+                  "maxLength": 128,
+                  "minLength": 1,
+                  "pattern": "^[\\w.:-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Request Id"
+            },
+            "provider_policy": {
+              "default": "official_only",
+              "enum": [
+                "official_only",
+                "prefer_nexlev"
+              ],
+              "title": "Provider Policy",
+              "type": "string"
+            },
+            "channel_ids": {
+              "default": [],
+              "items": {
+                "pattern": "^UC[A-Za-z0-9_-]{22}$",
+                "type": "string"
+              },
+              "maxItems": 100,
+              "title": "Channel Ids",
+              "type": "array"
+            },
+            "video_ids": {
+              "default": [],
+              "items": {
+                "pattern": "^[A-Za-z0-9_-]{11}$",
+                "type": "string"
+              },
+              "maxItems": 150,
+              "title": "Video Ids",
+              "type": "array"
+            },
+            "search": {
+              "default": false,
+              "title": "Search",
+              "type": "boolean"
+            },
+            "similar_channel": {
+              "anyOf": [
+                {
+                  "pattern": "^UC[A-Za-z0-9_-]{22}$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Similar Channel"
+            }
+          },
+          "title": "Acquisition",
+          "type": "object"
+        },
+        "DiscoverRequest": {
+          "additionalProperties": false,
+          "properties": {
+            "limit": {
+              "default": 10,
+              "maximum": 20,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            },
+            "cursor": {
+              "anyOf": [
+                {
+                  "maxLength": 256,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Cursor"
+            },
+            "query": {
+              "maxLength": 500,
+              "minLength": 1,
+              "title": "Query",
+              "type": "string"
+            },
+            "taxonomy_version": {
+              "anyOf": [
+                {
+                  "maxLength": 128,
+                  "minLength": 1,
+                  "pattern": "^[\\w.:-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Taxonomy Version"
+            },
+            "mode": {
+              "default": "standard",
+              "enum": [
+                "quick",
+                "standard",
+                "deep"
+              ],
+              "title": "Mode",
+              "type": "string"
+            },
+            "acquisition": {
+              "$ref": "#/$defs/Acquisition"
+            }
+          },
+          "required": [
+            "query"
+          ],
+          "title": "DiscoverRequest",
+          "type": "object"
+        }
+      },
+      "properties": {
+        "request": {
+          "$ref": "#/$defs/DiscoverRequest"
+        }
+      },
+      "required": [
+        "request"
+      ],
+      "title": "youtube_niche_discoverInput",
+      "type": "object"
+    },
+    "outputSchema": {
+      "$defs": {
+        "JsonValue": {},
+        "MetricCard": {
+          "additionalProperties": false,
+          "properties": {
+            "dimension": {
+              "title": "Dimension",
+              "type": "string"
+            },
+            "state": {
+              "title": "State",
+              "type": "string"
+            },
+            "value": {
+              "$ref": "#/$defs/JsonValue",
+              "default": null
+            },
+            "numerator": {
+              "$ref": "#/$defs/JsonValue",
+              "default": null
+            },
+            "denominator": {
+              "$ref": "#/$defs/JsonValue",
+              "default": null
+            },
+            "unit": {
+              "title": "Unit",
+              "type": "string"
+            },
+            "age_days": {
+              "title": "Age Days",
+              "type": "integer"
+            },
+            "goal": {
+              "title": "Goal",
+              "type": "integer"
+            },
+            "mature": {
+              "title": "Mature",
+              "type": "integer"
+            },
+            "pending": {
+              "title": "Pending",
+              "type": "integer"
+            },
+            "unknown": {
+              "title": "Unknown",
+              "type": "integer"
+            },
+            "details": {
+              "additionalProperties": {
+                "$ref": "#/$defs/JsonValue"
+              },
+              "title": "Details",
+              "type": "object"
+            },
+            "warnings": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Warnings",
+              "type": "array"
+            }
+          },
+          "required": [
+            "dimension",
+            "state",
+            "unit",
+            "age_days",
+            "goal",
+            "mature",
+            "pending",
+            "unknown"
+          ],
+          "title": "MetricCard",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "state": {
+          "title": "State",
+          "type": "string"
+        },
+        "summary": {
+          "title": "Summary",
+          "type": "string"
+        },
+        "research_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Research Id"
+        },
+        "reused_run": {
+          "default": false,
+          "title": "Reused Run",
+          "type": "boolean"
+        },
+        "boundary": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Boundary",
+          "type": "object"
+        },
+        "metrics": {
+          "items": {
+            "$ref": "#/$defs/MetricCard"
+          },
+          "title": "Metrics",
+          "type": "array"
+        },
+        "evidence": {
+          "items": {
+            "additionalProperties": {
+              "$ref": "#/$defs/JsonValue"
+            },
+            "type": "object"
+          },
+          "title": "Evidence",
+          "type": "array"
+        },
+        "confidence": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Confidence",
+          "type": "object"
+        },
+        "supports": {
+          "items": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Supports",
+          "type": "array"
+        },
+        "concerns": {
+          "items": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Concerns",
+          "type": "array"
+        },
+        "unknowns": {
+          "items": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Unknowns",
+          "type": "array"
+        },
+        "warnings": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Warnings",
+          "type": "array"
+        },
+        "provenance": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Provenance",
+          "type": "object"
+        },
+        "quota": {
+          "items": {
+            "additionalProperties": {
+              "$ref": "#/$defs/JsonValue"
+            },
+            "type": "object"
+          },
+          "title": "Quota",
+          "type": "array"
+        },
+        "capabilities": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Capabilities",
+          "type": "object"
+        },
+        "data": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Data",
+          "type": "object"
+        },
+        "next_cursor": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Next Cursor"
+        },
+        "next_available_actions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Next Available Actions",
+          "type": "array"
+        }
+      },
+      "required": [
+        "state",
+        "summary"
+      ],
+      "title": "PublicResult",
+      "type": "object"
+    }
+  },
+  "youtube_niche_compare": {
+    "description": "Compare 2\u201310 researched niches across performance, floor, repeatability, entrants, breadth, concentration, history, production, risk and confidence. Reject incompatible mode/age/goal/frame profiles. No default winner; explicit F17 is separately labeled sorting-only.",
+    "inputSchema": {
+      "$defs": {
+        "CompareRequest": {
+          "additionalProperties": false,
+          "properties": {
+            "research_ids": {
+              "items": {
+                "maxLength": 128,
+                "minLength": 1,
+                "pattern": "^[\\w.:-]+$",
+                "type": "string"
+              },
+              "maxItems": 10,
+              "minItems": 2,
+              "title": "Research Ids",
+              "type": "array"
+            },
+            "sorting": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/SortConfig"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            }
+          },
+          "required": [
+            "research_ids"
+          ],
+          "title": "CompareRequest",
+          "type": "object"
+        },
+        "SortConfig": {
+          "additionalProperties": false,
+          "properties": {
+            "version": {
+              "minLength": 1,
+              "title": "Version",
+              "type": "string"
+            },
+            "dimensions": {
+              "items": {
+                "$ref": "#/$defs/SortDimension"
+              },
+              "maxItems": 12,
+              "minItems": 1,
+              "title": "Dimensions",
+              "type": "array"
+            },
+            "allow_partial": {
+              "default": false,
+              "title": "Allow Partial",
+              "type": "boolean"
+            },
+            "normalization": {
+              "const": "external_linear_clamped_v1",
+              "default": "external_linear_clamped_v1",
+              "title": "Normalization",
+              "type": "string"
+            }
+          },
+          "required": [
+            "version",
+            "dimensions"
+          ],
+          "title": "SortConfig",
+          "type": "object"
+        },
+        "SortDimension": {
+          "additionalProperties": false,
+          "properties": {
+            "formula_id": {
+              "enum": [
+                "F1",
+                "F2",
+                "F3",
+                "F4",
+                "F5",
+                "F6",
+                "F7",
+                "F8",
+                "F9",
+                "F15",
+                "F16",
+                "F19"
+              ],
+              "title": "Formula Id",
+              "type": "string"
+            },
+            "weight": {
+              "anyOf": [
+                {
+                  "exclusiveMinimum": 0.0,
+                  "type": "number"
+                },
+                {
+                  "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                  "type": "string"
+                }
+              ],
+              "title": "Weight"
+            },
+            "low": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                  "type": "string"
+                }
+              ],
+              "title": "Low"
+            },
+            "high": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                  "type": "string"
+                }
+              ],
+              "title": "High"
+            },
+            "direction": {
+              "enum": [
+                "higher",
+                "lower"
+              ],
+              "title": "Direction",
+              "type": "string"
+            },
+            "essential": {
+              "default": true,
+              "title": "Essential",
+              "type": "boolean"
+            },
+            "benchmark_reference": {
+              "minLength": 1,
+              "title": "Benchmark Reference",
+              "type": "string"
+            }
+          },
+          "required": [
+            "formula_id",
+            "weight",
+            "low",
+            "high",
+            "direction",
+            "benchmark_reference"
+          ],
+          "title": "SortDimension",
+          "type": "object"
+        }
+      },
+      "properties": {
+        "request": {
+          "$ref": "#/$defs/CompareRequest"
+        }
+      },
+      "required": [
+        "request"
+      ],
+      "title": "youtube_niche_compareInput",
+      "type": "object"
+    },
+    "outputSchema": {
+      "$defs": {
+        "JsonValue": {},
+        "MetricCard": {
+          "additionalProperties": false,
+          "properties": {
+            "dimension": {
+              "title": "Dimension",
+              "type": "string"
+            },
+            "state": {
+              "title": "State",
+              "type": "string"
+            },
+            "value": {
+              "$ref": "#/$defs/JsonValue",
+              "default": null
+            },
+            "numerator": {
+              "$ref": "#/$defs/JsonValue",
+              "default": null
+            },
+            "denominator": {
+              "$ref": "#/$defs/JsonValue",
+              "default": null
+            },
+            "unit": {
+              "title": "Unit",
+              "type": "string"
+            },
+            "age_days": {
+              "title": "Age Days",
+              "type": "integer"
+            },
+            "goal": {
+              "title": "Goal",
+              "type": "integer"
+            },
+            "mature": {
+              "title": "Mature",
+              "type": "integer"
+            },
+            "pending": {
+              "title": "Pending",
+              "type": "integer"
+            },
+            "unknown": {
+              "title": "Unknown",
+              "type": "integer"
+            },
+            "details": {
+              "additionalProperties": {
+                "$ref": "#/$defs/JsonValue"
+              },
+              "title": "Details",
+              "type": "object"
+            },
+            "warnings": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Warnings",
+              "type": "array"
+            }
+          },
+          "required": [
+            "dimension",
+            "state",
+            "unit",
+            "age_days",
+            "goal",
+            "mature",
+            "pending",
+            "unknown"
+          ],
+          "title": "MetricCard",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "state": {
+          "title": "State",
+          "type": "string"
+        },
+        "summary": {
+          "title": "Summary",
+          "type": "string"
+        },
+        "research_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Research Id"
+        },
+        "reused_run": {
+          "default": false,
+          "title": "Reused Run",
+          "type": "boolean"
+        },
+        "boundary": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Boundary",
+          "type": "object"
+        },
+        "metrics": {
+          "items": {
+            "$ref": "#/$defs/MetricCard"
+          },
+          "title": "Metrics",
+          "type": "array"
+        },
+        "evidence": {
+          "items": {
+            "additionalProperties": {
+              "$ref": "#/$defs/JsonValue"
+            },
+            "type": "object"
+          },
+          "title": "Evidence",
+          "type": "array"
+        },
+        "confidence": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Confidence",
+          "type": "object"
+        },
+        "supports": {
+          "items": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Supports",
+          "type": "array"
+        },
+        "concerns": {
+          "items": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Concerns",
+          "type": "array"
+        },
+        "unknowns": {
+          "items": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Unknowns",
+          "type": "array"
+        },
+        "warnings": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Warnings",
+          "type": "array"
+        },
+        "provenance": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Provenance",
+          "type": "object"
+        },
+        "quota": {
+          "items": {
+            "additionalProperties": {
+              "$ref": "#/$defs/JsonValue"
+            },
+            "type": "object"
+          },
+          "title": "Quota",
+          "type": "array"
+        },
+        "capabilities": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Capabilities",
+          "type": "object"
+        },
+        "data": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Data",
+          "type": "object"
+        },
+        "next_cursor": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Next Cursor"
+        },
+        "next_available_actions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Next Available Actions",
+          "type": "array"
+        }
+      },
+      "required": [
+        "state",
+        "summary"
+      ],
+      "title": "PublicResult",
+      "type": "object"
+    }
+  },
+  "youtube_niche_outliers": {
+    "description": "Inspect canonical candidate hits with internal F1 lift, absolute reach, baseline, ordinary floor, F7 follow-ups and F20 chronology. Provider outlier scores are separate context and cannot establish niche quality.",
+    "inputSchema": {
+      "$defs": {
+        "DetailRequest": {
+          "additionalProperties": false,
+          "properties": {
+            "limit": {
+              "default": 10,
+              "maximum": 20,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            },
+            "cursor": {
+              "anyOf": [
+                {
+                  "maxLength": 256,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Cursor"
+            },
+            "research_id": {
+              "maxLength": 128,
+              "minLength": 1,
+              "pattern": "^[\\w.:-]+$",
+              "title": "Research Id",
+              "type": "string"
+            }
+          },
+          "required": [
+            "research_id"
+          ],
+          "title": "DetailRequest",
+          "type": "object"
+        }
+      },
+      "properties": {
+        "request": {
+          "$ref": "#/$defs/DetailRequest"
+        }
+      },
+      "required": [
+        "request"
+      ],
+      "title": "youtube_niche_outliersInput",
+      "type": "object"
+    },
+    "outputSchema": {
+      "$defs": {
+        "JsonValue": {},
+        "MetricCard": {
+          "additionalProperties": false,
+          "properties": {
+            "dimension": {
+              "title": "Dimension",
+              "type": "string"
+            },
+            "state": {
+              "title": "State",
+              "type": "string"
+            },
+            "value": {
+              "$ref": "#/$defs/JsonValue",
+              "default": null
+            },
+            "numerator": {
+              "$ref": "#/$defs/JsonValue",
+              "default": null
+            },
+            "denominator": {
+              "$ref": "#/$defs/JsonValue",
+              "default": null
+            },
+            "unit": {
+              "title": "Unit",
+              "type": "string"
+            },
+            "age_days": {
+              "title": "Age Days",
+              "type": "integer"
+            },
+            "goal": {
+              "title": "Goal",
+              "type": "integer"
+            },
+            "mature": {
+              "title": "Mature",
+              "type": "integer"
+            },
+            "pending": {
+              "title": "Pending",
+              "type": "integer"
+            },
+            "unknown": {
+              "title": "Unknown",
+              "type": "integer"
+            },
+            "details": {
+              "additionalProperties": {
+                "$ref": "#/$defs/JsonValue"
+              },
+              "title": "Details",
+              "type": "object"
+            },
+            "warnings": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Warnings",
+              "type": "array"
+            }
+          },
+          "required": [
+            "dimension",
+            "state",
+            "unit",
+            "age_days",
+            "goal",
+            "mature",
+            "pending",
+            "unknown"
+          ],
+          "title": "MetricCard",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "state": {
+          "title": "State",
+          "type": "string"
+        },
+        "summary": {
+          "title": "Summary",
+          "type": "string"
+        },
+        "research_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Research Id"
+        },
+        "reused_run": {
+          "default": false,
+          "title": "Reused Run",
+          "type": "boolean"
+        },
+        "boundary": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Boundary",
+          "type": "object"
+        },
+        "metrics": {
+          "items": {
+            "$ref": "#/$defs/MetricCard"
+          },
+          "title": "Metrics",
+          "type": "array"
+        },
+        "evidence": {
+          "items": {
+            "additionalProperties": {
+              "$ref": "#/$defs/JsonValue"
+            },
+            "type": "object"
+          },
+          "title": "Evidence",
+          "type": "array"
+        },
+        "confidence": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Confidence",
+          "type": "object"
+        },
+        "supports": {
+          "items": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Supports",
+          "type": "array"
+        },
+        "concerns": {
+          "items": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Concerns",
+          "type": "array"
+        },
+        "unknowns": {
+          "items": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Unknowns",
+          "type": "array"
+        },
+        "warnings": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Warnings",
+          "type": "array"
+        },
+        "provenance": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Provenance",
+          "type": "object"
+        },
+        "quota": {
+          "items": {
+            "additionalProperties": {
+              "$ref": "#/$defs/JsonValue"
+            },
+            "type": "object"
+          },
+          "title": "Quota",
+          "type": "array"
+        },
+        "capabilities": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Capabilities",
+          "type": "object"
+        },
+        "data": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Data",
+          "type": "object"
+        },
+        "next_cursor": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Next Cursor"
+        },
+        "next_available_actions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Next Available Actions",
+          "type": "array"
+        }
+      },
+      "required": [
+        "state",
+        "summary"
+      ],
+      "title": "PublicResult",
+      "type": "object"
+    }
+  },
+  "youtube_niche_content_gaps": {
+    "description": "Inspect evidence-gated content and packaging gap states with demand, supply, differentiation, feasibility and sample coverage. Low supply alone is insufficient demand evidence.",
+    "inputSchema": {
+      "$defs": {
+        "DetailRequest": {
+          "additionalProperties": false,
+          "properties": {
+            "limit": {
+              "default": 10,
+              "maximum": 20,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            },
+            "cursor": {
+              "anyOf": [
+                {
+                  "maxLength": 256,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Cursor"
+            },
+            "research_id": {
+              "maxLength": 128,
+              "minLength": 1,
+              "pattern": "^[\\w.:-]+$",
+              "title": "Research Id",
+              "type": "string"
+            }
+          },
+          "required": [
+            "research_id"
+          ],
+          "title": "DetailRequest",
+          "type": "object"
+        }
+      },
+      "properties": {
+        "request": {
+          "$ref": "#/$defs/DetailRequest"
+        }
+      },
+      "required": [
+        "request"
+      ],
+      "title": "youtube_niche_content_gapsInput",
+      "type": "object"
+    },
+    "outputSchema": {
+      "$defs": {
+        "JsonValue": {},
+        "MetricCard": {
+          "additionalProperties": false,
+          "properties": {
+            "dimension": {
+              "title": "Dimension",
+              "type": "string"
+            },
+            "state": {
+              "title": "State",
+              "type": "string"
+            },
+            "value": {
+              "$ref": "#/$defs/JsonValue",
+              "default": null
+            },
+            "numerator": {
+              "$ref": "#/$defs/JsonValue",
+              "default": null
+            },
+            "denominator": {
+              "$ref": "#/$defs/JsonValue",
+              "default": null
+            },
+            "unit": {
+              "title": "Unit",
+              "type": "string"
+            },
+            "age_days": {
+              "title": "Age Days",
+              "type": "integer"
+            },
+            "goal": {
+              "title": "Goal",
+              "type": "integer"
+            },
+            "mature": {
+              "title": "Mature",
+              "type": "integer"
+            },
+            "pending": {
+              "title": "Pending",
+              "type": "integer"
+            },
+            "unknown": {
+              "title": "Unknown",
+              "type": "integer"
+            },
+            "details": {
+              "additionalProperties": {
+                "$ref": "#/$defs/JsonValue"
+              },
+              "title": "Details",
+              "type": "object"
+            },
+            "warnings": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Warnings",
+              "type": "array"
+            }
+          },
+          "required": [
+            "dimension",
+            "state",
+            "unit",
+            "age_days",
+            "goal",
+            "mature",
+            "pending",
+            "unknown"
+          ],
+          "title": "MetricCard",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "state": {
+          "title": "State",
+          "type": "string"
+        },
+        "summary": {
+          "title": "Summary",
+          "type": "string"
+        },
+        "research_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Research Id"
+        },
+        "reused_run": {
+          "default": false,
+          "title": "Reused Run",
+          "type": "boolean"
+        },
+        "boundary": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Boundary",
+          "type": "object"
+        },
+        "metrics": {
+          "items": {
+            "$ref": "#/$defs/MetricCard"
+          },
+          "title": "Metrics",
+          "type": "array"
+        },
+        "evidence": {
+          "items": {
+            "additionalProperties": {
+              "$ref": "#/$defs/JsonValue"
+            },
+            "type": "object"
+          },
+          "title": "Evidence",
+          "type": "array"
+        },
+        "confidence": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Confidence",
+          "type": "object"
+        },
+        "supports": {
+          "items": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Supports",
+          "type": "array"
+        },
+        "concerns": {
+          "items": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Concerns",
+          "type": "array"
+        },
+        "unknowns": {
+          "items": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Unknowns",
+          "type": "array"
+        },
+        "warnings": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Warnings",
+          "type": "array"
+        },
+        "provenance": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Provenance",
+          "type": "object"
+        },
+        "quota": {
+          "items": {
+            "additionalProperties": {
+              "$ref": "#/$defs/JsonValue"
+            },
+            "type": "object"
+          },
+          "title": "Quota",
+          "type": "array"
+        },
+        "capabilities": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Capabilities",
+          "type": "object"
+        },
+        "data": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Data",
+          "type": "object"
+        },
+        "next_cursor": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Next Cursor"
+        },
+        "next_available_actions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Next Available Actions",
+          "type": "array"
+        }
+      },
+      "required": [
+        "state",
+        "summary"
+      ],
+      "title": "PublicResult",
+      "type": "object"
+    }
+  },
+  "youtube_niche_packaging": {
+    "description": "Describe retained reviewed title/thumbnail mechanisms, composition, density, homogeneity and auxiliary similarity. Returns sample coverage and uncertainty; no CTR inference or forecast.",
+    "inputSchema": {
+      "$defs": {
+        "DetailRequest": {
+          "additionalProperties": false,
+          "properties": {
+            "limit": {
+              "default": 10,
+              "maximum": 20,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            },
+            "cursor": {
+              "anyOf": [
+                {
+                  "maxLength": 256,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Cursor"
+            },
+            "research_id": {
+              "maxLength": 128,
+              "minLength": 1,
+              "pattern": "^[\\w.:-]+$",
+              "title": "Research Id",
+              "type": "string"
+            }
+          },
+          "required": [
+            "research_id"
+          ],
+          "title": "DetailRequest",
+          "type": "object"
+        }
+      },
+      "properties": {
+        "request": {
+          "$ref": "#/$defs/DetailRequest"
+        }
+      },
+      "required": [
+        "request"
+      ],
+      "title": "youtube_niche_packagingInput",
+      "type": "object"
+    },
+    "outputSchema": {
+      "$defs": {
+        "JsonValue": {},
+        "MetricCard": {
+          "additionalProperties": false,
+          "properties": {
+            "dimension": {
+              "title": "Dimension",
+              "type": "string"
+            },
+            "state": {
+              "title": "State",
+              "type": "string"
+            },
+            "value": {
+              "$ref": "#/$defs/JsonValue",
+              "default": null
+            },
+            "numerator": {
+              "$ref": "#/$defs/JsonValue",
+              "default": null
+            },
+            "denominator": {
+              "$ref": "#/$defs/JsonValue",
+              "default": null
+            },
+            "unit": {
+              "title": "Unit",
+              "type": "string"
+            },
+            "age_days": {
+              "title": "Age Days",
+              "type": "integer"
+            },
+            "goal": {
+              "title": "Goal",
+              "type": "integer"
+            },
+            "mature": {
+              "title": "Mature",
+              "type": "integer"
+            },
+            "pending": {
+              "title": "Pending",
+              "type": "integer"
+            },
+            "unknown": {
+              "title": "Unknown",
+              "type": "integer"
+            },
+            "details": {
+              "additionalProperties": {
+                "$ref": "#/$defs/JsonValue"
+              },
+              "title": "Details",
+              "type": "object"
+            },
+            "warnings": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Warnings",
+              "type": "array"
+            }
+          },
+          "required": [
+            "dimension",
+            "state",
+            "unit",
+            "age_days",
+            "goal",
+            "mature",
+            "pending",
+            "unknown"
+          ],
+          "title": "MetricCard",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "state": {
+          "title": "State",
+          "type": "string"
+        },
+        "summary": {
+          "title": "Summary",
+          "type": "string"
+        },
+        "research_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Research Id"
+        },
+        "reused_run": {
+          "default": false,
+          "title": "Reused Run",
+          "type": "boolean"
+        },
+        "boundary": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Boundary",
+          "type": "object"
+        },
+        "metrics": {
+          "items": {
+            "$ref": "#/$defs/MetricCard"
+          },
+          "title": "Metrics",
+          "type": "array"
+        },
+        "evidence": {
+          "items": {
+            "additionalProperties": {
+              "$ref": "#/$defs/JsonValue"
+            },
+            "type": "object"
+          },
+          "title": "Evidence",
+          "type": "array"
+        },
+        "confidence": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Confidence",
+          "type": "object"
+        },
+        "supports": {
+          "items": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Supports",
+          "type": "array"
+        },
+        "concerns": {
+          "items": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Concerns",
+          "type": "array"
+        },
+        "unknowns": {
+          "items": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Unknowns",
+          "type": "array"
+        },
+        "warnings": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Warnings",
+          "type": "array"
+        },
+        "provenance": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Provenance",
+          "type": "object"
+        },
+        "quota": {
+          "items": {
+            "additionalProperties": {
+              "$ref": "#/$defs/JsonValue"
+            },
+            "type": "object"
+          },
+          "title": "Quota",
+          "type": "array"
+        },
+        "capabilities": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Capabilities",
+          "type": "object"
+        },
+        "data": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Data",
+          "type": "object"
+        },
+        "next_cursor": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Next Cursor"
+        },
+        "next_available_actions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Next Available Actions",
+          "type": "array"
+        }
+      },
+      "required": [
+        "state",
+        "summary"
+      ],
+      "title": "PublicResult",
+      "type": "object"
+    }
+  },
+  "youtube_niche_audience_demand": {
+    "description": "Inspect separate public demand dimensions F3/F4/F8/F9/F11/F14/F19 and reviewed gap demand. No private overlap, retention, watch time or returning-viewer inference.",
+    "inputSchema": {
+      "$defs": {
+        "DetailRequest": {
+          "additionalProperties": false,
+          "properties": {
+            "limit": {
+              "default": 10,
+              "maximum": 20,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            },
+            "cursor": {
+              "anyOf": [
+                {
+                  "maxLength": 256,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Cursor"
+            },
+            "research_id": {
+              "maxLength": 128,
+              "minLength": 1,
+              "pattern": "^[\\w.:-]+$",
+              "title": "Research Id",
+              "type": "string"
+            }
+          },
+          "required": [
+            "research_id"
+          ],
+          "title": "DetailRequest",
+          "type": "object"
+        }
+      },
+      "properties": {
+        "request": {
+          "$ref": "#/$defs/DetailRequest"
+        }
+      },
+      "required": [
+        "request"
+      ],
+      "title": "youtube_niche_audience_demandInput",
+      "type": "object"
+    },
+    "outputSchema": {
+      "$defs": {
+        "JsonValue": {},
+        "MetricCard": {
+          "additionalProperties": false,
+          "properties": {
+            "dimension": {
+              "title": "Dimension",
+              "type": "string"
+            },
+            "state": {
+              "title": "State",
+              "type": "string"
+            },
+            "value": {
+              "$ref": "#/$defs/JsonValue",
+              "default": null
+            },
+            "numerator": {
+              "$ref": "#/$defs/JsonValue",
+              "default": null
+            },
+            "denominator": {
+              "$ref": "#/$defs/JsonValue",
+              "default": null
+            },
+            "unit": {
+              "title": "Unit",
+              "type": "string"
+            },
+            "age_days": {
+              "title": "Age Days",
+              "type": "integer"
+            },
+            "goal": {
+              "title": "Goal",
+              "type": "integer"
+            },
+            "mature": {
+              "title": "Mature",
+              "type": "integer"
+            },
+            "pending": {
+              "title": "Pending",
+              "type": "integer"
+            },
+            "unknown": {
+              "title": "Unknown",
+              "type": "integer"
+            },
+            "details": {
+              "additionalProperties": {
+                "$ref": "#/$defs/JsonValue"
+              },
+              "title": "Details",
+              "type": "object"
+            },
+            "warnings": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Warnings",
+              "type": "array"
+            }
+          },
+          "required": [
+            "dimension",
+            "state",
+            "unit",
+            "age_days",
+            "goal",
+            "mature",
+            "pending",
+            "unknown"
+          ],
+          "title": "MetricCard",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "state": {
+          "title": "State",
+          "type": "string"
+        },
+        "summary": {
+          "title": "Summary",
+          "type": "string"
+        },
+        "research_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Research Id"
+        },
+        "reused_run": {
+          "default": false,
+          "title": "Reused Run",
+          "type": "boolean"
+        },
+        "boundary": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Boundary",
+          "type": "object"
+        },
+        "metrics": {
+          "items": {
+            "$ref": "#/$defs/MetricCard"
+          },
+          "title": "Metrics",
+          "type": "array"
+        },
+        "evidence": {
+          "items": {
+            "additionalProperties": {
+              "$ref": "#/$defs/JsonValue"
+            },
+            "type": "object"
+          },
+          "title": "Evidence",
+          "type": "array"
+        },
+        "confidence": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Confidence",
+          "type": "object"
+        },
+        "supports": {
+          "items": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Supports",
+          "type": "array"
+        },
+        "concerns": {
+          "items": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Concerns",
+          "type": "array"
+        },
+        "unknowns": {
+          "items": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Unknowns",
+          "type": "array"
+        },
+        "warnings": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Warnings",
+          "type": "array"
+        },
+        "provenance": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Provenance",
+          "type": "object"
+        },
+        "quota": {
+          "items": {
+            "additionalProperties": {
+              "$ref": "#/$defs/JsonValue"
+            },
+            "type": "object"
+          },
+          "title": "Quota",
+          "type": "array"
+        },
+        "capabilities": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Capabilities",
+          "type": "object"
+        },
+        "data": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Data",
+          "type": "object"
+        },
+        "next_cursor": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Next Cursor"
+        },
+        "next_available_actions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Next Available Actions",
+          "type": "array"
+        }
+      },
+      "required": [
+        "state",
+        "summary"
+      ],
+      "title": "PublicResult",
+      "type": "object"
+    }
+  },
+  "youtube_niche_sustainability": {
+    "description": "Inspect repeatability, breadth, momentum, older catalog, idea depth, sources, series and production burden with historical maturity. Descriptive dimensions do not guarantee longevity.",
+    "inputSchema": {
+      "$defs": {
+        "DetailRequest": {
+          "additionalProperties": false,
+          "properties": {
+            "limit": {
+              "default": 10,
+              "maximum": 20,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            },
+            "cursor": {
+              "anyOf": [
+                {
+                  "maxLength": 256,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Cursor"
+            },
+            "research_id": {
+              "maxLength": 128,
+              "minLength": 1,
+              "pattern": "^[\\w.:-]+$",
+              "title": "Research Id",
+              "type": "string"
+            }
+          },
+          "required": [
+            "research_id"
+          ],
+          "title": "DetailRequest",
+          "type": "object"
+        }
+      },
+      "properties": {
+        "request": {
+          "$ref": "#/$defs/DetailRequest"
+        }
+      },
+      "required": [
+        "request"
+      ],
+      "title": "youtube_niche_sustainabilityInput",
+      "type": "object"
+    },
+    "outputSchema": {
+      "$defs": {
+        "JsonValue": {},
+        "MetricCard": {
+          "additionalProperties": false,
+          "properties": {
+            "dimension": {
+              "title": "Dimension",
+              "type": "string"
+            },
+            "state": {
+              "title": "State",
+              "type": "string"
+            },
+            "value": {
+              "$ref": "#/$defs/JsonValue",
+              "default": null
+            },
+            "numerator": {
+              "$ref": "#/$defs/JsonValue",
+              "default": null
+            },
+            "denominator": {
+              "$ref": "#/$defs/JsonValue",
+              "default": null
+            },
+            "unit": {
+              "title": "Unit",
+              "type": "string"
+            },
+            "age_days": {
+              "title": "Age Days",
+              "type": "integer"
+            },
+            "goal": {
+              "title": "Goal",
+              "type": "integer"
+            },
+            "mature": {
+              "title": "Mature",
+              "type": "integer"
+            },
+            "pending": {
+              "title": "Pending",
+              "type": "integer"
+            },
+            "unknown": {
+              "title": "Unknown",
+              "type": "integer"
+            },
+            "details": {
+              "additionalProperties": {
+                "$ref": "#/$defs/JsonValue"
+              },
+              "title": "Details",
+              "type": "object"
+            },
+            "warnings": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Warnings",
+              "type": "array"
+            }
+          },
+          "required": [
+            "dimension",
+            "state",
+            "unit",
+            "age_days",
+            "goal",
+            "mature",
+            "pending",
+            "unknown"
+          ],
+          "title": "MetricCard",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "state": {
+          "title": "State",
+          "type": "string"
+        },
+        "summary": {
+          "title": "Summary",
+          "type": "string"
+        },
+        "research_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Research Id"
+        },
+        "reused_run": {
+          "default": false,
+          "title": "Reused Run",
+          "type": "boolean"
+        },
+        "boundary": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Boundary",
+          "type": "object"
+        },
+        "metrics": {
+          "items": {
+            "$ref": "#/$defs/MetricCard"
+          },
+          "title": "Metrics",
+          "type": "array"
+        },
+        "evidence": {
+          "items": {
+            "additionalProperties": {
+              "$ref": "#/$defs/JsonValue"
+            },
+            "type": "object"
+          },
+          "title": "Evidence",
+          "type": "array"
+        },
+        "confidence": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Confidence",
+          "type": "object"
+        },
+        "supports": {
+          "items": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Supports",
+          "type": "array"
+        },
+        "concerns": {
+          "items": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Concerns",
+          "type": "array"
+        },
+        "unknowns": {
+          "items": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Unknowns",
+          "type": "array"
+        },
+        "warnings": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Warnings",
+          "type": "array"
+        },
+        "provenance": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Provenance",
+          "type": "object"
+        },
+        "quota": {
+          "items": {
+            "additionalProperties": {
+              "$ref": "#/$defs/JsonValue"
+            },
+            "type": "object"
+          },
+          "title": "Quota",
+          "type": "array"
+        },
+        "capabilities": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Capabilities",
+          "type": "object"
+        },
+        "data": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Data",
+          "type": "object"
+        },
+        "next_cursor": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Next Cursor"
+        },
+        "next_available_actions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Next Available Actions",
+          "type": "array"
+        }
+      },
+      "required": [
+        "state",
+        "summary"
+      ],
+      "title": "PublicResult",
+      "type": "object"
+    }
+  },
+  "youtube_niche_risk": {
+    "description": "Inspect separate rights/reuse, platform-policy, factual/editorial, production dependency, creator capacity and policy freshness assessments. Returns unresolved reviews; no legal verdict or fair-use duration.",
+    "inputSchema": {
+      "$defs": {
+        "DetailRequest": {
+          "additionalProperties": false,
+          "properties": {
+            "limit": {
+              "default": 10,
+              "maximum": 20,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            },
+            "cursor": {
+              "anyOf": [
+                {
+                  "maxLength": 256,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Cursor"
+            },
+            "research_id": {
+              "maxLength": 128,
+              "minLength": 1,
+              "pattern": "^[\\w.:-]+$",
+              "title": "Research Id",
+              "type": "string"
+            }
+          },
+          "required": [
+            "research_id"
+          ],
+          "title": "DetailRequest",
+          "type": "object"
+        }
+      },
+      "properties": {
+        "request": {
+          "$ref": "#/$defs/DetailRequest"
+        }
+      },
+      "required": [
+        "request"
+      ],
+      "title": "youtube_niche_riskInput",
+      "type": "object"
+    },
+    "outputSchema": {
+      "$defs": {
+        "JsonValue": {},
+        "MetricCard": {
+          "additionalProperties": false,
+          "properties": {
+            "dimension": {
+              "title": "Dimension",
+              "type": "string"
+            },
+            "state": {
+              "title": "State",
+              "type": "string"
+            },
+            "value": {
+              "$ref": "#/$defs/JsonValue",
+              "default": null
+            },
+            "numerator": {
+              "$ref": "#/$defs/JsonValue",
+              "default": null
+            },
+            "denominator": {
+              "$ref": "#/$defs/JsonValue",
+              "default": null
+            },
+            "unit": {
+              "title": "Unit",
+              "type": "string"
+            },
+            "age_days": {
+              "title": "Age Days",
+              "type": "integer"
+            },
+            "goal": {
+              "title": "Goal",
+              "type": "integer"
+            },
+            "mature": {
+              "title": "Mature",
+              "type": "integer"
+            },
+            "pending": {
+              "title": "Pending",
+              "type": "integer"
+            },
+            "unknown": {
+              "title": "Unknown",
+              "type": "integer"
+            },
+            "details": {
+              "additionalProperties": {
+                "$ref": "#/$defs/JsonValue"
+              },
+              "title": "Details",
+              "type": "object"
+            },
+            "warnings": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Warnings",
+              "type": "array"
+            }
+          },
+          "required": [
+            "dimension",
+            "state",
+            "unit",
+            "age_days",
+            "goal",
+            "mature",
+            "pending",
+            "unknown"
+          ],
+          "title": "MetricCard",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "state": {
+          "title": "State",
+          "type": "string"
+        },
+        "summary": {
+          "title": "Summary",
+          "type": "string"
+        },
+        "research_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Research Id"
+        },
+        "reused_run": {
+          "default": false,
+          "title": "Reused Run",
+          "type": "boolean"
+        },
+        "boundary": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Boundary",
+          "type": "object"
+        },
+        "metrics": {
+          "items": {
+            "$ref": "#/$defs/MetricCard"
+          },
+          "title": "Metrics",
+          "type": "array"
+        },
+        "evidence": {
+          "items": {
+            "additionalProperties": {
+              "$ref": "#/$defs/JsonValue"
+            },
+            "type": "object"
+          },
+          "title": "Evidence",
+          "type": "array"
+        },
+        "confidence": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Confidence",
+          "type": "object"
+        },
+        "supports": {
+          "items": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Supports",
+          "type": "array"
+        },
+        "concerns": {
+          "items": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Concerns",
+          "type": "array"
+        },
+        "unknowns": {
+          "items": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Unknowns",
+          "type": "array"
+        },
+        "warnings": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Warnings",
+          "type": "array"
+        },
+        "provenance": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Provenance",
+          "type": "object"
+        },
+        "quota": {
+          "items": {
+            "additionalProperties": {
+              "$ref": "#/$defs/JsonValue"
+            },
+            "type": "object"
+          },
+          "title": "Quota",
+          "type": "array"
+        },
+        "capabilities": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Capabilities",
+          "type": "object"
+        },
+        "data": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Data",
+          "type": "object"
+        },
+        "next_cursor": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Next Cursor"
+        },
+        "next_available_actions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Next Available Actions",
+          "type": "array"
+        }
+      },
+      "required": [
+        "state",
+        "summary"
+      ],
+      "title": "PublicResult",
+      "type": "object"
+    }
+  },
+  "youtube_niche_geo_language": {
+    "description": "Inspect verified/likely/unknown/conflicting spoken language separately from provider/title/subtitle evidence, declared country and optional geographic context. Provider audience geography is an estimate, never official audience fact.",
+    "inputSchema": {
+      "$defs": {
+        "DetailRequest": {
+          "additionalProperties": false,
+          "properties": {
+            "limit": {
+              "default": 10,
+              "maximum": 20,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            },
+            "cursor": {
+              "anyOf": [
+                {
+                  "maxLength": 256,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Cursor"
+            },
+            "research_id": {
+              "maxLength": 128,
+              "minLength": 1,
+              "pattern": "^[\\w.:-]+$",
+              "title": "Research Id",
+              "type": "string"
+            }
+          },
+          "required": [
+            "research_id"
+          ],
+          "title": "DetailRequest",
+          "type": "object"
+        }
+      },
+      "properties": {
+        "request": {
+          "$ref": "#/$defs/DetailRequest"
+        }
+      },
+      "required": [
+        "request"
+      ],
+      "title": "youtube_niche_geo_languageInput",
+      "type": "object"
+    },
+    "outputSchema": {
+      "$defs": {
+        "JsonValue": {},
+        "MetricCard": {
+          "additionalProperties": false,
+          "properties": {
+            "dimension": {
+              "title": "Dimension",
+              "type": "string"
+            },
+            "state": {
+              "title": "State",
+              "type": "string"
+            },
+            "value": {
+              "$ref": "#/$defs/JsonValue",
+              "default": null
+            },
+            "numerator": {
+              "$ref": "#/$defs/JsonValue",
+              "default": null
+            },
+            "denominator": {
+              "$ref": "#/$defs/JsonValue",
+              "default": null
+            },
+            "unit": {
+              "title": "Unit",
+              "type": "string"
+            },
+            "age_days": {
+              "title": "Age Days",
+              "type": "integer"
+            },
+            "goal": {
+              "title": "Goal",
+              "type": "integer"
+            },
+            "mature": {
+              "title": "Mature",
+              "type": "integer"
+            },
+            "pending": {
+              "title": "Pending",
+              "type": "integer"
+            },
+            "unknown": {
+              "title": "Unknown",
+              "type": "integer"
+            },
+            "details": {
+              "additionalProperties": {
+                "$ref": "#/$defs/JsonValue"
+              },
+              "title": "Details",
+              "type": "object"
+            },
+            "warnings": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Warnings",
+              "type": "array"
+            }
+          },
+          "required": [
+            "dimension",
+            "state",
+            "unit",
+            "age_days",
+            "goal",
+            "mature",
+            "pending",
+            "unknown"
+          ],
+          "title": "MetricCard",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "state": {
+          "title": "State",
+          "type": "string"
+        },
+        "summary": {
+          "title": "Summary",
+          "type": "string"
+        },
+        "research_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Research Id"
+        },
+        "reused_run": {
+          "default": false,
+          "title": "Reused Run",
+          "type": "boolean"
+        },
+        "boundary": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Boundary",
+          "type": "object"
+        },
+        "metrics": {
+          "items": {
+            "$ref": "#/$defs/MetricCard"
+          },
+          "title": "Metrics",
+          "type": "array"
+        },
+        "evidence": {
+          "items": {
+            "additionalProperties": {
+              "$ref": "#/$defs/JsonValue"
+            },
+            "type": "object"
+          },
+          "title": "Evidence",
+          "type": "array"
+        },
+        "confidence": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Confidence",
+          "type": "object"
+        },
+        "supports": {
+          "items": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Supports",
+          "type": "array"
+        },
+        "concerns": {
+          "items": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Concerns",
+          "type": "array"
+        },
+        "unknowns": {
+          "items": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Unknowns",
+          "type": "array"
+        },
+        "warnings": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Warnings",
+          "type": "array"
+        },
+        "provenance": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Provenance",
+          "type": "object"
+        },
+        "quota": {
+          "items": {
+            "additionalProperties": {
+              "$ref": "#/$defs/JsonValue"
+            },
+            "type": "object"
+          },
+          "title": "Quota",
+          "type": "array"
+        },
+        "capabilities": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Capabilities",
+          "type": "object"
+        },
+        "data": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Data",
+          "type": "object"
+        },
+        "next_cursor": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Next Cursor"
+        },
+        "next_available_actions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Next Available Actions",
+          "type": "array"
+        }
+      },
+      "required": [
+        "state",
+        "summary"
+      ],
+      "title": "PublicResult",
+      "type": "object"
+    }
+  },
+  "youtube_niche_history": {
+    "description": "Inspect retained F10/F11/F12/F13/F20/F21 and protocol/maturity states. Unavailable history stays unavailable; current counts never reconstruct the past.",
+    "inputSchema": {
+      "$defs": {
+        "DetailRequest": {
+          "additionalProperties": false,
+          "properties": {
+            "limit": {
+              "default": 10,
+              "maximum": 20,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            },
+            "cursor": {
+              "anyOf": [
+                {
+                  "maxLength": 256,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Cursor"
+            },
+            "research_id": {
+              "maxLength": 128,
+              "minLength": 1,
+              "pattern": "^[\\w.:-]+$",
+              "title": "Research Id",
+              "type": "string"
+            }
+          },
+          "required": [
+            "research_id"
+          ],
+          "title": "DetailRequest",
+          "type": "object"
+        }
+      },
+      "properties": {
+        "request": {
+          "$ref": "#/$defs/DetailRequest"
+        }
+      },
+      "required": [
+        "request"
+      ],
+      "title": "youtube_niche_historyInput",
+      "type": "object"
+    },
+    "outputSchema": {
+      "$defs": {
+        "JsonValue": {},
+        "MetricCard": {
+          "additionalProperties": false,
+          "properties": {
+            "dimension": {
+              "title": "Dimension",
+              "type": "string"
+            },
+            "state": {
+              "title": "State",
+              "type": "string"
+            },
+            "value": {
+              "$ref": "#/$defs/JsonValue",
+              "default": null
+            },
+            "numerator": {
+              "$ref": "#/$defs/JsonValue",
+              "default": null
+            },
+            "denominator": {
+              "$ref": "#/$defs/JsonValue",
+              "default": null
+            },
+            "unit": {
+              "title": "Unit",
+              "type": "string"
+            },
+            "age_days": {
+              "title": "Age Days",
+              "type": "integer"
+            },
+            "goal": {
+              "title": "Goal",
+              "type": "integer"
+            },
+            "mature": {
+              "title": "Mature",
+              "type": "integer"
+            },
+            "pending": {
+              "title": "Pending",
+              "type": "integer"
+            },
+            "unknown": {
+              "title": "Unknown",
+              "type": "integer"
+            },
+            "details": {
+              "additionalProperties": {
+                "$ref": "#/$defs/JsonValue"
+              },
+              "title": "Details",
+              "type": "object"
+            },
+            "warnings": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Warnings",
+              "type": "array"
+            }
+          },
+          "required": [
+            "dimension",
+            "state",
+            "unit",
+            "age_days",
+            "goal",
+            "mature",
+            "pending",
+            "unknown"
+          ],
+          "title": "MetricCard",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "state": {
+          "title": "State",
+          "type": "string"
+        },
+        "summary": {
+          "title": "Summary",
+          "type": "string"
+        },
+        "research_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Research Id"
+        },
+        "reused_run": {
+          "default": false,
+          "title": "Reused Run",
+          "type": "boolean"
+        },
+        "boundary": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Boundary",
+          "type": "object"
+        },
+        "metrics": {
+          "items": {
+            "$ref": "#/$defs/MetricCard"
+          },
+          "title": "Metrics",
+          "type": "array"
+        },
+        "evidence": {
+          "items": {
+            "additionalProperties": {
+              "$ref": "#/$defs/JsonValue"
+            },
+            "type": "object"
+          },
+          "title": "Evidence",
+          "type": "array"
+        },
+        "confidence": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Confidence",
+          "type": "object"
+        },
+        "supports": {
+          "items": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Supports",
+          "type": "array"
+        },
+        "concerns": {
+          "items": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Concerns",
+          "type": "array"
+        },
+        "unknowns": {
+          "items": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Unknowns",
+          "type": "array"
+        },
+        "warnings": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Warnings",
+          "type": "array"
+        },
+        "provenance": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Provenance",
+          "type": "object"
+        },
+        "quota": {
+          "items": {
+            "additionalProperties": {
+              "$ref": "#/$defs/JsonValue"
+            },
+            "type": "object"
+          },
+          "title": "Quota",
+          "type": "array"
+        },
+        "capabilities": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Capabilities",
+          "type": "object"
+        },
+        "data": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Data",
+          "type": "object"
+        },
+        "next_cursor": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Next Cursor"
+        },
+        "next_available_actions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Next Available Actions",
+          "type": "array"
+        }
+      },
+      "required": [
+        "state",
+        "summary"
+      ],
+      "title": "PublicResult",
+      "type": "object"
+    }
+  },
+  "youtube_niche_watchlist": {
+    "description": "Create, read, list, revise or disable local niche-boundary watch intent with target channels, metrics, cadence and expiry. Revision checks prevent lost updates. Definitions only: no scheduler or automatic monitoring.",
+    "inputSchema": {
+      "$defs": {
+        "NicheWatchRequest": {
+          "additionalProperties": false,
+          "properties": {
+            "limit": {
+              "default": 10,
+              "maximum": 20,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            },
+            "cursor": {
+              "anyOf": [
+                {
+                  "maxLength": 256,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Cursor"
+            },
+            "action": {
+              "enum": [
+                "create",
+                "read",
+                "update",
+                "disable",
+                "list"
+              ],
+              "title": "Action",
+              "type": "string"
+            },
+            "watch_id": {
+              "anyOf": [
+                {
+                  "maxLength": 128,
+                  "minLength": 1,
+                  "pattern": "^[\\w.:-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Watch Id"
+            },
+            "expected_revision": {
+              "anyOf": [
+                {
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Expected Revision"
+            },
+            "profile": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/WatchProfile"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "owner_context": {
+              "default": "local",
+              "maxLength": 128,
+              "minLength": 1,
+              "pattern": "^[\\w.:-]+$",
+              "title": "Owner Context",
+              "type": "string"
+            },
+            "expires_at": {
+              "anyOf": [
+                {
+                  "format": "date-time",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Expires At"
+            },
+            "boundary_id": {
+              "anyOf": [
+                {
+                  "maxLength": 128,
+                  "minLength": 1,
+                  "pattern": "^[\\w.:-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Boundary Id"
+            },
+            "target_channels": {
+              "default": [],
+              "items": {
+                "pattern": "^UC[A-Za-z0-9_-]{22}$",
+                "type": "string"
+              },
+              "maxItems": 100,
+              "title": "Target Channels",
+              "type": "array"
+            }
+          },
+          "required": [
+            "action"
+          ],
+          "title": "NicheWatchRequest",
+          "type": "object"
+        },
+        "WatchProfile": {
+          "additionalProperties": false,
+          "properties": {
+            "desired_metrics": {
+              "items": {
+                "enum": [
+                  "public_statistics",
+                  "floor",
+                  "repeatability",
+                  "history",
+                  "eligibility",
+                  "risk",
+                  "packaging",
+                  "demand"
+                ],
+                "type": "string"
+              },
+              "maxItems": 8,
+              "minItems": 1,
+              "title": "Desired Metrics",
+              "type": "array"
+            },
+            "cadence_days": {
+              "anyOf": [
+                {
+                  "maximum": 365,
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Cadence Days"
+            },
+            "history_required": {
+              "default": false,
+              "title": "History Required",
+              "type": "boolean"
+            },
+            "next_requested_check": {
+              "anyOf": [
+                {
+                  "format": "date-time",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Next Requested Check"
+            },
+            "thresholds": {
+              "additionalProperties": {
+                "type": "integer"
+              },
+              "propertyNames": {
+                "enum": [
+                  "views",
+                  "uploads",
+                  "subscribers"
+                ]
+              },
+              "title": "Thresholds",
+              "type": "object"
+            }
+          },
+          "required": [
+            "desired_metrics"
+          ],
+          "title": "WatchProfile",
+          "type": "object"
+        }
+      },
+      "properties": {
+        "request": {
+          "$ref": "#/$defs/NicheWatchRequest"
+        }
+      },
+      "required": [
+        "request"
+      ],
+      "title": "youtube_niche_watchlistInput",
+      "type": "object"
+    },
+    "outputSchema": {
+      "$defs": {
+        "JsonValue": {},
+        "MetricCard": {
+          "additionalProperties": false,
+          "properties": {
+            "dimension": {
+              "title": "Dimension",
+              "type": "string"
+            },
+            "state": {
+              "title": "State",
+              "type": "string"
+            },
+            "value": {
+              "$ref": "#/$defs/JsonValue",
+              "default": null
+            },
+            "numerator": {
+              "$ref": "#/$defs/JsonValue",
+              "default": null
+            },
+            "denominator": {
+              "$ref": "#/$defs/JsonValue",
+              "default": null
+            },
+            "unit": {
+              "title": "Unit",
+              "type": "string"
+            },
+            "age_days": {
+              "title": "Age Days",
+              "type": "integer"
+            },
+            "goal": {
+              "title": "Goal",
+              "type": "integer"
+            },
+            "mature": {
+              "title": "Mature",
+              "type": "integer"
+            },
+            "pending": {
+              "title": "Pending",
+              "type": "integer"
+            },
+            "unknown": {
+              "title": "Unknown",
+              "type": "integer"
+            },
+            "details": {
+              "additionalProperties": {
+                "$ref": "#/$defs/JsonValue"
+              },
+              "title": "Details",
+              "type": "object"
+            },
+            "warnings": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Warnings",
+              "type": "array"
+            }
+          },
+          "required": [
+            "dimension",
+            "state",
+            "unit",
+            "age_days",
+            "goal",
+            "mature",
+            "pending",
+            "unknown"
+          ],
+          "title": "MetricCard",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "state": {
+          "title": "State",
+          "type": "string"
+        },
+        "summary": {
+          "title": "Summary",
+          "type": "string"
+        },
+        "research_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Research Id"
+        },
+        "reused_run": {
+          "default": false,
+          "title": "Reused Run",
+          "type": "boolean"
+        },
+        "boundary": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Boundary",
+          "type": "object"
+        },
+        "metrics": {
+          "items": {
+            "$ref": "#/$defs/MetricCard"
+          },
+          "title": "Metrics",
+          "type": "array"
+        },
+        "evidence": {
+          "items": {
+            "additionalProperties": {
+              "$ref": "#/$defs/JsonValue"
+            },
+            "type": "object"
+          },
+          "title": "Evidence",
+          "type": "array"
+        },
+        "confidence": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Confidence",
+          "type": "object"
+        },
+        "supports": {
+          "items": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Supports",
+          "type": "array"
+        },
+        "concerns": {
+          "items": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Concerns",
+          "type": "array"
+        },
+        "unknowns": {
+          "items": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Unknowns",
+          "type": "array"
+        },
+        "warnings": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Warnings",
+          "type": "array"
+        },
+        "provenance": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Provenance",
+          "type": "object"
+        },
+        "quota": {
+          "items": {
+            "additionalProperties": {
+              "$ref": "#/$defs/JsonValue"
+            },
+            "type": "object"
+          },
+          "title": "Quota",
+          "type": "array"
+        },
+        "capabilities": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Capabilities",
+          "type": "object"
+        },
+        "data": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Data",
+          "type": "object"
+        },
+        "next_cursor": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Next Cursor"
+        },
+        "next_available_actions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Next Available Actions",
+          "type": "array"
+        }
+      },
+      "required": [
+        "state",
+        "summary"
+      ],
+      "title": "PublicResult",
+      "type": "object"
+    }
+  },
+  "youtube_competitor_analyze": {
+    "description": "Describe a canonical channel's retained official public statistics, eligibility, memberships, scoped channel outcomes, patterns, risks, provider conflicts and history. Niche aggregates remain separate context; unknown subscribers and ownership stay unknown.",
+    "inputSchema": {
+      "$defs": {
+        "Acquisition": {
+          "additionalProperties": false,
+          "description": "Explicit bounded acquisition, separate from immutable analytical cutoffs.",
+          "properties": {
+            "refresh": {
+              "default": false,
+              "title": "Refresh",
+              "type": "boolean"
+            },
+            "request_id": {
+              "anyOf": [
+                {
+                  "maxLength": 128,
+                  "minLength": 1,
+                  "pattern": "^[\\w.:-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Request Id"
+            },
+            "provider_policy": {
+              "default": "official_only",
+              "enum": [
+                "official_only",
+                "prefer_nexlev"
+              ],
+              "title": "Provider Policy",
+              "type": "string"
+            },
+            "channel_ids": {
+              "default": [],
+              "items": {
+                "pattern": "^UC[A-Za-z0-9_-]{22}$",
+                "type": "string"
+              },
+              "maxItems": 100,
+              "title": "Channel Ids",
+              "type": "array"
+            },
+            "video_ids": {
+              "default": [],
+              "items": {
+                "pattern": "^[A-Za-z0-9_-]{11}$",
+                "type": "string"
+              },
+              "maxItems": 150,
+              "title": "Video Ids",
+              "type": "array"
+            },
+            "search": {
+              "default": false,
+              "title": "Search",
+              "type": "boolean"
+            },
+            "similar_channel": {
+              "anyOf": [
+                {
+                  "pattern": "^UC[A-Za-z0-9_-]{22}$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Similar Channel"
+            }
+          },
+          "title": "Acquisition",
+          "type": "object"
+        },
+        "CompetitorRequest": {
+          "additionalProperties": false,
+          "properties": {
+            "limit": {
+              "default": 10,
+              "maximum": 20,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            },
+            "cursor": {
+              "anyOf": [
+                {
+                  "maxLength": 256,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Cursor"
+            },
+            "channel_id": {
+              "pattern": "^UC[A-Za-z0-9_-]{22}$",
+              "title": "Channel Id",
+              "type": "string"
+            },
+            "research_id": {
+              "anyOf": [
+                {
+                  "maxLength": 128,
+                  "minLength": 1,
+                  "pattern": "^[\\w.:-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Research Id"
+            },
+            "acquisition": {
+              "$ref": "#/$defs/Acquisition"
+            }
+          },
+          "required": [
+            "channel_id"
+          ],
+          "title": "CompetitorRequest",
+          "type": "object"
+        }
+      },
+      "properties": {
+        "request": {
+          "$ref": "#/$defs/CompetitorRequest"
+        }
+      },
+      "required": [
+        "request"
+      ],
+      "title": "youtube_competitor_analyzeInput",
+      "type": "object"
+    },
+    "outputSchema": {
+      "$defs": {
+        "JsonValue": {},
+        "MetricCard": {
+          "additionalProperties": false,
+          "properties": {
+            "dimension": {
+              "title": "Dimension",
+              "type": "string"
+            },
+            "state": {
+              "title": "State",
+              "type": "string"
+            },
+            "value": {
+              "$ref": "#/$defs/JsonValue",
+              "default": null
+            },
+            "numerator": {
+              "$ref": "#/$defs/JsonValue",
+              "default": null
+            },
+            "denominator": {
+              "$ref": "#/$defs/JsonValue",
+              "default": null
+            },
+            "unit": {
+              "title": "Unit",
+              "type": "string"
+            },
+            "age_days": {
+              "title": "Age Days",
+              "type": "integer"
+            },
+            "goal": {
+              "title": "Goal",
+              "type": "integer"
+            },
+            "mature": {
+              "title": "Mature",
+              "type": "integer"
+            },
+            "pending": {
+              "title": "Pending",
+              "type": "integer"
+            },
+            "unknown": {
+              "title": "Unknown",
+              "type": "integer"
+            },
+            "details": {
+              "additionalProperties": {
+                "$ref": "#/$defs/JsonValue"
+              },
+              "title": "Details",
+              "type": "object"
+            },
+            "warnings": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Warnings",
+              "type": "array"
+            }
+          },
+          "required": [
+            "dimension",
+            "state",
+            "unit",
+            "age_days",
+            "goal",
+            "mature",
+            "pending",
+            "unknown"
+          ],
+          "title": "MetricCard",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "state": {
+          "title": "State",
+          "type": "string"
+        },
+        "summary": {
+          "title": "Summary",
+          "type": "string"
+        },
+        "research_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Research Id"
+        },
+        "reused_run": {
+          "default": false,
+          "title": "Reused Run",
+          "type": "boolean"
+        },
+        "boundary": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Boundary",
+          "type": "object"
+        },
+        "metrics": {
+          "items": {
+            "$ref": "#/$defs/MetricCard"
+          },
+          "title": "Metrics",
+          "type": "array"
+        },
+        "evidence": {
+          "items": {
+            "additionalProperties": {
+              "$ref": "#/$defs/JsonValue"
+            },
+            "type": "object"
+          },
+          "title": "Evidence",
+          "type": "array"
+        },
+        "confidence": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Confidence",
+          "type": "object"
+        },
+        "supports": {
+          "items": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Supports",
+          "type": "array"
+        },
+        "concerns": {
+          "items": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Concerns",
+          "type": "array"
+        },
+        "unknowns": {
+          "items": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Unknowns",
+          "type": "array"
+        },
+        "warnings": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Warnings",
+          "type": "array"
+        },
+        "provenance": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Provenance",
+          "type": "object"
+        },
+        "quota": {
+          "items": {
+            "additionalProperties": {
+              "$ref": "#/$defs/JsonValue"
+            },
+            "type": "object"
+          },
+          "title": "Quota",
+          "type": "array"
+        },
+        "capabilities": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Capabilities",
+          "type": "object"
+        },
+        "data": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Data",
+          "type": "object"
+        },
+        "next_cursor": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Next Cursor"
+        },
+        "next_available_actions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Next Available Actions",
+          "type": "array"
+        }
+      },
+      "required": [
+        "state",
+        "summary"
+      ],
+      "title": "PublicResult",
+      "type": "object"
+    }
+  },
+  "youtube_competitor_compare": {
+    "description": "Compare 2\u201310 canonical channels descriptively by current size, scoped ordinary floor, breakout dependence, repeatability, observed upload chronology, topics, packaging, production and historical coverage. No objectively better creator or private analytics inference.",
+    "inputSchema": {
+      "$defs": {
+        "CompetitorCompareRequest": {
+          "additionalProperties": false,
+          "properties": {
+            "channel_ids": {
+              "items": {
+                "pattern": "^UC[A-Za-z0-9_-]{22}$",
+                "type": "string"
+              },
+              "maxItems": 10,
+              "minItems": 2,
+              "title": "Channel Ids",
+              "type": "array"
+            },
+            "research_id": {
+              "anyOf": [
+                {
+                  "maxLength": 128,
+                  "minLength": 1,
+                  "pattern": "^[\\w.:-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Research Id"
+            }
+          },
+          "required": [
+            "channel_ids"
+          ],
+          "title": "CompetitorCompareRequest",
+          "type": "object"
+        }
+      },
+      "properties": {
+        "request": {
+          "$ref": "#/$defs/CompetitorCompareRequest"
+        }
+      },
+      "required": [
+        "request"
+      ],
+      "title": "youtube_competitor_compareInput",
+      "type": "object"
+    },
+    "outputSchema": {
+      "$defs": {
+        "JsonValue": {},
+        "MetricCard": {
+          "additionalProperties": false,
+          "properties": {
+            "dimension": {
+              "title": "Dimension",
+              "type": "string"
+            },
+            "state": {
+              "title": "State",
+              "type": "string"
+            },
+            "value": {
+              "$ref": "#/$defs/JsonValue",
+              "default": null
+            },
+            "numerator": {
+              "$ref": "#/$defs/JsonValue",
+              "default": null
+            },
+            "denominator": {
+              "$ref": "#/$defs/JsonValue",
+              "default": null
+            },
+            "unit": {
+              "title": "Unit",
+              "type": "string"
+            },
+            "age_days": {
+              "title": "Age Days",
+              "type": "integer"
+            },
+            "goal": {
+              "title": "Goal",
+              "type": "integer"
+            },
+            "mature": {
+              "title": "Mature",
+              "type": "integer"
+            },
+            "pending": {
+              "title": "Pending",
+              "type": "integer"
+            },
+            "unknown": {
+              "title": "Unknown",
+              "type": "integer"
+            },
+            "details": {
+              "additionalProperties": {
+                "$ref": "#/$defs/JsonValue"
+              },
+              "title": "Details",
+              "type": "object"
+            },
+            "warnings": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Warnings",
+              "type": "array"
+            }
+          },
+          "required": [
+            "dimension",
+            "state",
+            "unit",
+            "age_days",
+            "goal",
+            "mature",
+            "pending",
+            "unknown"
+          ],
+          "title": "MetricCard",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "state": {
+          "title": "State",
+          "type": "string"
+        },
+        "summary": {
+          "title": "Summary",
+          "type": "string"
+        },
+        "research_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Research Id"
+        },
+        "reused_run": {
+          "default": false,
+          "title": "Reused Run",
+          "type": "boolean"
+        },
+        "boundary": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Boundary",
+          "type": "object"
+        },
+        "metrics": {
+          "items": {
+            "$ref": "#/$defs/MetricCard"
+          },
+          "title": "Metrics",
+          "type": "array"
+        },
+        "evidence": {
+          "items": {
+            "additionalProperties": {
+              "$ref": "#/$defs/JsonValue"
+            },
+            "type": "object"
+          },
+          "title": "Evidence",
+          "type": "array"
+        },
+        "confidence": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Confidence",
+          "type": "object"
+        },
+        "supports": {
+          "items": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Supports",
+          "type": "array"
+        },
+        "concerns": {
+          "items": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Concerns",
+          "type": "array"
+        },
+        "unknowns": {
+          "items": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Unknowns",
+          "type": "array"
+        },
+        "warnings": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Warnings",
+          "type": "array"
+        },
+        "provenance": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Provenance",
+          "type": "object"
+        },
+        "quota": {
+          "items": {
+            "additionalProperties": {
+              "$ref": "#/$defs/JsonValue"
+            },
+            "type": "object"
+          },
+          "title": "Quota",
+          "type": "array"
+        },
+        "capabilities": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Capabilities",
+          "type": "object"
+        },
+        "data": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Data",
+          "type": "object"
+        },
+        "next_cursor": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Next Cursor"
+        },
+        "next_available_actions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Next Available Actions",
+          "type": "array"
+        }
+      },
+      "required": [
+        "state",
+        "summary"
+      ],
+      "title": "PublicResult",
+      "type": "object"
+    }
+  },
+  "youtube_competitor_watch": {
+    "description": "Manage competitor-specific local watch intent for named channel IDs and desired observations/thresholds/history. Separate from niche-boundary watches; definitions only, without background scheduling.",
+    "inputSchema": {
+      "$defs": {
+        "CompetitorWatchRequest": {
+          "additionalProperties": false,
+          "properties": {
+            "limit": {
+              "default": 10,
+              "maximum": 20,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            },
+            "cursor": {
+              "anyOf": [
+                {
+                  "maxLength": 256,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Cursor"
+            },
+            "action": {
+              "enum": [
+                "create",
+                "read",
+                "update",
+                "disable",
+                "list"
+              ],
+              "title": "Action",
+              "type": "string"
+            },
+            "watch_id": {
+              "anyOf": [
+                {
+                  "maxLength": 128,
+                  "minLength": 1,
+                  "pattern": "^[\\w.:-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Watch Id"
+            },
+            "expected_revision": {
+              "anyOf": [
+                {
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Expected Revision"
+            },
+            "profile": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/WatchProfile"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "owner_context": {
+              "default": "local",
+              "maxLength": 128,
+              "minLength": 1,
+              "pattern": "^[\\w.:-]+$",
+              "title": "Owner Context",
+              "type": "string"
+            },
+            "expires_at": {
+              "anyOf": [
+                {
+                  "format": "date-time",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Expires At"
+            },
+            "channel_ids": {
+              "default": [],
+              "items": {
+                "pattern": "^UC[A-Za-z0-9_-]{22}$",
+                "type": "string"
+              },
+              "maxItems": 100,
+              "title": "Channel Ids",
+              "type": "array"
+            }
+          },
+          "required": [
+            "action"
+          ],
+          "title": "CompetitorWatchRequest",
+          "type": "object"
+        },
+        "WatchProfile": {
+          "additionalProperties": false,
+          "properties": {
+            "desired_metrics": {
+              "items": {
+                "enum": [
+                  "public_statistics",
+                  "floor",
+                  "repeatability",
+                  "history",
+                  "eligibility",
+                  "risk",
+                  "packaging",
+                  "demand"
+                ],
+                "type": "string"
+              },
+              "maxItems": 8,
+              "minItems": 1,
+              "title": "Desired Metrics",
+              "type": "array"
+            },
+            "cadence_days": {
+              "anyOf": [
+                {
+                  "maximum": 365,
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Cadence Days"
+            },
+            "history_required": {
+              "default": false,
+              "title": "History Required",
+              "type": "boolean"
+            },
+            "next_requested_check": {
+              "anyOf": [
+                {
+                  "format": "date-time",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Next Requested Check"
+            },
+            "thresholds": {
+              "additionalProperties": {
+                "type": "integer"
+              },
+              "propertyNames": {
+                "enum": [
+                  "views",
+                  "uploads",
+                  "subscribers"
+                ]
+              },
+              "title": "Thresholds",
+              "type": "object"
+            }
+          },
+          "required": [
+            "desired_metrics"
+          ],
+          "title": "WatchProfile",
+          "type": "object"
+        }
+      },
+      "properties": {
+        "request": {
+          "$ref": "#/$defs/CompetitorWatchRequest"
+        }
+      },
+      "required": [
+        "request"
+      ],
+      "title": "youtube_competitor_watchInput",
+      "type": "object"
+    },
+    "outputSchema": {
+      "$defs": {
+        "JsonValue": {},
+        "MetricCard": {
+          "additionalProperties": false,
+          "properties": {
+            "dimension": {
+              "title": "Dimension",
+              "type": "string"
+            },
+            "state": {
+              "title": "State",
+              "type": "string"
+            },
+            "value": {
+              "$ref": "#/$defs/JsonValue",
+              "default": null
+            },
+            "numerator": {
+              "$ref": "#/$defs/JsonValue",
+              "default": null
+            },
+            "denominator": {
+              "$ref": "#/$defs/JsonValue",
+              "default": null
+            },
+            "unit": {
+              "title": "Unit",
+              "type": "string"
+            },
+            "age_days": {
+              "title": "Age Days",
+              "type": "integer"
+            },
+            "goal": {
+              "title": "Goal",
+              "type": "integer"
+            },
+            "mature": {
+              "title": "Mature",
+              "type": "integer"
+            },
+            "pending": {
+              "title": "Pending",
+              "type": "integer"
+            },
+            "unknown": {
+              "title": "Unknown",
+              "type": "integer"
+            },
+            "details": {
+              "additionalProperties": {
+                "$ref": "#/$defs/JsonValue"
+              },
+              "title": "Details",
+              "type": "object"
+            },
+            "warnings": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Warnings",
+              "type": "array"
+            }
+          },
+          "required": [
+            "dimension",
+            "state",
+            "unit",
+            "age_days",
+            "goal",
+            "mature",
+            "pending",
+            "unknown"
+          ],
+          "title": "MetricCard",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "state": {
+          "title": "State",
+          "type": "string"
+        },
+        "summary": {
+          "title": "Summary",
+          "type": "string"
+        },
+        "research_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Research Id"
+        },
+        "reused_run": {
+          "default": false,
+          "title": "Reused Run",
+          "type": "boolean"
+        },
+        "boundary": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Boundary",
+          "type": "object"
+        },
+        "metrics": {
+          "items": {
+            "$ref": "#/$defs/MetricCard"
+          },
+          "title": "Metrics",
+          "type": "array"
+        },
+        "evidence": {
+          "items": {
+            "additionalProperties": {
+              "$ref": "#/$defs/JsonValue"
+            },
+            "type": "object"
+          },
+          "title": "Evidence",
+          "type": "array"
+        },
+        "confidence": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Confidence",
+          "type": "object"
+        },
+        "supports": {
+          "items": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Supports",
+          "type": "array"
+        },
+        "concerns": {
+          "items": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Concerns",
+          "type": "array"
+        },
+        "unknowns": {
+          "items": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Unknowns",
+          "type": "array"
+        },
+        "warnings": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Warnings",
+          "type": "array"
+        },
+        "provenance": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Provenance",
+          "type": "object"
+        },
+        "quota": {
+          "items": {
+            "additionalProperties": {
+              "$ref": "#/$defs/JsonValue"
+            },
+            "type": "object"
+          },
+          "title": "Quota",
+          "type": "array"
+        },
+        "capabilities": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Capabilities",
+          "type": "object"
+        },
+        "data": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Data",
+          "type": "object"
+        },
+        "next_cursor": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Next Cursor"
+        },
+        "next_available_actions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Next Available Actions",
+          "type": "array"
+        }
+      },
+      "required": [
+        "state",
+        "summary"
+      ],
+      "title": "PublicResult",
+      "type": "object"
+    }
+  }
+}

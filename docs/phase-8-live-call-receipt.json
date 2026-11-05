@@ -1,0 +1,302 @@
+{
+  "phase": 8,
+  "recorded_at": "2026-10-03T09:13:55.871830+00:00",
+  "state": "skipped_not_configured",
+  "release_classification": "release_candidate_with_live_provider_gap",
+  "purpose": "release_validation",
+  "gates": {
+    "offline_acceptance": {
+      "state": "passed",
+      "recorded_at": "2026-10-03T09:02:40.874627+00:00",
+      "checks": 48,
+      "full_tests": 859
+    },
+    "local_security_privacy": {
+      "state": "passed",
+      "recorded_at": "2026-10-03T09:04:47.082413+00:00",
+      "scope": "source review and offline adversarial tests; common secret scan; external dependency advisories pending refresh"
+    },
+    "provider_contract_refresh": {
+      "state": "passed",
+      "recorded_at": "2026-10-03T09:11:24.982803+00:00",
+      "youtube_routes": 8,
+      "nexlev_routes": 17,
+      "runtime_changes_required": false,
+      "material_contradiction_found": false
+    },
+    "dependency_review": {
+      "state": "passed_with_scope_limit",
+      "advisories_compared": 14,
+      "upgrades": []
+    }
+  },
+  "providers": {
+    "youtube": {
+      "credential_present": false,
+      "live_state": "skipped_not_configured",
+      "requests": 0,
+      "documented_assumed_quota": 0,
+      "actual_charged_for_these_requests": 0,
+      "account_remaining_quota": "unknown"
+    },
+    "nexlev": {
+      "credential_present": false,
+      "live_state": "skipped_not_configured",
+      "requests": 0,
+      "documented_assumed_quota": 0,
+      "actual_charged_for_these_requests": 0,
+      "account_remaining_quota": "unknown"
+    }
+  },
+  "calls": [],
+  "mock_calls_are_live": false,
+  "real_niche": {
+    "query": "industrial history documentary",
+    "requested_mode": "quick",
+    "state": "insufficient_evidence",
+    "live_workflow": "skipped_not_configured",
+    "stored_only_workflow": [
+      {
+        "tool": "youtube_niche_discover",
+        "input": {
+          "query": "industrial history documentary",
+          "mode": "quick"
+        },
+        "output": {
+          "state": "insufficient_evidence",
+          "summary": "Candidate taxonomy and route evidence; no opportunity ranking.",
+          "research_id": null,
+          "reused_run": false,
+          "boundary": {},
+          "metrics": [],
+          "evidence": [],
+          "confidence": {
+            "level": "unknown",
+            "F18": null,
+            "history_maturity": "unavailable"
+          },
+          "supports": [],
+          "concerns": [],
+          "unknowns": [],
+          "warnings": [
+            "A candidate is not a supported niche until full research is performed."
+          ],
+          "provenance": {},
+          "quota": [
+            {
+              "provider": "youtube",
+              "requests": 0,
+              "recorded_assumed_cost": 0,
+              "quota_state": "no_requests"
+            },
+            {
+              "provider": "nexlev",
+              "requests": 0,
+              "actual_charged_cost": 0,
+              "quota_state": "no_requests"
+            }
+          ],
+          "capabilities": {
+            "evidence_mode": "stored_only",
+            "youtube": "not_configured",
+            "nexlev": "not_configured",
+            "semantic_rest": "orchestrator_only",
+            "scheduler": "absent"
+          },
+          "data": {
+            "mode": "quick",
+            "budget": {
+              "channels": [
+                15,
+                25
+              ],
+              "videos": [
+                100,
+                250
+              ],
+              "search_pages": 2,
+              "review": 25,
+              "sensitivity": 8,
+              "similarity_depth": 1
+            },
+            "ranking": "none"
+          },
+          "next_cursor": null,
+          "next_available_actions": [
+            "youtube_niche_research"
+          ]
+        },
+        "bytes": 979
+      },
+      {
+        "tool": "youtube_niche_research",
+        "input": {
+          "query": "industrial history documentary",
+          "mode": "quick"
+        },
+        "output": {
+          "state": "insufficient_evidence",
+          "summary": "Compatible retained evidence or an explicit research profile is required.",
+          "research_id": null,
+          "reused_run": false,
+          "boundary": {},
+          "metrics": [],
+          "evidence": [],
+          "confidence": {
+            "level": "unknown",
+            "F18": null,
+            "history_maturity": "unavailable"
+          },
+          "supports": [],
+          "concerns": [],
+          "unknowns": [
+            "insufficient_evidence"
+          ],
+          "warnings": [],
+          "provenance": {},
+          "quota": [],
+          "capabilities": {},
+          "data": {},
+          "next_cursor": null,
+          "next_available_actions": []
+        },
+        "bytes": 456
+      },
+      {
+        "tool": "youtube_niche_watchlist",
+        "input": {
+          "action": "list",
+          "owner_context": "release-validation"
+        },
+        "output": {
+          "state": "available",
+          "summary": "Stored watch intent; no recurring execution.",
+          "research_id": null,
+          "reused_run": false,
+          "boundary": {},
+          "metrics": [],
+          "evidence": [],
+          "confidence": {
+            "level": "unknown",
+            "F18": null,
+            "history_maturity": "unavailable"
+          },
+          "supports": [],
+          "concerns": [],
+          "unknowns": [],
+          "warnings": [],
+          "provenance": {},
+          "quota": [
+            {
+              "provider": "youtube",
+              "requests": 0,
+              "recorded_assumed_cost": 0,
+              "quota_state": "no_requests"
+            },
+            {
+              "provider": "nexlev",
+              "requests": 0,
+              "actual_charged_cost": 0,
+              "quota_state": "no_requests"
+            }
+          ],
+          "capabilities": {
+            "evidence_mode": "stored_only",
+            "youtube": "not_configured",
+            "nexlev": "not_configured",
+            "semantic_rest": "orchestrator_only",
+            "scheduler": "absent"
+          },
+          "data": {
+            "count": 0,
+            "scheduler": "absent"
+          },
+          "next_cursor": null,
+          "next_available_actions": []
+        },
+        "bytes": 737
+      },
+      {
+        "tool": "youtube_competitor_watch",
+        "input": {
+          "action": "list",
+          "owner_context": "release-validation"
+        },
+        "output": {
+          "state": "available",
+          "summary": "Stored watch intent; no recurring execution.",
+          "research_id": null,
+          "reused_run": false,
+          "boundary": {},
+          "metrics": [],
+          "evidence": [],
+          "confidence": {
+            "level": "unknown",
+            "F18": null,
+            "history_maturity": "unavailable"
+          },
+          "supports": [],
+          "concerns": [],
+          "unknowns": [],
+          "warnings": [],
+          "provenance": {},
+          "quota": [
+            {
+              "provider": "youtube",
+              "requests": 0,
+              "recorded_assumed_cost": 0,
+              "quota_state": "no_requests"
+            },
+            {
+              "provider": "nexlev",
+              "requests": 0,
+              "actual_charged_cost": 0,
+              "quota_state": "no_requests"
+            }
+          ],
+          "capabilities": {
+            "evidence_mode": "stored_only",
+            "youtube": "not_configured",
+            "nexlev": "not_configured",
+            "semantic_rest": "orchestrator_only",
+            "scheduler": "absent"
+          },
+          "data": {
+            "count": 0,
+            "scheduler": "absent"
+          },
+          "next_cursor": null,
+          "next_available_actions": []
+        },
+        "bytes": 737
+      }
+    ],
+    "observed_channels": 0,
+    "observed_videos": 0,
+    "eligible_channels": 0,
+    "eligible_videos": 0,
+    "reviews": 0,
+    "mature_historical_observations": 0,
+    "coverage": "none; not a population absence claim",
+    "research_id": null,
+    "dependent_calls": "skipped_missing_research_id_or_real_targets",
+    "watch_creation": "skipped_missing_real_boundary_or_targets",
+    "database_counts_before_after": {
+      "channel_observations": 0,
+      "video_observations": 0,
+      "analysis_runs": 0,
+      "research_watches": 0,
+      "quota_requests": 0
+    }
+  },
+  "no_alternate_credentials_loaded": true,
+  "no_policy_permission_created": true,
+  "previous_attempts": [
+    {
+      "state": "diagnostic_failed_before_tool_or_http_call",
+      "cause": "Initial read-only diagnostic queried quota_ledger instead of quota_requests",
+      "requests": 0,
+      "resolution": "Used actual schema table; preserved source integrity"
+    }
+  ]
+}

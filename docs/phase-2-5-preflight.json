@@ -1,0 +1,82 @@
+{
+  "phase": 2.5,
+  "repository": "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP",
+  "starting_branch": "codex/phase-2",
+  "starting_sha": "efd96e0f15344a3a0e92a69372864598636a4385",
+  "phase_2_tag_sha": "efd96e0f15344a3a0e92a69372864598636a4385",
+  "starting_git_status": "clean",
+  "fsck": {
+    "exit_code": 0,
+    "note": "Three harmless dangling blobs; no repository corruption"
+  },
+  "pytest": {
+    "passed": 255,
+    "failed": 0,
+    "seconds": 17.86,
+    "command": ".venv/Scripts/python.exe -m pytest -q -x --tb=short --basetemp=.pytest-tmp/phase25-preflight"
+  },
+  "environment_note": "Default Windows pytest temp directory access was denied; workspace-local basetemp passed without source changes.",
+  "ruff_check": "passed",
+  "ruff_format_check": "86 files already formatted",
+  "cli_verify": "passed, phase 2, offline",
+  "db_status": {
+    "schema_version": 3,
+    "table_count": 28,
+    "migration_state": "current"
+  },
+  "db_integrity": "passed, no FK violations",
+  "mcp": {
+    "in_memory": "passed",
+    "real_stdio": "passed",
+    "tests_passed": 2,
+    "research_tools": 0,
+    "planned_tools": 15
+  },
+  "nexlev_api_key_present": false,
+  "youtube_live_requests": 0,
+  "nexlev_live_requests": 0,
+  "missing_nexlev_audit_files": [
+    "research_specs/nexlev/NEXLEV_DEEP_INTEGRATION_AUDIT.md",
+    "research_specs/nexlev/NEXLEV_TOOL_CAPABILITY_MATRIX.md",
+    "research_specs/nexlev/NEXLEV_FIELD_TRUST_MATRIX.md",
+    "research_specs/nexlev/NEXLEV_PHASE_2_5_SPEC.md",
+    "research_specs/nexlev/NEXLEV_TEST_PLAN.md"
+  ],
+  "research_hashes": [
+    {
+      "file": "C90_Plus_Feasibility_Delta.md",
+      "bytes": 26659,
+      "sha256": "5415EA7FCA736C5A1F0B2B106D21436067799D2713E28F3340A76C1F4C1F22CE"
+    },
+    {
+      "file": "Faceless_Niche_Deep_Research_Prompt_Updated.txt",
+      "bytes": 60416,
+      "sha256": "1431B91CEE1789A6AE6A5AA94E1379035E81A43C2960F465AF57CFDC8F47F892"
+    },
+    {
+      "file": "Faceless_YouTube_Research_Blueprint.md",
+      "bytes": 55120,
+      "sha256": "17FC814A181DD6D5D7FAF9D4E897251361DFD7645298FB9187B40CB46DAD3558"
+    },
+    {
+      "file": "MCP_Feasibility_Matrix.md",
+      "bytes": 43092,
+      "sha256": "CD51997ECB3F5484CC46FBBE0CD076C98FB6F183E8B9CE483EB010F8AC630EC1"
+    },
+    {
+      "file": "Third_Pass_Evidence_Ledger.md",
+      "bytes": 32222,
+      "sha256": "3E5C75F6E9EA38A36A1CA1D0679E1C4DBEF79AF94B6544FE879D35EEFAB5D3A3"
+    },
+    {
+      "file": "Third_Pass_Gap_Audit.md",
+      "bytes": 40249,
+      "sha256": "E3ADA4C68E743A9B1E9F6F163DB8092A35D00B804C3282AB11D7BEF0E6954DDF"
+    },
+    {
+      "file": "YouTube_Evidence_Ledger.md",
+      "bytes": 35319,
+      "sha256": "D4BC5AD694E1B71E883DCE9FB30DC9786B009233031B96551FDD8987A3228F36"
+    }
+  ]
+}

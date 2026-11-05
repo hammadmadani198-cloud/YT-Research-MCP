@@ -1,0 +1,254 @@
+{
+  "starting_head": "a1f50f3f442af4a2847a3beb72d6da3897993a2a",
+  "starting_tag": "phase-3-verified",
+  "starting_branch": "codex/phase-3",
+  "initial_working_tree": "clean",
+  "repository": "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP",
+  "phase3_bundle_exists": true,
+  "checks": [
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "-q",
+        "--tb=short",
+        "--basetemp=C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.pytest-tmp\\phase4-preflight\\tests"
+      ],
+      "exit_code": 0,
+      "stdout": "........................................................................ [ 17%]\n........................................................................ [ 34%]\n........................................................................ [ 51%]\n........................................................................ [ 69%]\n........................................................................ [ 86%]\n.........................................................                [100%]\n417 passed in 76.17s (0:01:16)\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "check",
+        "."
+      ],
+      "exit_code": 0,
+      "stdout": "All checks passed!\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "."
+      ],
+      "exit_code": 0,
+      "stdout": "123 files already formatted\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-m",
+        "youtube_niche_mcp",
+        "verify"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"phase\": 3,\n  \"checks\": [\n    {\n      \"name\": \"imports\",\n      \"passed\": true,\n      \"detail\": {\n        \"ok\": true\n      }\n    },\n    {\n      \"name\": \"configuration\",\n      \"passed\": true,\n      \"detail\": {\n        \"db_path\": \"C:\\\\Users\\\\hp\\\\Documents\\\\ChatGPT\\\\Develpment\\\\YouTubeNicheFinderMCP\\\\data\\\\research.sqlite3\",\n        \"log_level\": \"INFO\",\n        \"db_timeout_seconds\": 10,\n        \"youtube_api_key_present\": false,\n        \"nexlev_api_key_present\": false,\n        \"live_api_required\": false,\n        \"api_timeout_seconds\": 20,\n        \"api_max_retries\": 2,\n        \"cache_ttl_seconds\": 3600,\n        \"cache_stale_seconds\": 300,\n        \"batch_stats_enabled\": false,\n        \"api_batch_size\": 50\n      }\n    },\n    {\n      \"name\": \"schemas\",\n      \"passed\": true,\n      \"detail\": {\n        \"validated_models\": 20\n      }\n    },\n    {\n      \"name\": \"database\",\n      \"passed\": true,\n      \"detail\": {\n        \"schema_version\": 5,\n        \"expected_schema_version\": 5,\n        \"migration_state\": \"current\",\n        \"journal_mode\": \"wal\",\n        \"foreign_keys\": true,\n        \"tables\": [\n          \"analysis_metric_results\",\n          \"analysis_outcomes\",\n          \"analysis_runs\",\n          \"app_metadata\",\n          \"channel_observations\",\n          \"channels\",\n          \"classification_claims\",\n          \"classification_details\",\n          \"cohort_definitions\",\n          \"cohort_memberships\",\n          \"creator_group_memberships\",\n          \"creator_groups\",\n          \"derived_cache\",\n          \"discovery_pages\",\n          \"discovery_results\",\n          \"discovery_runs\",\n          \"eligibility_decisions\",\n          \"eligibility_rules\",\n          \"live_cache\",\n          \"niche_memberships\",\n          \"provider_evidence\",\n          \"provider_quota_details\",\n          \"provider_runs\",\n          \"quota_requests\",\n          \"retention_permissions\",\n          \"schema_migrations\",\n          \"snapshot_jobs\",\n          \"snapshot_targets\",\n          \"source_conflicts\",\n          \"source_records\",\n          \"statistical_history\",\n          \"taxonomy_nodes\",\n          \"video_observations\",\n          \"videos\"\n        ],\n        \"integrity\": {\n          \"ok\": true,\n          \"integrity_check\": [\n            \"ok\"\n          ],\n          \"foreign_key_violations\": []\n        }\n      }\n    },\n    {\n      \"name\": \"mcp_initialization_and_registration\",\n      \"passed\": true,\n      \"detail\": {\n        \"initialized\": true,\n        \"registered_tools\": [],\n        \"planned_tool_count\": 15\n      }\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-m",
+        "youtube_niche_mcp",
+        "db",
+        "status"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"schema_version\": 5,\n  \"expected_schema_version\": 5,\n  \"migration_state\": \"current\",\n  \"journal_mode\": \"wal\",\n  \"foreign_keys\": true,\n  \"tables\": [\n    \"analysis_metric_results\",\n    \"analysis_outcomes\",\n    \"analysis_runs\",\n    \"app_metadata\",\n    \"channel_observations\",\n    \"channels\",\n    \"classification_claims\",\n    \"classification_details\",\n    \"cohort_definitions\",\n    \"cohort_memberships\",\n    \"creator_group_memberships\",\n    \"creator_groups\",\n    \"derived_cache\",\n    \"discovery_pages\",\n    \"discovery_results\",\n    \"discovery_runs\",\n    \"eligibility_decisions\",\n    \"eligibility_rules\",\n    \"live_cache\",\n    \"niche_memberships\",\n    \"provider_evidence\",\n    \"provider_quota_details\",\n    \"provider_runs\",\n    \"quota_requests\",\n    \"retention_permissions\",\n    \"schema_migrations\",\n    \"snapshot_jobs\",\n    \"snapshot_targets\",\n    \"source_conflicts\",\n    \"source_records\",\n    \"statistical_history\",\n    \"taxonomy_nodes\",\n    \"video_observations\",\n    \"videos\"\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-m",
+        "youtube_niche_mcp",
+        "db",
+        "integrity"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"integrity_check\": [\n    \"ok\"\n  ],\n  \"foreign_key_violations\": []\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "-q",
+        "-m",
+        "stdio",
+        "--basetemp=C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.pytest-tmp\\phase4-preflight\\stdio"
+      ],
+      "exit_code": 0,
+      "stdout": ".                                                                        [100%]\n1 passed, 416 deselected in 3.40s\n",
+      "stderr": ""
+    }
+  ],
+  "frozen_files": [
+    {
+      "path": "research_specs/C90_Plus_Feasibility_Delta.md",
+      "unchanged_git_blob": "bf966e47a22ee9cd7e727c348571b59f3f2851da"
+    },
+    {
+      "path": "research_specs/Faceless_Niche_Deep_Research_Prompt_Updated.txt",
+      "unchanged_git_blob": "7540eea5bcc61b13247c24dab3cbe16bfda9e8f3"
+    },
+    {
+      "path": "research_specs/Faceless_YouTube_Research_Blueprint.md",
+      "unchanged_git_blob": "1dfe5a04d32ecfafb44f0f2ebcf8d7e8e612324f"
+    },
+    {
+      "path": "research_specs/MCP_Feasibility_Matrix.md",
+      "unchanged_git_blob": "ad056a571a07fa5897362aed73d5b4ec49441b64"
+    },
+    {
+      "path": "research_specs/Third_Pass_Evidence_Ledger.md",
+      "unchanged_git_blob": "f0ec76b4c49d20314f8ed62d6fedcdd529d8d31e"
+    },
+    {
+      "path": "research_specs/Third_Pass_Gap_Audit.md",
+      "unchanged_git_blob": "3882fda2112915d49e6e4dd1d349e07adde7aa1b"
+    },
+    {
+      "path": "research_specs/YouTube_Evidence_Ledger.md",
+      "unchanged_git_blob": "900c06eb80e70939e226cafff43b84dc00bda780"
+    },
+    {
+      "path": "docs/phase-3-preflight.json",
+      "unchanged_git_blob": "a983ddcb601c3efc0f46efd227cf589ec2e56223"
+    },
+    {
+      "path": "docs/phase-3-results.json",
+      "unchanged_git_blob": "b3867f2153b2eee7337367a5604fa2f327866ae2"
+    },
+    {
+      "path": "docs/phase-3-analytics.md",
+      "unchanged_git_blob": "85856636e8668f267442c123d05ba2a710fadd00"
+    },
+    {
+      "path": "docs/phase-3-formula-contract.md",
+      "unchanged_git_blob": "58b8ac6f56c9b092c8188803de835e70a50d388e"
+    },
+    {
+      "path": "docs/phase-3-verification.md",
+      "unchanged_git_blob": "9083cd809e7874fb1d65d4325c781642f08cee6a"
+    },
+    {
+      "path": "scripts/acceptance_phase3.py",
+      "unchanged_git_blob": "1d8e039ea771675becef688cd5225ea0de748481"
+    },
+    {
+      "path": "src/youtube_niche_mcp/db/schema.py",
+      "unchanged_git_blob": "30ddb70589a5069a2da9897521bbf94c23c209a8"
+    },
+    {
+      "path": "src/youtube_niche_mcp/db/phase3.py",
+      "unchanged_git_blob": "d06347c1f0f5c620e76c891ec34bbb64adcaca6d"
+    },
+    {
+      "path": "src/youtube_niche_mcp/analysis/baselines.py",
+      "unchanged_git_blob": "512d1c038184c38f7873d9bb602bdabfff4f4c34"
+    },
+    {
+      "path": "src/youtube_niche_mcp/analysis/floor.py",
+      "unchanged_git_blob": "877b133aa05245e504b0b0127793afe08e6ed1f5"
+    },
+    {
+      "path": "src/youtube_niche_mcp/analysis/repeatability.py",
+      "unchanged_git_blob": "57beb7dccd91aabe32f2c39ab9e3ec3b8ee7d4bc"
+    },
+    {
+      "path": "src/youtube_niche_mcp/analysis/breadth.py",
+      "unchanged_git_blob": "e5a2441afb4130f2849987c61fc9e4ce4d63ebcc"
+    },
+    {
+      "path": "src/youtube_niche_mcp/analysis/concentration.py",
+      "unchanged_git_blob": "54c3c77559f1577bda0b595b7aea7823b79a71fe"
+    },
+    {
+      "path": "src/youtube_niche_mcp/analysis/exposure.py",
+      "unchanged_git_blob": "b8476184f5f67d779c9b08981b3a1486ae18850d"
+    },
+    {
+      "path": "src/youtube_niche_mcp/analysis/bounds.py",
+      "unchanged_git_blob": "e9e20e40db55c38616d586111b874eb326df9092"
+    },
+    {
+      "path": "src/youtube_niche_mcp/analysis/numerics.py",
+      "unchanged_git_blob": "3a2bf2696f7215e67df753db7e5d1286dbcc122a"
+    },
+    {
+      "path": "src/youtube_niche_mcp/analysis/outcomes.py",
+      "unchanged_git_blob": "73e6f63c52a7762d4afabbba1b606ab0a1193be1"
+    },
+    {
+      "path": "src/youtube_niche_mcp/analysis/service.py",
+      "unchanged_git_blob": "3a56ee41febc0958aa3cb4223ed56d59b9cf86f4"
+    }
+  ],
+  "git_checks": [
+    {
+      "command": [
+        "git",
+        "branch",
+        "--show-current"
+      ],
+      "stdout": "codex/phase-3\n",
+      "exit_code": 0,
+      "captured": "initial tool output before branch creation"
+    },
+    {
+      "command": [
+        "git",
+        "status",
+        "--short"
+      ],
+      "stdout": "",
+      "exit_code": 0,
+      "captured": "initial tool output before modification"
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": "a1f50f3f442af4a2847a3beb72d6da3897993a2a\n",
+      "stderr": "",
+      "captured": "same HEAD rechecked before Phase4 commit"
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "phase-3-verified"
+      ],
+      "exit_code": 0,
+      "stdout": "a1f50f3f442af4a2847a3beb72d6da3897993a2a\n",
+      "stderr": "",
+      "captured": "same HEAD rechecked before Phase4 commit"
+    },
+    {
+      "command": [
+        "git",
+        "fsck",
+        "--full"
+      ],
+      "exit_code": 0,
+      "stdout": "dangling blob 2771cb0731170c21f740899d3182675f96c4b9ee\ndangling blob e7f599db90707e75e463db533a01fc35192c4338\ndangling blob d1cb96fab989591b07b3b21a9bd146a073a448bf\n",
+      "stderr": "",
+      "captured": "same HEAD rechecked before Phase4 commit"
+    }
+  ]
+}

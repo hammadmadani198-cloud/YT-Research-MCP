@@ -1,0 +1,292 @@
+{
+  "phase": 1,
+  "recorded_at": "2026-10-02T09:40:26.643738+00:00",
+  "live_api_used": false,
+  "checks": [
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "exit_code": 0,
+      "stdout": "No broken requirements found.\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "-q",
+        "--tb=short",
+        "--basetemp=C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.pytest-tmp\\phase1-acceptance-d0a94101a5064b838753378c23bc9cf9\\tests"
+      ],
+      "exit_code": 0,
+      "stdout": "........................................................................ [ 54%]\n...........................................................              [100%]\n131 passed in 7.68s\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "check",
+        "."
+      ],
+      "exit_code": 0,
+      "stdout": "All checks passed!\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "."
+      ],
+      "exit_code": 0,
+      "stdout": "70 files already formatted\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-c",
+        "import importlib, pkgutil, youtube_niche_mcp\nmodules=list(pkgutil.walk_packages(youtube_niche_mcp.__path__,\n    youtube_niche_mcp.__name__+'.'))\nfor module in modules:\n    if not module.name.endswith('__main__'):\n        importlib.import_module(module.name)\nprint('Package import sweep passed: '+str(len(modules))+' modules')"
+      ],
+      "exit_code": 0,
+      "stdout": "Package import sweep passed: 37 modules\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-m",
+        "youtube_niche_mcp",
+        "--version"
+      ],
+      "exit_code": 0,
+      "stdout": "0.2.0\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-m",
+        "youtube_niche_mcp",
+        "config",
+        "check"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"db_path\": \"C:\\\\Users\\\\hp\\\\Documents\\\\ChatGPT\\\\Develpment\\\\YouTubeNicheFinderMCP\\\\data\\\\research.sqlite3\",\n  \"log_level\": \"INFO\",\n  \"db_timeout_seconds\": 10,\n  \"youtube_api_key_present\": false,\n  \"live_api_required\": false,\n  \"api_timeout_seconds\": 20,\n  \"api_max_retries\": 2,\n  \"cache_ttl_seconds\": 3600,\n  \"cache_stale_seconds\": 300,\n  \"batch_stats_enabled\": false,\n  \"api_batch_size\": 50\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-m",
+        "youtube_niche_mcp",
+        "api",
+        "capability"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"capabilities\": [\n    {\n      \"name\": \"youtube_public_api\",\n      \"enabled\": false,\n      \"state\": \"not_publicly_available\",\n      \"reason\": \"YOUTUBE_API_KEY absent\"\n    },\n    {\n      \"name\": \"snapshot_history\",\n      \"enabled\": false,\n      \"state\": \"insufficient_history\",\n      \"reason\": \"No unexpired captures\"\n    },\n    {\n      \"name\": \"auxiliary_provider\",\n      \"enabled\": false,\n      \"state\": \"not_publicly_available\",\n      \"reason\": \"No provider configured\"\n    },\n    {\n      \"name\": \"derived_analytics\",\n      \"enabled\": false,\n      \"state\": \"policy_permission_required\",\n      \"reason\": \"Applicable policy acceptance unknown; analytics deferred\"\n    },\n    {\n      \"name\": \"extended_retention\",\n      \"enabled\": false,\n      \"state\": \"policy_permission_required\",\n      \"reason\": \"30-day base retention; extended permission unverified\"\n    },\n    {\n      \"name\": \"captions_and_owner_analytics\",\n      \"enabled\": false,\n      \"state\": \"owner_authorization_required\",\n      \"reason\": \"No owner OAuth authorization\"\n    },\n    {\n      \"name\": \"historical_age_fixed_metrics\",\n      \"enabled\": false,\n      \"state\": \"insufficient_history\",\n      \"reason\": \"Current totals cannot reconstruct past age-fixed metrics\"\n    }\n  ],\n  \"quota_contract\": {\n    \"version\": \"google-public-2026-10-02\",\n    \"endpoints\": {\n      \"search.list\": {\n        \"path\": \"search\",\n        \"cost\": 1,\n        \"bucket\": \"search\",\n        \"page_limit\": 50\n      },\n      \"channels.list\": {\n        \"path\": \"channels\",\n        \"cost\": 1,\n        \"bucket\": \"general\",\n        \"page_limit\": 50\n      },\n      \"videos.list\": {\n        \"path\": \"videos\",\n        \"cost\": 1,\n        \"bucket\": \"general\",\n        \"page_limit\": null\n      },\n      \"playlistItems.list\": {\n        \"path\": \"playlistItems\",\n        \"cost\": 1,\n        \"bucket\": \"general\",\n        \"page_limit\": 50\n      },\n      \"playlists.list\": {\n        \"path\": \"playlists\",\n        \"cost\": 1,\n        \"bucket\": \"general\",\n        \"page_limit\": 50\n      },\n      \"commentThreads.list\": {\n        \"path\": \"commentThreads\",\n        \"cost\": 1,\n        \"bucket\": \"general\",\n        \"page_limit\": 100\n      },\n      \"comments.list\": {\n        \"path\": \"comments\",\n        \"cost\": 1,\n        \"bucket\": \"general\",\n        \"page_limit\": 100\n      },\n      \"videos.batchGetStats\": {\n        \"path\": \"videos:batchGetStats\",\n        \"cost\": 1,\n        \"bucket\": \"video_stats\",\n        \"page_limit\": null\n      }\n    },\n    \"default_daily_assumptions\": {\n      \"search\": 100,\n      \"general\": 10000,\n      \"video_stats\": 10000\n    }\n  }\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-m",
+        "youtube_niche_mcp",
+        "history",
+        "status"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"state\": \"initialized\",\n  \"schema_version\": 2,\n  \"channel_observations\": 0,\n  \"video_observations\": 0,\n  \"snapshot_jobs\": 0,\n  \"history_count\": 0,\n  \"retention_purge_required\": false\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-m",
+        "youtube_niche_mcp",
+        "snapshot",
+        "status"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"state\": \"initialized\",\n  \"schema_version\": 2,\n  \"channel_observations\": 0,\n  \"video_observations\": 0,\n  \"snapshot_jobs\": 0,\n  \"history_count\": 0,\n  \"retention_purge_required\": false\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-m",
+        "youtube_niche_mcp",
+        "tool",
+        "list"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"initialized\": true,\n  \"registered_tools\": [],\n  \"planned_tool_count\": 15,\n  \"planned_tools\": [\n    \"youtube_niche_research\",\n    \"youtube_niche_discover\",\n    \"youtube_niche_compare\",\n    \"youtube_niche_outliers\",\n    \"youtube_niche_content_gaps\",\n    \"youtube_niche_packaging\",\n    \"youtube_niche_audience_demand\",\n    \"youtube_niche_sustainability\",\n    \"youtube_niche_risk\",\n    \"youtube_niche_geo_language\",\n    \"youtube_niche_watchlist\",\n    \"youtube_niche_history\",\n    \"youtube_competitor_analyze\",\n    \"youtube_competitor_compare\",\n    \"youtube_competitor_watch\"\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-m",
+        "youtube_niche_mcp",
+        "db",
+        "status"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"schema_version\": 2,\n  \"expected_schema_version\": 2,\n  \"migration_state\": \"current\",\n  \"journal_mode\": \"wal\",\n  \"foreign_keys\": true,\n  \"tables\": [\n    \"app_metadata\",\n    \"channel_observations\",\n    \"channels\",\n    \"derived_cache\",\n    \"discovery_pages\",\n    \"discovery_results\",\n    \"discovery_runs\",\n    \"eligibility_decisions\",\n    \"live_cache\",\n    \"quota_requests\",\n    \"schema_migrations\",\n    \"snapshot_jobs\",\n    \"snapshot_targets\",\n    \"source_conflicts\",\n    \"source_records\",\n    \"video_observations\",\n    \"videos\"\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-m",
+        "youtube_niche_mcp",
+        "db",
+        "integrity"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"integrity_check\": [\n    \"ok\"\n  ],\n  \"foreign_key_violations\": []\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-m",
+        "youtube_niche_mcp",
+        "verify"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"phase\": 1,\n  \"checks\": [\n    {\n      \"name\": \"imports\",\n      \"passed\": true,\n      \"detail\": {\n        \"ok\": true\n      }\n    },\n    {\n      \"name\": \"configuration\",\n      \"passed\": true,\n      \"detail\": {\n        \"db_path\": \"C:\\\\Users\\\\hp\\\\Documents\\\\ChatGPT\\\\Develpment\\\\YouTubeNicheFinderMCP\\\\data\\\\research.sqlite3\",\n        \"log_level\": \"INFO\",\n        \"db_timeout_seconds\": 10,\n        \"youtube_api_key_present\": false,\n        \"live_api_required\": false,\n        \"api_timeout_seconds\": 20,\n        \"api_max_retries\": 2,\n        \"cache_ttl_seconds\": 3600,\n        \"cache_stale_seconds\": 300,\n        \"batch_stats_enabled\": false,\n        \"api_batch_size\": 50\n      }\n    },\n    {\n      \"name\": \"schemas\",\n      \"passed\": true,\n      \"detail\": {\n        \"validated_models\": 8\n      }\n    },\n    {\n      \"name\": \"database\",\n      \"passed\": true,\n      \"detail\": {\n        \"schema_version\": 2,\n        \"expected_schema_version\": 2,\n        \"migration_state\": \"current\",\n        \"journal_mode\": \"wal\",\n        \"foreign_keys\": true,\n        \"tables\": [\n          \"app_metadata\",\n          \"channel_observations\",\n          \"channels\",\n          \"derived_cache\",\n          \"discovery_pages\",\n          \"discovery_results\",\n          \"discovery_runs\",\n          \"eligibility_decisions\",\n          \"live_cache\",\n          \"quota_requests\",\n          \"schema_migrations\",\n          \"snapshot_jobs\",\n          \"snapshot_targets\",\n          \"source_conflicts\",\n          \"source_records\",\n          \"video_observations\",\n          \"videos\"\n        ],\n        \"integrity\": {\n          \"ok\": true,\n          \"integrity_check\": [\n            \"ok\"\n          ],\n          \"foreign_key_violations\": []\n        }\n      }\n    },\n    {\n      \"name\": \"mcp_initialization_and_registration\",\n      \"passed\": true,\n      \"detail\": {\n        \"initialized\": true,\n        \"registered_tools\": [],\n        \"planned_tool_count\": 15\n      }\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-m",
+        "youtube_niche_mcp",
+        "--db",
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.pytest-tmp\\phase1-acceptance-d0a94101a5064b838753378c23bc9cf9\\clean.sqlite3",
+        "migrate"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"installed_migrations\": [\n    1,\n    2\n  ],\n  \"schema_version\": 2,\n  \"expected_schema_version\": 2,\n  \"migration_state\": \"current\",\n  \"journal_mode\": \"wal\",\n  \"foreign_keys\": true,\n  \"tables\": [\n    \"app_metadata\",\n    \"channel_observations\",\n    \"channels\",\n    \"derived_cache\",\n    \"discovery_pages\",\n    \"discovery_results\",\n    \"discovery_runs\",\n    \"eligibility_decisions\",\n    \"live_cache\",\n    \"quota_requests\",\n    \"schema_migrations\",\n    \"snapshot_jobs\",\n    \"snapshot_targets\",\n    \"source_conflicts\",\n    \"source_records\",\n    \"video_observations\",\n    \"videos\"\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-m",
+        "youtube_niche_mcp",
+        "--db",
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.pytest-tmp\\phase1-acceptance-d0a94101a5064b838753378c23bc9cf9\\clean.sqlite3",
+        "migrate"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"installed_migrations\": [],\n  \"schema_version\": 2,\n  \"expected_schema_version\": 2,\n  \"migration_state\": \"current\",\n  \"journal_mode\": \"wal\",\n  \"foreign_keys\": true,\n  \"tables\": [\n    \"app_metadata\",\n    \"channel_observations\",\n    \"channels\",\n    \"derived_cache\",\n    \"discovery_pages\",\n    \"discovery_results\",\n    \"discovery_runs\",\n    \"eligibility_decisions\",\n    \"live_cache\",\n    \"quota_requests\",\n    \"schema_migrations\",\n    \"snapshot_jobs\",\n    \"snapshot_targets\",\n    \"source_conflicts\",\n    \"source_records\",\n    \"video_observations\",\n    \"videos\"\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-m",
+        "youtube_niche_mcp",
+        "--db",
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.pytest-tmp\\phase1-acceptance-d0a94101a5064b838753378c23bc9cf9\\clean.sqlite3",
+        "db",
+        "integrity"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"integrity_check\": [\n    \"ok\"\n  ],\n  \"foreign_key_violations\": []\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-m",
+        "youtube_niche_mcp",
+        "--db",
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.pytest-tmp\\phase1-acceptance-d0a94101a5064b838753378c23bc9cf9\\clean.sqlite3",
+        "verify"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"phase\": 1,\n  \"checks\": [\n    {\n      \"name\": \"imports\",\n      \"passed\": true,\n      \"detail\": {\n        \"ok\": true\n      }\n    },\n    {\n      \"name\": \"configuration\",\n      \"passed\": true,\n      \"detail\": {\n        \"db_path\": \"C:\\\\Users\\\\hp\\\\Documents\\\\ChatGPT\\\\Develpment\\\\YouTubeNicheFinderMCP\\\\.pytest-tmp\\\\phase1-acceptance-d0a94101a5064b838753378c23bc9cf9\\\\clean.sqlite3\",\n        \"log_level\": \"INFO\",\n        \"db_timeout_seconds\": 10,\n        \"youtube_api_key_present\": false,\n        \"live_api_required\": false,\n        \"api_timeout_seconds\": 20,\n        \"api_max_retries\": 2,\n        \"cache_ttl_seconds\": 3600,\n        \"cache_stale_seconds\": 300,\n        \"batch_stats_enabled\": false,\n        \"api_batch_size\": 50\n      }\n    },\n    {\n      \"name\": \"schemas\",\n      \"passed\": true,\n      \"detail\": {\n        \"validated_models\": 8\n      }\n    },\n    {\n      \"name\": \"database\",\n      \"passed\": true,\n      \"detail\": {\n        \"schema_version\": 2,\n        \"expected_schema_version\": 2,\n        \"migration_state\": \"current\",\n        \"journal_mode\": \"wal\",\n        \"foreign_keys\": true,\n        \"tables\": [\n          \"app_metadata\",\n          \"channel_observations\",\n          \"channels\",\n          \"derived_cache\",\n          \"discovery_pages\",\n          \"discovery_results\",\n          \"discovery_runs\",\n          \"eligibility_decisions\",\n          \"live_cache\",\n          \"quota_requests\",\n          \"schema_migrations\",\n          \"snapshot_jobs\",\n          \"snapshot_targets\",\n          \"source_conflicts\",\n          \"source_records\",\n          \"video_observations\",\n          \"videos\"\n        ],\n        \"integrity\": {\n          \"ok\": true,\n          \"integrity_check\": [\n            \"ok\"\n          ],\n          \"foreign_key_violations\": []\n        }\n      }\n    },\n    {\n      \"name\": \"mcp_initialization_and_registration\",\n      \"passed\": true,\n      \"detail\": {\n        \"initialized\": true,\n        \"registered_tools\": [],\n        \"planned_tool_count\": 15\n      }\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-c",
+        "import sys\nfrom pathlib import Path\nfrom youtube_niche_mcp.db.connection import connect\nfrom youtube_niche_mcp.db.migrations import migrate\nfrom youtube_niche_mcp.db.schema import MIGRATIONS\nwith connect(Path(sys.argv[1])) as connection:\n    installed=migrate(connection,MIGRATIONS[:1])\nprint('v1 fixture installed: '+str(installed))",
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.pytest-tmp\\phase1-acceptance-d0a94101a5064b838753378c23bc9cf9\\v1.sqlite3"
+      ],
+      "exit_code": 0,
+      "stdout": "v1 fixture installed: [1]\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-m",
+        "youtube_niche_mcp",
+        "--db",
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.pytest-tmp\\phase1-acceptance-d0a94101a5064b838753378c23bc9cf9\\v1.sqlite3",
+        "migrate"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"installed_migrations\": [\n    2\n  ],\n  \"schema_version\": 2,\n  \"expected_schema_version\": 2,\n  \"migration_state\": \"current\",\n  \"journal_mode\": \"wal\",\n  \"foreign_keys\": true,\n  \"tables\": [\n    \"app_metadata\",\n    \"channel_observations\",\n    \"channels\",\n    \"derived_cache\",\n    \"discovery_pages\",\n    \"discovery_results\",\n    \"discovery_runs\",\n    \"eligibility_decisions\",\n    \"live_cache\",\n    \"quota_requests\",\n    \"schema_migrations\",\n    \"snapshot_jobs\",\n    \"snapshot_targets\",\n    \"source_conflicts\",\n    \"source_records\",\n    \"video_observations\",\n    \"videos\"\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-m",
+        "youtube_niche_mcp",
+        "--db",
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.pytest-tmp\\phase1-acceptance-d0a94101a5064b838753378c23bc9cf9\\v1.sqlite3",
+        "db",
+        "integrity"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"integrity_check\": [\n    \"ok\"\n  ],\n  \"foreign_key_violations\": []\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-m",
+        "youtube_niche_mcp",
+        "--db",
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.pytest-tmp\\phase1-acceptance-d0a94101a5064b838753378c23bc9cf9\\v1.sqlite3",
+        "verify"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"phase\": 1,\n  \"checks\": [\n    {\n      \"name\": \"imports\",\n      \"passed\": true,\n      \"detail\": {\n        \"ok\": true\n      }\n    },\n    {\n      \"name\": \"configuration\",\n      \"passed\": true,\n      \"detail\": {\n        \"db_path\": \"C:\\\\Users\\\\hp\\\\Documents\\\\ChatGPT\\\\Develpment\\\\YouTubeNicheFinderMCP\\\\.pytest-tmp\\\\phase1-acceptance-d0a94101a5064b838753378c23bc9cf9\\\\v1.sqlite3\",\n        \"log_level\": \"INFO\",\n        \"db_timeout_seconds\": 10,\n        \"youtube_api_key_present\": false,\n        \"live_api_required\": false,\n        \"api_timeout_seconds\": 20,\n        \"api_max_retries\": 2,\n        \"cache_ttl_seconds\": 3600,\n        \"cache_stale_seconds\": 300,\n        \"batch_stats_enabled\": false,\n        \"api_batch_size\": 50\n      }\n    },\n    {\n      \"name\": \"schemas\",\n      \"passed\": true,\n      \"detail\": {\n        \"validated_models\": 8\n      }\n    },\n    {\n      \"name\": \"database\",\n      \"passed\": true,\n      \"detail\": {\n        \"schema_version\": 2,\n        \"expected_schema_version\": 2,\n        \"migration_state\": \"current\",\n        \"journal_mode\": \"wal\",\n        \"foreign_keys\": true,\n        \"tables\": [\n          \"app_metadata\",\n          \"channel_observations\",\n          \"channels\",\n          \"derived_cache\",\n          \"discovery_pages\",\n          \"discovery_results\",\n          \"discovery_runs\",\n          \"eligibility_decisions\",\n          \"live_cache\",\n          \"quota_requests\",\n          \"schema_migrations\",\n          \"snapshot_jobs\",\n          \"snapshot_targets\",\n          \"source_conflicts\",\n          \"source_records\",\n          \"video_observations\",\n          \"videos\"\n        ],\n        \"integrity\": {\n          \"ok\": true,\n          \"integrity_check\": [\n            \"ok\"\n          ],\n          \"foreign_key_violations\": []\n        }\n      }\n    },\n    {\n      \"name\": \"mcp_initialization_and_registration\",\n      \"passed\": true,\n      \"detail\": {\n        \"initialized\": true,\n        \"registered_tools\": [],\n        \"planned_tool_count\": 15\n      }\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "-q",
+        "-m",
+        "stdio",
+        "--tb=short",
+        "--basetemp=C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.pytest-tmp\\phase1-acceptance-d0a94101a5064b838753378c23bc9cf9\\stdio"
+      ],
+      "exit_code": 0,
+      "stdout": ".                                                                        [100%]\n1 passed, 130 deselected in 2.45s\n",
+      "stderr": ""
+    }
+  ],
+  "ok": true
+}

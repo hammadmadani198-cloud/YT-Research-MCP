@@ -1,0 +1,62 @@
+{
+  "recorded_at": "2026-10-03T09:38:29.738947+00:00",
+  "cause": "Bundled Python and PowerShell runtime paths disappeared after completed tests; workspace runtime loader returned unavailable",
+  "python_before": "3.12.14",
+  "python_recovery": "3.12.14",
+  "publisher": "astral-sh/python-build-standalone",
+  "asset": {
+    "name": "cpython-3.12.14+20260924-x86_64-pc-windows-msvc-install_only.tar.gz",
+    "browser_download_url": "https://github.com/astral-sh/python-build-standalone/releases/download/20260924/cpython-3.12.14%2B20260924-x86_64-pc-windows-msvc-install_only.tar.gz",
+    "digest": "sha256:c5303174bc29f5205decf6721ac549d4eb41c448f9b8c46cbc562d00348865bb",
+    "size": 46462396
+  },
+  "scope": "Local ignored runtime only; no package pin change, global Python install, host change or automatic collection",
+  "checks": [
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "exit_code": 0,
+      "stdout": "No broken requirements found.\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "scripts/verify_phase8_docs.py"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"ok\": true, \"utf8_documents\": 15, \"examples\": 15, \"profiles\": 3, \"locked_distributions\": 44}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-m",
+        "youtube_niche_mcp",
+        "verify"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"phase\": 8,\n  \"checks\": [\n    {\n      \"name\": \"imports\",\n      \"passed\": true,\n      \"detail\": {\n        \"ok\": true\n      }\n    },\n    {\n      \"name\": \"configuration\",\n      \"passed\": true,\n      \"detail\": {\n        \"db_path\": \"C:\\\\Users\\\\hp\\\\Documents\\\\ChatGPT\\\\Develpment\\\\YouTubeNicheFinderMCP\\\\data\\\\research.sqlite3\",\n        \"log_level\": \"INFO\",\n        \"db_timeout_seconds\": 10,\n        \"youtube_api_key_present\": false,\n        \"nexlev_api_key_present\": false,\n        \"live_api_required\": false,\n        \"api_timeout_seconds\": 20,\n        \"api_max_retries\": 2,\n        \"cache_ttl_seconds\": 3600,\n        \"cache_stale_seconds\": 300,\n        \"batch_stats_enabled\": false,\n        \"api_batch_size\": 50\n      }\n    },\n    {\n      \"name\": \"schemas\",\n      \"passed\": true,\n      \"detail\": {\n        \"validated_models\": 42,\n        \"public_tool_schemas\": 15\n      }\n    },\n    {\n      \"name\": \"database\",\n      \"passed\": true,\n      \"detail\": {\n        \"schema_version\": 7,\n        \"expected_schema_version\": 7,\n        \"migration_state\": \"current\",\n        \"journal_mode\": \"wal\",\n        \"foreign_keys\": true,\n        \"tables\": [\n          \"analysis_metric_results\",\n          \"analysis_outcomes\",\n          \"analysis_runs\",\n          \"app_metadata\",\n          \"channel_observations\",\n          \"channels\",\n          \"classification_claims\",\n          \"classification_details\",\n          \"cohort_definitions\",\n          \"cohort_memberships\",\n          \"creator_group_memberships\",\n          \"creator_groups\",\n          \"derived_cache\",\n          \"discovery_pages\",\n          \"discovery_results\",\n          \"discovery_runs\",\n          \"eligibility_decisions\",\n          \"eligibility_rules\",\n          \"live_cache\",\n          \"niche_memberships\",\n          \"provider_evidence\",\n          \"provider_quota_details\",\n          \"provider_runs\",\n          \"qualitative_annotations\",\n          \"quota_requests\",\n          \"research_watches\",\n          \"retention_permissions\",\n          \"schema_migrations\",\n          \"snapshot_jobs\",\n          \"snapshot_targets\",\n          \"source_conflicts\",\n          \"source_records\",\n          \"statistical_history\",\n          \"taxonomy_nodes\",\n          \"video_observations\",\n          \"videos\"\n        ],\n        \"integrity\": {\n          \"ok\": true,\n          \"integrity_check\": [\n            \"ok\"\n          ],\n          \"foreign_key_violations\": []\n        }\n      }\n    },\n    {\n      \"name\": \"mcp_initialization_and_registration\",\n      \"passed\": true,\n      \"detail\": {\n        \"initialized\": true,\n        \"registered_tools\": [\n          \"youtube_competitor_analyze\",\n          \"youtube_competitor_compare\",\n          \"youtube_competitor_watch\",\n          \"youtube_niche_audience_demand\",\n          \"youtube_niche_compare\",\n          \"youtube_niche_content_gaps\",\n          \"youtube_niche_discover\",\n          \"youtube_niche_geo_language\",\n          \"youtube_niche_history\",\n          \"youtube_niche_outliers\",\n          \"youtube_niche_packaging\",\n          \"youtube_niche_research\",\n          \"youtube_niche_risk\",\n          \"youtube_niche_sustainability\",\n          \"youtube_niche_watchlist\"\n        ],\n        \"planned_tool_count\": 15\n      }\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-m",
+        "youtube_niche_mcp",
+        "db",
+        "integrity"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"integrity_check\": [\n    \"ok\"\n  ],\n  \"foreign_key_violations\": []\n}\n",
+      "stderr": ""
+    }
+  ],
+  "ok": true,
+  "runtime_location": "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\runtime\\python",
+  "old_venv_configuration_preserved_in_ignored_scratch": true
+}

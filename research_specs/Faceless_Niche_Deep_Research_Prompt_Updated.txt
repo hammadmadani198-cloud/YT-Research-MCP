@@ -1,0 +1,2823 @@
+MASTER DEEP-RESEARCH PROMPT
+TOPIC: How to Reliably Find High-Potential Faceless YouTube Niches
+PURPOSE: Convert the research into measurable features for YouTubeNicheFinderMCP
+
+============================================================
+1. ROLE
+============================================================
+
+Act as a senior YouTube growth researcher, creator-economy analyst, market-research specialist, quantitative analyst, competitive-intelligence researcher, and YouTube Data API specialist.
+
+Your job is NOT to give generic creator advice.
+
+Your job is to deeply research:
+
+HOW A HIGH-POTENTIAL FACELESS YOUTUBE NICHE SHOULD ACTUALLY BE IDENTIFIED.
+
+The research must ultimately be usable to improve an existing automated MCP system named:
+
+YouTubeNicheFinderMCP
+
+The MCP's main goal is to discover niches suitable for:
+
+- English-language channels
+- faceless channels
+- long-form videos
+- new/small creators
+- relatively fast growth
+- manageable competition
+- repeatable video production
+- sustainable topic supply
+- practical AI-assisted production
+
+Do NOT write code yet.
+
+This task is RESEARCH + FRAMEWORK DESIGN only.
+
+============================================================
+2. CENTRAL QUESTION
+============================================================
+
+Answer this question comprehensively:
+
+"What measurable characteristics distinguish a genuinely attractive faceless YouTube niche from a niche that merely appears attractive because of a few viral videos?"
+
+Then answer:
+
+"What exact signals should an automated YouTube niche-research system collect, calculate, compare, and monitor in order to identify such niches reliably?"
+
+============================================================
+3. RESEARCH STANDARD
+============================================================
+
+Perform genuine deep research.
+
+Do NOT rely mainly on:
+
+- generic YouTube guru articles
+- SEO listicles
+- affiliate blogs
+- unsupported creator claims
+- recycled "high CPM niches" lists
+
+Prioritize evidence in roughly this order:
+
+1. Official YouTube / Google documentation, including YouTube API documentation
+2. Official YouTube creator education, including YouTube / YouTube Creators educational videos and official creator guidance
+3. Actual YouTube channel/video observations, including successful, failed/stagnant, small, and new faceless channels
+4. High-quality YouTube creator/analyst research, including experienced creators, strategists, analytics specialists, and faceless-channel operators
+5. Credible creator-economy and academic research
+6. Community evidence, including creator discussions, YouTube comments, and Reddit, as qualitative/anecdotal evidence only
+
+Clearly distinguish:
+
+FACT
+OBSERVATION
+INFERENCE
+HEURISTIC
+ANECDOTE
+
+Do not present anecdotal creator advice as established fact.
+
+Use recent/current information wherever the platform may have changed.
+
+============================================================
+3A. MANDATORY YOUTUBE RESEARCH
+============================================================
+
+You MUST perform substantial research directly on YouTube as part of this study.
+
+Do not rely only on Google/web articles, official documentation, or theoretical reasoning.
+
+We specifically want to understand how experienced YouTube creators, channel strategists, analytics specialists, faceless-channel operators, and niche researchers ACTUALLY identify promising niches.
+
+YouTube research is mandatory.
+
+============================================================
+3B. TWO DIFFERENT TYPES OF YOUTUBE RESEARCH
+============================================================
+
+Perform TWO separate types of YouTube research.
+
+TYPE A — META / EDUCATIONAL RESEARCH
+
+Find videos where experienced creators and analysts explain:
+
+- how they find YouTube niches
+- how they validate niches
+- how they find low-competition opportunities
+- how they identify breakout channels
+- how they analyze competitors
+- how they identify outlier videos
+- how they determine whether a niche is saturated
+- how they find video ideas
+- how they analyze small channels
+- how they find faceless channel opportunities
+- how they determine whether a niche is evergreen
+- how they identify trends
+- how they find content gaps
+- how they judge whether a niche can support many videos
+- how they assess demand
+- how they evaluate thumbnails/titles
+- how they use YouTube search/results for niche research
+- how they validate long-form opportunities
+- how they detect new channels growing quickly
+
+TYPE B — REAL-WORLD CHANNEL OBSERVATION
+
+Do NOT rely only on people teaching niche research.
+
+Independently inspect actual faceless channels and niches on YouTube.
+
+Study:
+
+- new channels
+- small channels
+- rapidly growing channels
+- established channels
+- failed/stagnant channels where discoverable
+- channels with one viral video
+- channels with repeated breakouts
+- channels where breakout videos led to sustained growth
+- channels where breakout videos did NOT produce durable growth
+
+This second layer is essential.
+
+We want to know whether advice from YouTube educators matches observable channel behavior.
+
+============================================================
+3C. YOUTUBE RESEARCH SAMPLE
+============================================================
+
+Aim for a substantial sample.
+
+Target where feasible:
+
+30-50+ highly relevant YouTube videos about niche discovery/growth research
+
+from at least:
+
+10-15 different credible channels
+
+Do not fill the sample with low-quality repetitive videos merely to hit a number.
+
+Quality matters more than raw count.
+
+Use a mix of:
+
+- recent videos
+- high-quality older foundational videos
+- creator case studies
+- data-driven analyses
+- channel-growth breakdowns
+- official YouTube educational material
+
+Prefer recent material from roughly the last 1-3 years for platform-sensitive claims.
+
+Older material may be used for concepts that remain valid.
+
+============================================================
+3D. YOUTUBE SEARCH QUERIES
+============================================================
+
+Use many different queries rather than one search.
+
+Search variations should include concepts such as:
+
+how to find YouTube niches
+
+how to find profitable YouTube niches
+
+how to find low competition YouTube niches
+
+how to validate a YouTube niche
+
+how to research a YouTube niche
+
+how to find faceless YouTube niches
+
+faceless YouTube channel niche research
+
+best way to find faceless niches
+
+how to find small YouTube channels growing fast
+
+how to find breakout YouTube channels
+
+how to find YouTube outlier videos
+
+YouTube outlier research
+
+small channel breakout videos
+
+how to analyze YouTube competitors
+
+YouTube competitor research
+
+how to know if a YouTube niche is saturated
+
+YouTube niche saturation
+
+YouTube content gap research
+
+how to find YouTube video ideas from competitors
+
+how to find evergreen YouTube niches
+
+how to find trending YouTube niches
+
+how to find long form YouTube niches
+
+YouTube long form niche research
+
+how to validate demand on YouTube
+
+how to find high demand low competition YouTube topics
+
+how YouTube strategists find niches
+
+YouTube automation niche research
+
+faceless channel case study
+
+new faceless YouTube channel growth case study
+
+small YouTube channel case study
+
+new YouTube channel 0 to 100k case study
+
+YouTube niche case study
+
+YouTube channel breakout analysis
+
+Do not restrict research to these exact phrases.
+
+Expand queries as new terminology appears.
+
+============================================================
+3E. ANALYZE EACH USEFUL YOUTUBE VIDEO
+============================================================
+
+For every high-value research video, capture:
+
+video title
+
+channel
+
+publication date
+
+video URL
+
+main claim
+
+method used
+
+niche-selection criteria mentioned
+
+metrics mentioned
+
+tools used
+
+examples/case studies
+
+whether evidence was actually shown
+
+whether claim is:
+
+FACT
+OBSERVATION
+HEURISTIC
+PERSONAL EXPERIENCE
+UNSUPPORTED CLAIM
+
+Also capture:
+
+what the creator says is a positive niche signal
+
+what they consider a red flag
+
+how they evaluate competition
+
+how they evaluate demand
+
+how they identify small-channel success
+
+how they identify outliers
+
+how they determine faceless suitability
+
+how they generate topics
+
+how they validate topic depth
+
+how they assess saturation
+
+how they assess monetization
+
+how they assess production difficulty
+
+============================================================
+3F. TRANSCRIPT-LEVEL RESEARCH
+============================================================
+
+Where transcripts are available, inspect the actual transcript rather than relying only on:
+
+title
+description
+thumbnail
+
+Extract the specific reasoning and criteria discussed.
+
+Do not copy long transcript passages.
+
+Summarize claims.
+
+Pay special attention to:
+
+numeric rules
+thresholds
+formulas
+filters
+step-by-step workflows
+examples
+exceptions
+warnings
+
+If several creators independently describe the same principle, record that convergence.
+
+============================================================
+3G. DO NOT TRUST YOUTUBE GURUS BLINDLY
+============================================================
+
+YouTube videos are evidence sources, not unquestionable authority.
+
+Actively verify claims.
+
+Examples:
+
+If a creator says:
+
+"Find channels under 50k subscribers with videos over 500k views"
+
+do NOT automatically adopt that as our rule.
+
+Ask:
+
+Why 50k?
+
+Why 500k?
+
+Does it work across niches?
+
+Is video age considered?
+
+Is it one viral fluke?
+
+How many channels show the same pattern?
+
+What happens to their next videos?
+
+Could channel subscriber count have grown AFTER the breakout?
+
+Is the creator cherry-picking winners?
+
+Convert useful advice into a more statistically defensible method.
+
+============================================================
+3H. CROSS-CHECK EDUCATOR CLAIMS WITH REAL CHANNEL DATA
+============================================================
+
+For important niche-finding methods found in YouTube videos, test whether they appear valid against actual public channel/video examples.
+
+Example:
+
+CLAIM:
+"A good niche has small channels getting huge views."
+
+TEST:
+
+Inspect multiple niches and determine:
+
+- how many small channels exist
+- how many actually break out
+- how many fail
+- whether breakout is repeated
+- whether success belongs to multiple channels
+- whether breakout persists
+- what happens to later uploads
+
+This distinction is critical.
+
+============================================================
+3I. STUDY SUCCESSFUL FACELESS CHANNELS DIRECTLY
+============================================================
+
+Find actual successful English faceless long-form channels across different categories.
+
+Analyze:
+
+- niche
+- sub-niche
+- channel age
+- subscriber scale
+- number of uploads
+- upload frequency
+- video lengths
+- view distribution
+- top videos
+- median recent performance
+- breakout videos
+- recurring topic families
+- title structures
+- series
+- production style
+- asset requirements
+- whether presenter personality appears necessary
+- repeatability
+- evergreen nature
+
+Do not only study giant mature channels.
+
+Prioritize channels that demonstrate what a newer entrant can realistically do.
+
+============================================================
+3J. STUDY SMALL AND NEW FACELESS CHANNELS
+============================================================
+
+This is especially important.
+
+Find examples of:
+
+small channels with breakout videos
+
+new channels with breakout videos
+
+small channels with repeated breakout videos
+
+new channels with sustained follow-up performance
+
+Then compare against:
+
+similar small/new channels that did not break out.
+
+We need BOTH winners and non-winners.
+
+Try to understand:
+
+what differentiates them?
+
+Potential differences may include:
+
+topic selection
+niche choice
+title
+thumbnail
+video length
+upload frequency
+series structure
+topic freshness
+competition
+production quality
+niche timing
+
+Do not infer causation without evidence.
+
+============================================================
+3K. STUDY FAILED / STAGNANT CHANNELS
+============================================================
+
+Most niche-research advice has survivorship bias.
+
+Therefore actively look for channels that:
+
+uploaded repeatedly
+
+remained small
+
+failed to create repeat winners
+
+stopped uploading
+
+switched niches
+
+or produced one breakout followed by weak performance.
+
+Use these examples to understand:
+
+FAILURE FLOOR
+CREATOR CHURN
+ONE-HIT RISK
+NICHE DIFFICULTY
+
+Do not research only successful channels.
+
+============================================================
+3L. BREAKOUT FOLLOW-THROUGH
+============================================================
+
+When finding a breakout video, inspect what happened afterward.
+
+Example:
+
+Video:
+1M views
+
+Then inspect:
+
+next 5 uploads
+next 10 uploads
+older catalog
+subscriber trajectory where observable over time
+
+Classify roughly:
+
+ONE-HIT BREAKOUT
+
+REPEAT BREAKOUT
+
+CHANNEL-LEVEL BREAKOUT
+
+CATALOG LIFT
+
+SUSTAINED GROWTH
+
+This is extremely important for niche selection.
+
+A niche that creates random viral videos is not necessarily a niche that creates successful channels.
+
+============================================================
+3M. YOUTUBE-CREATOR CONSENSUS
+============================================================
+
+After researching many videos, identify:
+
+STRONG CONSENSUS
+
+Principles independently supported by many credible creators.
+
+MIXED CONSENSUS
+
+Principles where creators disagree.
+
+WEAK / GURU CLAIMS
+
+Common advice with little evidence.
+
+OUTDATED ADVICE
+
+Advice that may no longer fit current YouTube behavior.
+
+For each consensus idea determine whether it should become an MCP signal.
+
+============================================================
+3N. DISCOVER TERMINOLOGY WE HAVE MISSED
+============================================================
+
+YouTube strategists may use concepts we have not included.
+
+Actively collect terminology such as:
+
+outlier score
+view-to-subscriber ratio
+velocity
+breakout
+blue ocean
+format arbitrage
+content arbitrage
+topic arbitrage
+packaging gap
+content gap
+trend surfing
+browse-first content
+search-first content
+evergreen library
+content flywheel
+series strategy
+winner replication
+topic expansion
+audience overlap
+channel-market fit
+topic-channel fit
+
+These are examples only.
+
+Discover additional useful concepts organically.
+
+For each term:
+
+define it
+determine whether it is meaningful
+determine whether it can be measured
+decide whether the MCP should use it
+
+============================================================
+3O. YOUTUBE COMMENT RESEARCH ON NICHE-FINDING VIDEOS
+============================================================
+
+For particularly valuable niche-research videos, inspect useful comments where practical.
+
+Look for:
+
+people reporting results
+counterexamples
+questions
+failed applications of the strategy
+clarifications
+creator responses
+limitations users discovered
+
+Treat comments as qualitative/anecdotal evidence only.
+
+Do not treat them as verified facts.
+
+============================================================
+3P. OFFICIAL YOUTUBE MATERIAL
+============================================================
+
+Search official YouTube / YouTube Creators channels for material relevant to:
+
+recommendation system
+audience satisfaction
+titles
+thumbnails
+channel growth
+content strategy
+search/discovery
+viewer behavior
+series/playlists
+returning viewers
+long-form content
+
+Official YouTube statements should be separated from third-party interpretations.
+
+============================================================
+3Q. YOUTUBE RESEARCH DELIVERABLE
+============================================================
+
+Add a dedicated section to the final report:
+
+YOUTUBE RESEARCH FINDINGS
+
+It must contain:
+
+1. Number of YouTube videos researched
+
+2. Number of distinct channels/sources
+
+3. Major creators/analysts researched
+
+4. Main niche-finding methods they use
+
+5. Areas of strong agreement
+
+6. Areas of disagreement
+
+7. Common guru rules that do not withstand scrutiny
+
+8. Useful methods confirmed by observable channel data
+
+9. Methods contradicted by real-world channel data
+
+10. New criteria discovered from YouTube research
+
+11. Small/new channel case-study findings
+
+12. Failed/stagnant channel findings
+
+13. Faceless-specific findings
+
+14. Long-form-specific findings
+
+15. Exact MCP features suggested by YouTube research
+
+============================================================
+3R. YOUTUBE-TO-MCP CONVERSION TABLE
+============================================================
+
+For every useful idea discovered from YouTube research, create:
+
+YouTube Research Insight
+
+Source(s)
+
+Claim
+
+Evidence quality
+
+Observed in actual channel data?
+Yes / No / Partial
+
+Can MCP measure it?
+Yes / No / Proxy
+
+Required API/public data
+
+Proposed calculation
+
+Historical snapshots needed?
+Yes / No
+
+Risk of survivorship bias
+
+Implementation priority
+
+Final recommendation:
+ADD
+MODIFY EXISTING FEATURE
+MERGE
+IGNORE
+
+============================================================
+3S. MOST IMPORTANT RULE
+============================================================
+
+Do not return a report saying:
+
+"According to YouTube experts, choose high-demand low-competition niches."
+
+We already know that generic advice.
+
+We want the underlying measurable reality.
+
+The research must identify:
+
+WHAT THEY ACTUALLY LOOK AT
+
+WHY THEY LOOK AT IT
+
+WHETHER IT REALLY WORKS
+
+HOW WE CAN MEASURE IT
+
+HOW IT SHOULD BE IMPLEMENTED IN OUR MCP.
+
+============================================================
+4. IMPORTANT CONSTRAINT
+============================================================
+
+The system must primarily work from PUBLICLY AVAILABLE DATA.
+
+Therefore explicitly determine which criteria can be measured using:
+
+YouTube Data API v3
+
+and which cannot.
+
+Never assume access to a competitor's private:
+
+- impressions
+- CTR
+- retention
+- average percentage viewed
+- returning viewers
+- traffic sources
+- revenue
+- RPM
+- CPM
+- subscriber conversion
+- private search terms
+
+For unavailable metrics, investigate whether a defensible PUBLIC PROXY exists.
+
+Clearly mark every metric as one of:
+
+DIRECTLY OBSERVABLE
+CALCULATED FROM PUBLIC DATA
+HEURISTIC / PROXY
+REQUIRES HISTORICAL SNAPSHOTS
+NOT RELIABLY AVAILABLE
+
+============================================================
+5. DEFINE "GOOD NICHE"
+============================================================
+
+Do not treat "good niche" as one dimension.
+
+Research what a good niche means separately for:
+
+A. FAST GROWTH POTENTIAL
+B. NEW CREATOR ACCESSIBILITY
+C. FACELESS SUITABILITY
+D. LONG-FORM SUITABILITY
+E. SUSTAINABILITY
+F. TOPIC DEPTH
+G. CLICKABILITY / PACKAGING POTENTIAL
+H. BINGE / SERIES POTENTIAL
+I. PRODUCTION PRACTICALITY
+J. EVERGREEN VALUE
+K. COMPETITIVE PRESSURE
+L. AUDIENCE DEMAND
+M. CONTENT GAP AVAILABILITY
+N. CREATOR DEPENDENCE
+O. COPYRIGHT / LICENSED-CONTENT PRESSURE
+P. TREND DEPENDENCE
+Q. FAILURE RISK
+R. AUDIENCE CONCENTRATION
+S. SEARCH / BROWSE DISCOVERABILITY
+T. INTERNATIONAL / LANGUAGE EXPANSION POTENTIAL
+
+Explain how these can conflict.
+
+Example:
+
+A niche may have:
+high demand
+but impossible competition.
+
+Another may have:
+low competition
+because nobody wants the content.
+
+Another may have:
+huge viral videos
+but almost every new channel fails.
+
+Another may:
+grow quickly
+but die after six months.
+
+We need to distinguish all of these.
+
+============================================================
+6. DEMAND — RESEARCH THIS DEEPLY
+============================================================
+
+Determine the best PUBLIC indicators of real audience demand.
+
+Investigate:
+
+- recent breakout-video density
+- recurring successful topics
+- successful videos across multiple channels
+- old videos continuing to attract views
+- comment demand
+- viewer questions
+- repeated requests for related topics
+- search-result activity
+- number of recently successful uploads
+- demand across different channel sizes
+- demand consistency over time
+- entity/topic recurrence
+- adjacent-topic demand
+- geographic demand
+- language demand
+- audience discussion density
+
+Most importantly:
+
+Research how to distinguish:
+
+HIGH DEMAND + LOW SUPPLY
+
+from
+
+LOW SUPPLY BECAUSE THERE IS NO DEMAND.
+
+Develop practical Demand Proxy methods that do NOT pretend to be exact YouTube keyword search volume.
+
+============================================================
+7. COMPETITION — GO FAR BEYOND CHANNEL COUNT
+============================================================
+
+Research how competition should actually be measured.
+
+Investigate:
+
+- number of active creators
+- number of active long-form creators
+- recent upload supply
+- supply growth
+- creator size distribution
+- incumbent dominance
+- top-channel concentration
+- HHI / concentration measures
+- result-page dominance
+- title saturation
+- topic saturation
+- semantic duplication
+- format saturation
+- thumbnail/packaging similarity
+- upload-frequency pressure
+- production-quality arms race
+- search-result authority bias
+- freshness bias
+- ranking stability
+- result churn
+- share of successful videos belonging to giant channels
+- share of winners belonging to small channels
+- entry barriers
+- brand/personality dominance
+
+Research whether "few channels" is actually useful or misleading.
+
+============================================================
+8. SMALL-CHANNEL SUCCESS — CRITICAL SECTION
+============================================================
+
+This is one of the most important areas.
+
+Research how to detect niches where SMALL channels can genuinely win.
+
+Potential signals to investigate:
+
+- views / subscriber ratio
+- channel-normalized outlier ratio
+- age-normalized views
+- number of small-channel breakout videos
+- number of unique small channels breaking out
+- repeated breakouts per small channel
+- small-channel share of successful videos
+- median small-channel performance
+- lower-quartile small-channel performance
+- percentage of small channels that never break out
+- breakout persistence
+- follow-up-video performance
+- channel growth after breakout
+- time from channel launch to first breakout
+
+Determine what thresholds or relative comparisons are statistically defensible.
+
+Avoid naive rules such as:
+
+"Views > subscribers = viral."
+
+Find better methods.
+
+============================================================
+9. NEW-CHANNEL SUCCESS
+============================================================
+
+Research:
+
+- how to define a "new" channel
+- channel age vs opportunity
+- first breakout timing
+- number of new channels getting traction
+- repeated success by recent entrants
+- post-breakout survival
+- new-channel failure rate
+- growth consistency
+- one-hit wonders
+- whether older videos/channels distort conclusions
+
+Determine whether:
+
+12 months
+18 months
+24 months
+36 months
+
+is a more useful new-channel window, or whether the system should use multiple tiers.
+
+============================================================
+10. OUTLIERS
+============================================================
+
+Research the best method to identify genuine breakout/outlier videos.
+
+Do not use raw views alone.
+
+Investigate:
+
+- channel median baseline
+- age-adjusted baseline
+- recent-upload baseline
+- robust z-scores
+- median absolute deviation
+- percentile methods
+- views/day
+- velocity
+- channel-size normalization
+- topic-relative normalization
+- cohort normalization
+
+Explain how to compare:
+
+a 2-day-old video
+vs
+a 2-year-old video.
+
+Also investigate:
+
+- breakout density
+- breakout diversity
+- repeated outliers
+- persistence
+- outlier half-life
+- false positives
+
+============================================================
+11. FAILURE FLOOR — CRITICAL
+============================================================
+
+Most niche tools look only at winners.
+
+Research how the system should study LOSERS too.
+
+Possible metrics:
+
+- median recent video performance
+- lower quartile
+- 10th percentile
+- failure rate
+- percentage of channels with no breakout
+- percentage of uploads below channel baseline
+- dormant channel rate
+- abandoned channel rate
+- number of channels posting for months without traction
+- new-channel survival
+
+Develop a:
+
+FAILURE FLOOR
+
+framework.
+
+We need to know whether a niche contains:
+
+10 viral winners + 500 failures
+
+or:
+
+10 winners + generally healthy performance across many creators.
+
+============================================================
+12. SURVIVORSHIP BIAS
+============================================================
+
+Research how YouTube search itself creates survivorship bias.
+
+If we search only:
+
+most viewed
+top ranked
+popular videos
+
+we may falsely conclude a niche is easy.
+
+Research better sampling.
+
+Possibilities:
+
+- relevance results
+- newest/date results
+- viewCount results
+- channel discovery
+- recent upload samples
+- different query variations
+- result-page snapshots over time
+
+Design a robust sampling methodology.
+
+============================================================
+13. FACELESS VIABILITY
+============================================================
+
+Research what actually makes a niche suitable for a faceless channel.
+
+Potential dimensions:
+
+- viewer follows topic rather than personality
+- documentary compatibility
+- narration compatibility
+- archival/public visual availability
+- stock-footage compatibility
+- image-driven storytelling
+- map/diagram compatibility
+- screen-recording compatibility
+- animation compatibility
+- AI-image compatibility
+- low host-personality dependence
+- low interview dependence
+- low field-filming dependence
+- reusable visual workflow
+- voiceover-friendly structure
+
+Also identify niches that LOOK faceless-friendly but actually depend heavily on:
+
+authority
+credentials
+personal trust
+host charisma
+firsthand experience
+physical demonstrations
+
+Create a practical Faceless Viability model.
+
+============================================================
+14. LONG-FORM SUITABILITY
+============================================================
+
+Research what makes a topic suitable for:
+
+8+ minute
+15-30 minute
+30-60 minute
+60+ minute
+
+long-form videos.
+
+Signals may include:
+
+- story depth
+- multiple narrative beats
+- entity depth
+- educational complexity
+- documentary potential
+- series potential
+- existing successful long videos
+- audience willingness to consume depth
+- topic expansion capacity
+
+Investigate:
+
+Shorts-heavy niche
+vs
+long-form opportunity.
+
+Find ways to detect:
+
+LONG-FORM WHITESPACE.
+
+============================================================
+15. TOPIC DEPTH / IDEA SUPPLY
+============================================================
+
+A niche is weak if it supports only 10 good videos.
+
+Research ways to estimate:
+
+- total topic pool
+- sub-niche depth
+- entity count
+- event count
+- recurring problem categories
+- adjacent-topic expansion
+- series branches
+- geographic expansion
+- chronological expansion
+- historical expansion
+- audience-request supply
+- topic replenishment
+
+Create methods to estimate:
+
+IDEA REPLENISHMENT
+
+and
+
+TOPIC EXHAUSTION RISK.
+
+============================================================
+16. REPEATABILITY
+============================================================
+
+Research what signals indicate that success is repeatable.
+
+Differentiate:
+
+one viral topic
+
+from:
+
+a repeatable content format.
+
+Measure potentially:
+
+- repeated breakout topic families
+- multiple successful entities within same template
+- repeated performance from same channel
+- repeated performance across different channels
+- series strength
+- title-template portability
+- entity abundance
+- adjacent topic success
+
+============================================================
+17. EVERGREEN STRENGTH
+============================================================
+
+Research measurable signs of evergreen demand.
+
+Potential indicators:
+
+- old videos still ranking
+- old videos still gaining comments
+- old videos with high lifetime performance
+- low dependence on specific current event
+- recurring historical/search interest
+- multi-year successful uploads
+- repeatable topic relevance
+
+Design:
+
+Evergreen Strength
+Topic Half-Life
+
+methods.
+
+Clearly identify what requires repeated historical snapshots.
+
+============================================================
+18. TREND / TEMPORARY DEMAND RISK
+============================================================
+
+Research how to detect niches dependent on:
+
+breaking news
+celebrity event cycles
+temporary memes
+single releases
+elections
+sports seasons
+one-off scandals
+product launches
+short-lived trends
+
+Develop:
+
+Trend Dependency
+Demand Volatility
+Event Dependency
+
+signals.
+
+============================================================
+19. CONTENT GAP
+============================================================
+
+Research what a REAL content gap is.
+
+A gap should NOT simply mean:
+
+"few videos exist."
+
+A useful gap likely requires some combination of:
+
+- related demand exists
+- adjacent topics perform
+- direct supply is weak
+- audience asks for it
+- existing videos are outdated
+- existing packaging is weak
+- few recent strong videos
+- successful format can transfer to missing entity/topic
+- several adjacent winners imply latent demand
+
+Create a rigorous Content Gap framework.
+
+============================================================
+20. TOPIC DISCOVERY
+============================================================
+
+Research how to move from:
+
+NICHE
+→ SUB-NICHE
+→ MICRO-NICHE
+→ TOPIC FAMILY
+→ ACTUAL VIDEO IDEA
+
+Determine how to identify:
+
+PROVEN TOPICS
+GAP TOPICS
+FRESH-ADJACENT TOPICS
+
+Research topic-family detection.
+
+Example:
+
+"What Happened to X After Y?"
+
+could be a repeatable topic family.
+
+We need a system that finds the pattern rather than merely copying titles.
+
+============================================================
+21. TITLE / PACKAGING OPPORTUNITY
+============================================================
+
+Research what can be learned publicly from titles/thumbnails.
+
+Investigate:
+
+- repeated title formulas
+- title-length patterns
+- question formats
+- curiosity structures
+- specificity
+- entity placement
+- consequence framing
+- novelty
+- title cloning
+- copycat cascades
+- title saturation
+- thumbnail visual similarity
+- dominant compositions
+- visual sameness
+- packaging white space
+
+Be careful not to imply that correlation proves causation.
+
+Develop:
+
+Packaging Saturation
+Packaging Whitespace
+Title Saturation
+Novelty Premium
+
+signals.
+
+============================================================
+22. BINGE / SERIES POTENTIAL
+============================================================
+
+Research how a niche supports:
+
+"one viewer watches multiple videos."
+
+Possible signals:
+
+- recurring topic families
+- playlists
+- sequels
+- entity collections
+- chronological series
+- same-question-different-entity format
+- strong playlist organization
+- repeated viewer curiosity paths
+
+Design:
+
+Binge Ecosystem Strength
+Series Potential
+
+metrics.
+
+============================================================
+23. PRODUCTION BURDEN
+============================================================
+
+Research each dimension that affects production difficulty.
+
+Examples:
+
+research hours
+fact-checking burden
+script complexity
+video length
+editing burden
+custom graphics
+animation
+maps
+archival footage
+licensed footage
+field footage
+interviews
+specialist expertise
+daily upload pressure
+news monitoring
+legal risk
+visual sourcing difficulty
+
+Build a Production Burden model.
+
+We particularly prefer niches practical for:
+
+AI-assisted research
+voiceover
+images
+archival material
+maps
+simple motion
+B-roll
+
+============================================================
+24. VISUAL ASSET AVAILABILITY
+============================================================
+
+Research whether visual asset supply can be estimated.
+
+Potential sources:
+
+YouTube thumbnails
+Wikipedia
+Wikimedia Commons
+public-domain archives
+museum collections
+government archives
+other legal public repositories
+
+Do not encourage copyright infringement.
+
+Determine whether:
+
+Visual Asset Availability
+
+could become a useful MCP signal.
+
+============================================================
+25. COPYRIGHT / LICENSED-CONTENT PRESSURE
+============================================================
+
+Research:
+
+- licensedContent public YouTube field
+- heavy dependence on TV/movie clips
+- sports footage
+- copyrighted music
+- broadcast footage
+- premium archival footage
+
+Determine how the MCP might identify niches where:
+
+views are attractive
+but production is legally/operationally difficult for a new faceless creator.
+
+Create:
+
+Licensed-Content Pressure
+Copyright Dependency Risk
+
+separately if appropriate.
+
+============================================================
+26. CREATOR DEPENDENCE
+============================================================
+
+Research niches where success is tied to:
+
+- one famous personality
+- host authority
+- celebrity access
+- personal credibility
+- expert credentials
+- unique personal story
+
+Create:
+
+Personality Dependence
+Expertise Dependence
+Access Dependence
+
+signals.
+
+These are especially important for faceless channels.
+
+============================================================
+27. ENGAGEMENT QUALITY
+============================================================
+
+Research what useful public engagement signals exist:
+
+likes/views
+comments/views
+comment velocity
+comment depth
+question density
+discussion density
+
+Determine when these metrics are meaningful and when they are misleading.
+
+Do NOT pretend they measure retention.
+
+Create an:
+
+Engagement Yield Profile
+
+if justified.
+
+============================================================
+28. PLAYLIST / BINGE SIGNALS
+============================================================
+
+Research:
+
+- public playlists
+- playlist topic concentration
+- playlist depth
+- recurring series
+- channel organization
+- repeat-view ecosystem
+
+Determine how much these signals matter for niche quality.
+
+============================================================
+29. SUBSCRIBER GROWTH EFFICIENCY
+============================================================
+
+Public subscriber counts may be rounded.
+
+Research whether repeated snapshots can still provide a useful:
+
+Subscriber Growth Efficiency Proxy.
+
+Possible relationships:
+
+subscriber change
+relative to
+views
+uploads
+breakouts
+time
+
+Do NOT claim exact subscriber conversion.
+
+============================================================
+30. CHANNEL CONCENTRATION
+============================================================
+
+Research market concentration metrics such as:
+
+Top 1 share
+Top 3 share
+Top 5 share
+HHI
+
+Determine the best denominator:
+
+views?
+breakouts?
+search-result presence?
+recent upload performance?
+
+Explain strengths/weaknesses of each.
+
+============================================================
+31. CREATOR SURVIVAL / CHURN
+============================================================
+
+Research whether we can detect:
+
+- channels abandoning niche
+- dormant channels
+- posting slowdown
+- creators switching topics
+- new entrants disappearing
+- niche fatigue
+
+Develop:
+
+Creator Survival
+Creator Churn
+Dormant Channel Density
+
+signals.
+
+============================================================
+32. CATALOG LIFT
+============================================================
+
+Research whether one breakout often lifts older videos.
+
+With historical snapshots, potentially measure:
+
+breakout occurs
+→ old videos also start gaining views.
+
+Could this indicate:
+
+strong channel binge behavior
+strong niche interconnectedness
+strong series potential?
+
+Determine whether:
+
+Catalog Lift After Breakout
+
+is useful.
+
+============================================================
+33. CANNIBALIZATION
+============================================================
+
+Research whether highly repetitive niches cause:
+
+new uploads stealing traffic from old uploads
+too many near-identical topics
+same audience split across videos
+
+Determine whether a useful:
+
+Topic Cannibalization Risk
+
+can be measured from public data/historical snapshots.
+
+============================================================
+34. SPECIALIST VS GENERALIST ADVANTAGE
+============================================================
+
+Investigate whether successful channels in a niche tend to be:
+
+highly specialized
+
+or
+
+broad/generalist.
+
+This may help determine whether a new focused channel has an advantage.
+
+Create:
+
+Specialist-vs-Generalist Advantage
+
+if evidence supports it.
+
+============================================================
+35. GEO / LANGUAGE OPPORTUNITY
+============================================================
+
+Research:
+
+- English-region differences
+- US/UK/CA/AU
+- under-supplied language markets
+- topics moving from one language to another
+- cross-language format copying
+- regional topic gaps
+
+Determine which signals are truly observable.
+
+============================================================
+36. MONETIZATION — SECONDARY, NOT PRIMARY
+============================================================
+
+Research monetization only as a separate dimension.
+
+Do NOT define a good niche only by CPM/RPM.
+
+Investigate public proxies for:
+
+- commercial intent
+- sponsor compatibility
+- affiliate compatibility
+- advertiser friendliness
+- product/service adjacency
+
+Be extremely cautious.
+
+Competitor RPM is private.
+
+Do not invent it.
+
+Our MAIN goal remains:
+
+GROWTH OPPORTUNITY.
+
+============================================================
+37. YOUTUBE POLICY / AD-SUITABILITY RISK
+============================================================
+
+Research niche-level risks related to:
+
+- reused content
+- mass-produced repetitive content
+- graphic violence
+- harmful content
+- misinformation-sensitive topics
+- copyright reliance
+- advertiser suitability
+- AI-generated-content concerns where relevant
+- medical/financial high-stakes content
+
+Do not give legal guarantees.
+
+Determine if:
+
+Policy / Monetization Risk
+
+should be an MCP criterion.
+
+============================================================
+38. DATA FRESHNESS
+============================================================
+
+Research which niche signals should use:
+
+7 days
+30 days
+90 days
+180 days
+365 days
+multi-year
+
+Different signals need different windows.
+
+For example:
+
+momentum
+should be recent.
+
+evergreen
+requires older data.
+
+Design recommended windows by metric.
+
+============================================================
+39. TIME NORMALIZATION
+============================================================
+
+Research how to fairly compare:
+
+new videos
+old videos
+
+and:
+
+fast-upload channels
+slow-upload channels.
+
+Potential metrics:
+
+views/hour
+views/day
+age cohort percentile
+same-age channel baseline
+
+Develop recommended methods.
+
+============================================================
+40. NICHE VOLATILITY
+============================================================
+
+Research how to distinguish:
+
+stable opportunity
+
+from:
+
+extreme winner-loser volatility.
+
+Possible measures:
+
+performance variance
+median vs mean
+outlier concentration
+interquartile range
+channel survival
+monthly breakout swings
+
+Design:
+
+Niche Volatility
+
+signal.
+
+============================================================
+41. SEARCH VS BROWSE LIMITATION
+============================================================
+
+YouTube recommendations/browse traffic are mostly private.
+
+Research what public evidence can and cannot tell us about:
+
+Search-led niches
+Browse-led niches
+Suggested-video-driven niches
+
+Do not fabricate traffic-source conclusions.
+
+Identify useful proxies, if any.
+
+============================================================
+42. NICHE DISCOVERY SOURCES
+============================================================
+
+Research where candidate niches should initially come from.
+
+Possible sources:
+
+- broad taxonomy
+- YouTube search
+- breakout video clusters
+- related channel topics
+- comments
+- title n-grams
+- adjacent topics
+- entities
+- playlists
+- categories
+- cross-language trends
+- newly emerging channels
+
+Develop a candidate-generation pipeline.
+
+============================================================
+43. QUERY EXPANSION
+============================================================
+
+Research how a broad parent category such as:
+
+History
+
+should expand intelligently into:
+
+sub-niches
+micro-niches
+topic families.
+
+Avoid relying only on manually hard-coded taxonomies.
+
+Investigate combining:
+
+curated taxonomy
+observed titles
+channel descriptions
+co-occurring phrases
+named entities
+related topics
+comment requests
+
+============================================================
+44. SAMPLE SIZE
+============================================================
+
+Research minimum sample sizes necessary before making claims.
+
+For example:
+
+How many:
+
+videos
+channels
+small channels
+new channels
+queries
+comment samples
+historical observations
+
+are enough for:
+
+LOW
+MEDIUM
+HIGH
+
+confidence?
+
+Do not invent statistically precise thresholds without evidence.
+
+Practical heuristic thresholds are acceptable if clearly labeled as heuristics.
+
+============================================================
+45. CONFIDENCE
+============================================================
+
+Design a rigorous confidence model using:
+
+sample size
+channel diversity
+query diversity
+time-window coverage
+small-channel coverage
+new-channel coverage
+history depth
+data freshness
+signal agreement
+robustness
+missing data
+
+Return:
+
+High
+Medium
+Low
+
+but also define WHY.
+
+============================================================
+46. ROBUSTNESS TESTS
+============================================================
+
+Research what sensitivity tests should be applied.
+
+Examples:
+
+remove largest video
+remove largest channel
+remove one query
+remove old videos
+remove top 5%
+compare relevance search vs newest search
+compare multiple time windows
+
+If a niche only looks attractive because of one giant winner:
+
+confidence must collapse.
+
+============================================================
+47. COMPOSITE SCORE
+============================================================
+
+Determine whether an internal composite opportunity score is useful.
+
+If yes:
+
+Design it transparently.
+
+Do NOT recommend presenting users only with:
+
+"87/100"
+
+Instead expose component metrics.
+
+Research appropriate weights for a FAST-GROWTH FACELESS LONG-FORM profile.
+
+If evidence cannot justify precise weights:
+
+say so.
+
+Provide reasonable configurable starting weights.
+
+============================================================
+48. NEGATIVE / DISQUALIFYING SIGNALS
+============================================================
+
+Create a comprehensive list of red flags.
+
+Examples:
+
+- giants monopolize the niche
+- almost no small-channel winners
+- one viral fluke
+- very shallow topic pool
+- production impossible without proprietary footage
+- massive upload-frequency pressure
+- personality-led audience
+- trend-only demand
+- repeated copyright exposure
+- failure floor extremely weak
+- topic already flooded with clones
+- successful videos mostly old
+- recent entrants consistently fail
+- high research/expertise barriers
+- very high policy risk
+- demand tied to one event/person/product
+
+Determine which should:
+
+reduce score
+raise risk
+or completely reject a niche.
+
+============================================================
+49. POSITIVE SIGNALS
+============================================================
+
+Create the mirror list.
+
+Strong niche may show:
+
+- multiple recent winners
+- multiple independent winning channels
+- small-channel wins
+- new-channel wins
+- repeat wins
+- healthy median performance
+- low/moderate concentration
+- sufficient audience demand
+- content gaps
+- fresh topic supply
+- long-form proof
+- faceless proof
+- manageable production
+- visual assets available
+- series potential
+- evergreen potential
+- old-video strength
+- stable performance
+- multiple successful topic families
+- packaging whitespace
+
+Research and refine all of these.
+
+============================================================
+50. CRITICAL DISTINCTIONS
+============================================================
+
+Explicitly research and explain these pairs:
+
+LOW COMPETITION
+vs
+LOW DEMAND
+
+HIGH VIEWS
+vs
+TRUE OUTLIER
+
+VIRAL VIDEO
+vs
+REPEATABLE NICHE
+
+BIG CHANNEL SUCCESS
+vs
+NEW-CREATOR OPPORTUNITY
+
+TREND
+vs
+SUSTAINABLE DEMAND
+
+HIGH ENGAGEMENT
+vs
+HIGH RETENTION
+
+FEW VIDEOS
+vs
+CONTENT GAP
+
+FACELESS POSSIBLE
+vs
+FACELESS COMPETITIVE
+
+OLD EVERGREEN WINNERS
+vs
+CURRENT OPPORTUNITY
+
+HIGH AVERAGE
+vs
+HEALTHY FAILURE FLOOR
+
+MANY TOPICS
+vs
+MANY GOOD TOPICS
+
+============================================================
+51. MCP FEASIBILITY MATRIX
+============================================================
+
+THIS IS A CRITICAL DELIVERABLE.
+
+For EVERY useful criterion discovered, create a table with:
+
+Criterion name
+
+What it means
+
+Why it matters
+
+Raw data required
+
+Data source
+
+YouTube Data API endpoint if applicable
+
+Publicly observable?
+Yes/No/Partial
+
+Requires historical snapshots?
+Yes/No
+
+Requires comments?
+Yes/No
+
+Requires thumbnail downloading?
+Yes/No
+
+Requires auxiliary provider?
+Yes/No
+
+Calculation/formula
+
+Recommended time window
+
+Recommended minimum sample
+
+Suggested thresholds if defensible
+
+Confidence caveats
+
+Quota/API cost implications
+
+Implementation difficulty:
+Easy / Medium / Hard
+
+MCP priority:
+Must Have / High Value / Optional / Reject
+
+============================================================
+52. EXISTING MCP FEATURE AUDIT
+============================================================
+
+Our existing YouTubeNicheFinderMCP is intended to already cover many features such as:
+
+Fresh Outliers
+Small Channel Breakouts
+New Channel Breakouts
+Niche Saturation
+Supply Growth
+Momentum
+Evergreen Score
+Outlier Density
+Channel Concentration
+Length Strategy
+Topic Clusters
+Content Gaps
+Title Patterns
+Series Potential
+Comment Demand
+Region Gap
+Language Gap
+Adjacent Topics
+Watchlists
+Competitor Latest Uploads
+Competitor Velocity
+Competitor Outliers
+Competitor Comparison
+Competitor Topic Patterns
+First-Hour/Day Tracking
+Momentum Acceleration
+Outlier by Channel Size
+Comment Velocity
+Content-Length Strategy
+Series Detection
+Subscriber Growth Efficiency
+Playlist/Binge Ecosystem Strength
+Engagement Yield Profile
+Licensed-Content Pressure
+Risk
+Reliability
+
+After research, determine:
+
+A. Which existing planned features are genuinely valuable?
+
+B. Which need better formulas?
+
+C. Which are redundant?
+
+D. Which should be merged?
+
+E. Which should be removed?
+
+F. What major missing features should be added?
+
+============================================================
+53. LOOK SPECIFICALLY FOR FEATURES WE HAVE MISSED
+============================================================
+
+Do NOT merely confirm the ideas already listed.
+
+Actively search for dimensions we have NOT considered.
+
+Ask:
+
+"What would a sophisticated YouTube niche analyst measure that this MCP currently does not?"
+
+Look for overlooked factors such as:
+
+- audience transferability
+- novelty decay
+- creator replacement rate
+- breakout conversion into channel-level growth
+- entity replenishment
+- saturation velocity
+- imitation lag
+- successful format migration
+- audience fragmentation
+- thumbnail homogeneity
+- knowledge moat
+- production moat
+- access moat
+- trust moat
+- platform-policy exposure
+- trend decay
+- seasonal dependence
+- niche maturity lifecycle
+- content refresh opportunity
+- update/revisit potential
+- cross-topic audience overlap
+- episodic vs library value
+- backlog value
+- evergreen resurfacing
+- upload cadence tolerance
+- idea exhaustion
+- research availability
+- source-quality burden
+- controversy dependence
+
+Find additional useful metrics independently.
+
+============================================================
+54. NICHE LIFECYCLE
+============================================================
+
+Research whether niches tend to move through:
+
+Emerging
+Expanding
+Crowding
+Mature
+Declining
+
+Determine whether public data can infer:
+
+Niche Lifecycle Stage
+
+and whether this is useful for new creators.
+
+============================================================
+55. SATURATION VELOCITY
+============================================================
+
+Static saturation may not be enough.
+
+Research:
+
+how quickly competitors are entering
+how quickly title/topic copies appear
+how quickly winning formats get cloned
+how quickly supply grows after a breakout
+
+Create:
+
+Saturation Velocity
+
+if useful.
+
+============================================================
+56. BREAKOUT TO CHANNEL-GROWTH CONVERSION
+============================================================
+
+A niche may generate viral videos but not durable channels.
+
+Research whether historical public snapshots can identify:
+
+one breakout
+→ subscriber growth
+→ stronger future uploads
+→ catalog lift
+
+versus:
+
+one breakout
+→ next 10 videos fail.
+
+This could be a powerful signal.
+
+Design it if feasible.
+
+============================================================
+57. NICHE MATURITY
+============================================================
+
+Research indicators of:
+
+early-stage niche
+growing niche
+mature niche
+overcrowded niche
+declining niche
+
+Possible evidence:
+
+channel entry
+supply growth
+winner concentration
+topic repetition
+format copying
+recent breakout rates
+older-vs-newer performance
+
+============================================================
+58. IMITATION LAG
+============================================================
+
+Research whether an opportunity exists between:
+
+a format/topic breaking out
+
+and
+
+competitors copying it heavily.
+
+Could the MCP detect:
+
+Breakout → Copycat Delay → Saturation
+
+?
+
+If useful, design:
+
+Imitation Lag
+Copycat Velocity
+
+============================================================
+59. KNOWLEDGE / RESEARCH MOAT
+============================================================
+
+Some faceless niches are easy to produce badly but hard to produce credibly.
+
+Research:
+
+source availability
+fact verification
+expertise requirements
+primary-source availability
+misinformation risk
+
+Create:
+
+Research Burden
+Knowledge Moat
+
+if useful.
+
+============================================================
+60. AUDIENCE TRANSFERABILITY
+============================================================
+
+Research whether viewers interested in one topic are likely to watch adjacent topics within the same channel.
+
+Possible proxies:
+
+series
+playlists
+topic overlap
+catalog lift
+same-channel repeated success across adjacent topics
+
+Could this become:
+
+Audience Transferability
+
+or:
+
+Topic Adjacency Strength?
+
+============================================================
+61. UPLOAD CADENCE TOLERANCE
+============================================================
+
+A niche may be impossible for a solo creator if success requires daily uploads.
+
+Research whether niche winners succeed with:
+
+daily
+2-3 weekly
+weekly
+biweekly
+monthly
+
+Develop:
+
+Upload Cadence Pressure
+Cadence Tolerance
+
+This matters strongly for practical faceless channels.
+
+============================================================
+62. CONTENT SHELF LIFE
+============================================================
+
+Beyond evergreen/not evergreen, quantify:
+
+how quickly videos lose relevance.
+
+Possible categories:
+
+hours
+days
+weeks
+months
+years
+
+Develop:
+
+Content Shelf Life
+
+if feasible.
+
+============================================================
+63. UPDATE / REVISIT POTENTIAL
+============================================================
+
+Some niches support:
+
+updates
+new discoveries
+new rankings
+new cases
+new historical research
+
+Research whether:
+
+Content Refresh Potential
+
+can increase sustainability.
+
+============================================================
+64. SEASONALITY
+============================================================
+
+Research:
+
+seasonal niches
+annual events
+holiday cycles
+school cycles
+sports seasons
+anniversaries
+
+Determine whether public YouTube data alone can detect seasonality reliably or whether an auxiliary trend provider would be required.
+
+============================================================
+65. SOURCE QUALITY
+============================================================
+
+For research-heavy faceless niches, research whether a niche has enough reliable information sources.
+
+A niche may have huge demand but be difficult because credible information is scarce.
+
+Design:
+
+Source Availability
+Source Quality Burden
+
+if useful.
+
+============================================================
+66. AUTOMATION COMPATIBILITY
+============================================================
+
+Since this system is designed for faceless production, research whether niche research can estimate:
+
+AI-assisted workflow compatibility.
+
+Potential dimensions:
+
+script research availability
+structured factual sources
+image availability
+B-roll availability
+voiceover suitability
+repetitive production template
+low manual filming requirement
+low host dependence
+
+Create:
+
+Automation Compatibility
+
+carefully.
+
+Do not assume "AI can automate everything."
+
+============================================================
+67. FINAL NICHE DECISION FRAMEWORK
+============================================================
+
+After all research, create a practical evaluation framework.
+
+For every candidate niche, the framework should answer:
+
+1. Is there real demand?
+
+2. Is demand current?
+
+3. Can small channels win?
+
+4. Can new channels win?
+
+5. Are wins repeatable?
+
+6. How bad is the failure floor?
+
+7. How concentrated is success?
+
+8. How saturated is supply?
+
+9. How quickly is saturation increasing?
+
+10. Is there content whitespace?
+
+11. Are there enough future topics?
+
+12. Can it support a series?
+
+13. Is it good for long-form?
+
+14. Is it good for faceless production?
+
+15. Is production practical?
+
+16. Are visuals/research sources available?
+
+17. Is it evergreen?
+
+18. Is it overly trend-dependent?
+
+19. Is there copyright/licensed-content pressure?
+
+20. Is success dependent on a personality/expert/access?
+
+21. Is audience transferable across topics?
+
+22. Can a creator publish at a realistic cadence?
+
+23. Is there evidence of durable channel growth after breakouts?
+
+24. What are the main risks?
+
+25. How confident are we?
+
+============================================================
+68. RECOMMENDED DEFAULT PROFILE
+============================================================
+
+At the end, design a recommended default configuration for our use case:
+
+English
+Faceless
+Long-form
+Fast-growth oriented
+New/small creator
+Low-to-medium competition
+Repeatable
+Sustainable
+Practical production
+
+Recommend:
+
+- default time windows
+- channel-size bands
+- channel-age bands
+- minimum video length
+- minimum samples
+- search sampling
+- quota allocation
+- key weights
+- rejection rules
+- confidence rules
+
+============================================================
+69. HARD REJECTION RULES
+============================================================
+
+Research whether the MCP should automatically reject or strongly penalize niches where:
+
+- no recent small-channel winners exist
+- no new-channel winners exist
+- almost all success belongs to 1-3 giant channels
+- demand comes from one isolated viral event
+- topic pool is shallow
+- long-form demand is unproven
+- production depends heavily on restricted footage
+- faceless viability is weak
+- failure floor is extremely poor
+- niche is rapidly saturating
+- historical momentum is collapsing
+- success is tied strongly to a specific celebrity/event
+- data sample is too weak to conclude anything
+
+Recommend exact handling.
+
+============================================================
+70. OUTPUT DELIVERABLES
+============================================================
+
+Your final research report MUST contain these sections:
+
+SECTION 1
+Executive Summary
+
+SECTION 2
+What Actually Makes a Good Faceless YouTube Niche
+
+SECTION 3
+Complete Criteria Taxonomy
+
+SECTION 4
+Demand Signals
+
+SECTION 5
+Competition Signals
+
+SECTION 6
+Small/New Channel Opportunity
+
+SECTION 7
+Breakout/Outlier Methodology
+
+SECTION 8
+Failure Floor and Survivorship Bias
+
+SECTION 9
+Faceless Viability
+
+SECTION 10
+Long-Form Viability
+
+SECTION 11
+Topic Depth and Repeatability
+
+SECTION 12
+Evergreen / Trend / Shelf-Life
+
+SECTION 13
+Content-Gap Methodology
+
+SECTION 14
+Titles, Thumbnails and Packaging
+
+SECTION 15
+Series/Binge Potential
+
+SECTION 16
+Production / Visual / Research Burden
+
+SECTION 17
+Copyright / Policy / Monetization Risks
+
+SECTION 18
+Historical Signals
+
+SECTION 19
+Geo/Language Opportunities
+
+SECTION 20
+New Criteria We Had Not Considered
+
+SECTION 21
+Red Flags / Automatic Rejection Conditions
+
+SECTION 22
+Reliability / Confidence Framework
+
+SECTION 23
+Recommended Fast-Growth Niche Framework
+
+SECTION 24
+Full MCP Feasibility Matrix
+
+SECTION 25
+Existing YouTubeNicheFinderMCP Feature Audit
+
+SECTION 26
+Missing Features To Add
+
+SECTION 27
+Features To Modify/Merge/Remove
+
+SECTION 28
+Recommended Formulas
+
+SECTION 29
+Recommended Defaults and Thresholds
+
+SECTION 30
+Recommended Data-Collection Pipeline
+
+SECTION 31
+Recommended Historical Snapshot Strategy
+
+SECTION 32
+Recommended Quick / Standard / Deep Research Behavior
+
+SECTION 33
+Prioritized MCP Upgrade Roadmap
+
+SECTION 34
+Final Checklist: "Should This Niche Be Surfaced?"
+
+============================================================
+71. FORMULA REQUIREMENT
+============================================================
+
+For every important metric, wherever possible provide:
+
+Metric Name
+
+Purpose
+
+Formula
+
+Inputs
+
+Normalization
+
+Time Window
+
+Minimum Sample
+
+Interpretation
+
+Failure Cases
+
+Example
+
+Whether current YouTube public data supports it
+
+Example format:
+
+SMALL CHANNEL BREAKOUT DENSITY
+
+Purpose:
+Measure how often smaller creators achieve unusually strong performance.
+
+Possible formula:
+Number of qualifying small-channel outlier videos
+/
+Number of eligible small-channel videos sampled
+
+Also report:
+unique small channels with at least one breakout
+/
+small channels sampled
+
+Do this kind of rigorous definition for all useful metrics.
+
+============================================================
+72. EVIDENCE REQUIREMENT
+============================================================
+
+Cite sources throughout.
+
+For every important claim:
+
+link it to credible evidence where possible.
+
+Do not cite 50 generic articles repeating each other.
+
+Prefer primary/authoritative sources.
+
+When a recommendation is YOUR analysis rather than directly documented by YouTube, state:
+
+"Research-derived recommendation"
+
+or
+
+"Proposed heuristic."
+
+============================================================
+73. API DOCUMENTATION REQUIREMENT
+============================================================
+
+Verify current YouTube Data API capabilities and quotas from official Google documentation.
+
+Create a table of relevant resources/endpoints and fields.
+
+Examples:
+
+search.list
+channels.list
+videos.list
+playlistItems.list
+playlists.list
+commentThreads.list
+activities.list
+videoCategories.list
+i18nLanguages.list
+i18nRegions.list
+
+For every field we intend to use, verify it actually exists.
+
+Do not assume old API behavior is still current.
+
+============================================================
+74. DO NOT IMPLEMENT CODE
+============================================================
+
+This task is NOT the MCP implementation step.
+
+Do not modify the existing MCP.
+
+Do not create code patches.
+
+Do not rewrite files.
+
+The output should be a research blueprint that will be reviewed first.
+
+Only after approval will the engineering prompt be created.
+
+============================================================
+75. FINAL PRIORITY CLASSIFICATION
+============================================================
+
+At the end, classify every discovered criterion into:
+
+TIER 1 — ESSENTIAL
+Without this, niche selection may be seriously misleading.
+
+TIER 2 — HIGH VALUE
+Meaningfully improves niche selection.
+
+TIER 3 — ADVANCED
+Useful once historical data accumulates.
+
+TIER 4 — OPTIONAL
+Potentially useful but low ROI or weakly measurable.
+
+TIER 5 — DO NOT USE
+Misleading, unavailable, redundant, or not sufficiently defensible.
+
+============================================================
+76. FINAL QUESTION
+============================================================
+
+End the report by answering:
+
+"If we were building the most reliable practical public-data-based system possible for finding English faceless long-form YouTube niches where a new/small channel has a credible chance to grow, exactly what should the MCP measure before recommending a niche?"
+
+Answer this as a final concise master checklist.
+
+BEGIN THE DEEP RESEARCH NOW.

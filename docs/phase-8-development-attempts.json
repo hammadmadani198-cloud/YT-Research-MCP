@@ -1,0 +1,33 @@
+{
+  "attempts": [
+    {
+      "command": ".venv/Scripts/python.exe -m pytest -q tests/test_release_phase8.py --tb=short --basetemp=.pytest-tmp/phase8-release-first",
+      "exit_code": 1,
+      "result": "3 failed, 21 passed in 18.85s",
+      "failures": [
+        "Standard fixture missing premise_ids returned invalid_input",
+        "Generic lookup assertion wrongly assumed run-ID ordering",
+        "Future MigrationError incorrectly classified invalid_input because subclass of ValueError"
+      ],
+      "resolution": [
+        "Included required premise references",
+        "Accepted either generic non-private run",
+        "Caught migration failures before ValueError"
+      ]
+    },
+    {
+      "command": ".venv/Scripts/python.exe -m pytest -q tests/test_release_phase8.py --tb=short --basetemp=.pytest-tmp/phase8-release-second",
+      "exit_code": 0,
+      "result": "24 passed in 21.10s"
+    },
+    {
+      "command": "pytest -q -s tests/test_release_phase8.py --basetemp=.pytest-tmp/phase8-release-expanded",
+      "exit_code": 1,
+      "result": "12 failed, 25 passed in 46.94s",
+      "failures": [
+        "Twelve provider cases asserted history_immature although this larger synthetic frame correctly evaluates insufficient_evidence"
+      ],
+      "resolution": "Assert frozen actual fixture state and retained run identity; no recommendation/formula change"
+    }
+  ]
+}

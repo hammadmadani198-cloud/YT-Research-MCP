@@ -1,0 +1,156 @@
+{
+  "root": "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP",
+  "checks": [
+    {
+      "command": [
+        "git",
+        "status",
+        "--short"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "branch",
+        "--show-current"
+      ],
+      "exit_code": 0,
+      "stdout": "codex/phase-6\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": "8ce01aa05b1c56be93305fc57672d8fb792e35be\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "phase-6-verified"
+      ],
+      "exit_code": 0,
+      "stdout": "8ce01aa05b1c56be93305fc57672d8fb792e35be\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "fsck",
+        "--full"
+      ],
+      "exit_code": 0,
+      "stdout": "dangling blob 2771cb0731170c21f740899d3182675f96c4b9ee\ndangling blob d1cb96fab989591b07b3b21a9bd146a073a448bf\ndangling blob e7f599db90707e75e463db533a01fc35192c4338\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "bundle",
+        "verify",
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP-phase6.bundle"
+      ],
+      "exit_code": 0,
+      "stdout": "The bundle contains these 17 refs:\nf7e7b88656d6091ce5bb396dcc35a709fa759baa refs/heads/codex/phase-0\na2c017ab722bca0dccdd07acb702526de901f8d0 refs/heads/codex/phase-1\nefd96e0f15344a3a0e92a69372864598636a4385 refs/heads/codex/phase-2\n5a0437d9621819f921bdd7788470530dca6de5a1 refs/heads/codex/phase-2-5\na1f50f3f442af4a2847a3beb72d6da3897993a2a refs/heads/codex/phase-3\nb53e5bfacf33ce581f3f7ba7e5eaeaee990f5486 refs/heads/codex/phase-4\n99c90d6dec642b74ce4942130d1e4fe18ec35009 refs/heads/codex/phase-5\n8ce01aa05b1c56be93305fc57672d8fb792e35be refs/heads/codex/phase-6\nf7e7b88656d6091ce5bb396dcc35a709fa759baa refs/tags/phase-0-verified\na2c017ab722bca0dccdd07acb702526de901f8d0 refs/tags/phase-1-verified\nefd96e0f15344a3a0e92a69372864598636a4385 refs/tags/phase-2-verified\n5a0437d9621819f921bdd7788470530dca6de5a1 refs/tags/phase-2.5-verified\na1f50f3f442af4a2847a3beb72d6da3897993a2a refs/tags/phase-3-verified\nb53e5bfacf33ce581f3f7ba7e5eaeaee990f5486 refs/tags/phase-4-verified\n99c90d6dec642b74ce4942130d1e4fe18ec35009 refs/tags/phase-5-verified\n8ce01aa05b1c56be93305fc57672d8fb792e35be refs/tags/phase-6-verified\n8ce01aa05b1c56be93305fc57672d8fb792e35be HEAD\nThe bundle records a complete history.\nThe bundle uses this hash algorithm: sha1\n",
+      "stderr": "C:/Users/hp/Documents/ChatGPT/Develpment/YouTubeNicheFinderMCP-phase6.bundle is okay\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "-q",
+        "--tb=short",
+        "--basetemp=.pytest-tmp/phase7-baseline"
+      ],
+      "exit_code": 0,
+      "stdout": "........................................................................ [  9%]\n........................................................................ [ 19%]\n........................................................................ [ 29%]\n........................................................................ [ 39%]\n........................................................................ [ 48%]\n........................................................................ [ 58%]\n........................................................................ [ 68%]\n........................................................................ [ 78%]\n........................................................................ [ 87%]\n........................................................................ [ 97%]\n..................                                                       [100%]\n738 passed in 123.79s (0:02:03)\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "check",
+        "."
+      ],
+      "exit_code": 0,
+      "stdout": "All checks passed!\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "."
+      ],
+      "exit_code": 0,
+      "stdout": "184 files already formatted\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-m",
+        "youtube_niche_mcp",
+        "verify"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"phase\": 6,\n  \"checks\": [\n    {\n      \"name\": \"imports\",\n      \"passed\": true,\n      \"detail\": {\n        \"ok\": true\n      }\n    },\n    {\n      \"name\": \"configuration\",\n      \"passed\": true,\n      \"detail\": {\n        \"db_path\": \"C:\\\\Users\\\\hp\\\\Documents\\\\ChatGPT\\\\Develpment\\\\YouTubeNicheFinderMCP\\\\data\\\\research.sqlite3\",\n        \"log_level\": \"INFO\",\n        \"db_timeout_seconds\": 10,\n        \"youtube_api_key_present\": false,\n        \"nexlev_api_key_present\": false,\n        \"live_api_required\": false,\n        \"api_timeout_seconds\": 20,\n        \"api_max_retries\": 2,\n        \"cache_ttl_seconds\": 3600,\n        \"cache_stale_seconds\": 300,\n        \"batch_stats_enabled\": false,\n        \"api_batch_size\": 50\n      }\n    },\n    {\n      \"name\": \"schemas\",\n      \"passed\": true,\n      \"detail\": {\n        \"validated_models\": 33\n      }\n    },\n    {\n      \"name\": \"database\",\n      \"passed\": true,\n      \"detail\": {\n        \"schema_version\": 6,\n        \"expected_schema_version\": 6,\n        \"migration_state\": \"current\",\n        \"journal_mode\": \"wal\",\n        \"foreign_keys\": true,\n        \"tables\": [\n          \"analysis_metric_results\",\n          \"analysis_outcomes\",\n          \"analysis_runs\",\n          \"app_metadata\",\n          \"channel_observations\",\n          \"channels\",\n          \"classification_claims\",\n          \"classification_details\",\n          \"cohort_definitions\",\n          \"cohort_memberships\",\n          \"creator_group_memberships\",\n          \"creator_groups\",\n          \"derived_cache\",\n          \"discovery_pages\",\n          \"discovery_results\",\n          \"discovery_runs\",\n          \"eligibility_decisions\",\n          \"eligibility_rules\",\n          \"live_cache\",\n          \"niche_memberships\",\n          \"provider_evidence\",\n          \"provider_quota_details\",\n          \"provider_runs\",\n          \"qualitative_annotations\",\n          \"quota_requests\",\n          \"retention_permissions\",\n          \"schema_migrations\",\n          \"snapshot_jobs\",\n          \"snapshot_targets\",\n          \"source_conflicts\",\n          \"source_records\",\n          \"statistical_history\",\n          \"taxonomy_nodes\",\n          \"video_observations\",\n          \"videos\"\n        ],\n        \"integrity\": {\n          \"ok\": true,\n          \"integrity_check\": [\n            \"ok\"\n          ],\n          \"foreign_key_violations\": []\n        }\n      }\n    },\n    {\n      \"name\": \"mcp_initialization_and_registration\",\n      \"passed\": true,\n      \"detail\": {\n        \"initialized\": true,\n        \"registered_tools\": [],\n        \"planned_tool_count\": 15\n      }\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-m",
+        "youtube_niche_mcp",
+        "db",
+        "status"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"schema_version\": 6,\n  \"expected_schema_version\": 6,\n  \"migration_state\": \"current\",\n  \"journal_mode\": \"wal\",\n  \"foreign_keys\": true,\n  \"tables\": [\n    \"analysis_metric_results\",\n    \"analysis_outcomes\",\n    \"analysis_runs\",\n    \"app_metadata\",\n    \"channel_observations\",\n    \"channels\",\n    \"classification_claims\",\n    \"classification_details\",\n    \"cohort_definitions\",\n    \"cohort_memberships\",\n    \"creator_group_memberships\",\n    \"creator_groups\",\n    \"derived_cache\",\n    \"discovery_pages\",\n    \"discovery_results\",\n    \"discovery_runs\",\n    \"eligibility_decisions\",\n    \"eligibility_rules\",\n    \"live_cache\",\n    \"niche_memberships\",\n    \"provider_evidence\",\n    \"provider_quota_details\",\n    \"provider_runs\",\n    \"qualitative_annotations\",\n    \"quota_requests\",\n    \"retention_permissions\",\n    \"schema_migrations\",\n    \"snapshot_jobs\",\n    \"snapshot_targets\",\n    \"source_conflicts\",\n    \"source_records\",\n    \"statistical_history\",\n    \"taxonomy_nodes\",\n    \"video_observations\",\n    \"videos\"\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-m",
+        "youtube_niche_mcp",
+        "db",
+        "integrity"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"integrity_check\": [\n    \"ok\"\n  ],\n  \"foreign_key_violations\": []\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\hp\\Documents\\ChatGPT\\Develpment\\YouTubeNicheFinderMCP\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "-q",
+        "-m",
+        "stdio",
+        "--tb=short",
+        "--basetemp=.pytest-tmp/phase7-baseline-stdio"
+      ],
+      "exit_code": 0,
+      "stdout": ".                                                                        [100%]\n1 passed, 737 deselected in 2.63s\n",
+      "stderr": ""
+    }
+  ],
+  "complete": true,
+  "ok": true
+}

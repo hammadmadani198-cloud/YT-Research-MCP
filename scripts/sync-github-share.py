@@ -1,4 +1,4 @@
-"""Export committed YT Research code to a clean shareable GitHub mirror."""
+"""Securely synchronize committed YT Research source via a disposable GitHub clone."""
 
 from __future__ import annotations
 
@@ -8,11 +8,14 @@ import os
 import re
 import subprocess
 import sys
+import tempfile
 import zipfile
 from pathlib import Path
 
 SOURCE = Path(__file__).resolve().parent.parent
-MIRROR = Path(os.environ.get("YT_RESEARCH_SHARE_DIR", r"D:\LocalMCPs\YT-Research-GitHub")).resolve()
+REMOTE = os.environ.get(
+    "YT_RESEARCH_GITHUB_REMOTE", "https://github.com/hammadmadani198-cloud/YT-Research-MCP.git"
+).strip()
 BLOCKED = (
     re.compile(r"AIza[0-9A-Za-z_-]{30,}"),
     re.compile(r"(?:ghp_|gho_|ghu_|ghs_|ghr_|github_pat_)[a-zA-Z0-9_]{20,}"),
@@ -78,10 +81,11 @@ On Windows, scripts/run-yt-research.ps1 also sets the general-research profile.
 ## Sharing and future updates
 GitHub repository starts private. Share by inviting collaborators.
 For public sharing, first review privacy, copyrights and dependencies.
-To sync future committed changes, configure a GitHub remote and install
+To sync future committed changes, authorize GitHub CLI and install
 the source post-commit hook using:
   python scripts/sync-github-share.py --install-hook
-This mirrors the committed source and pushes it when GitHub is authenticated.
+Each push uses a temporary GitHub checkout on D: and removes it after
+pushing. No permanent duplicate checkout is required.
 
 No open-source license has been selected. Public visibility by itself
 does not grant third-party reuse rights.
@@ -133,9 +137,8 @@ def scan(name: str, content: bytes) -> None:
             raise RuntimeError(f"Possible credential detected; export stopped: {name}")
 
 
-def sync() -> bool:
-    if SOURCE == MIRROR or SOURCE in MIRROR.parents or MIRROR in SOURCE.parents:
-        raise RuntimeError("Mirror and source must be separate directories.")
+def sync(*, push: bool = False) -> bool:
+    """Export only safe committed files; push using an auto-deleted temporary clone."""
     archive = subprocess.check_output(["git", "archive", "--format=zip", "HEAD"], cwd=SOURCE)
     extracted: dict[str, bytes] = {}
     with zipfile.ZipFile(io.BytesIO(archive)) as bundle:
@@ -149,66 +152,69 @@ def sync() -> bool:
             extracted[item.filename] = blob
     extracted["README.md"] = SHARE_README.encode("utf-8")
     extracted[".yt-research-share-marker"] = b"YT Research share mirror v1\n"
-    if (
-        MIRROR.exists()
-        and any(MIRROR.iterdir())
-        and not (MIRROR / ".yt-research-share-marker").is_file()
-    ):
-        raise RuntimeError("Mirror directory contains unrelated files; refusing to overwrite.")
     source_ignore = extracted.get(".gitignore", b"")
     extracted[".gitignore"] = source_ignore + (
         b"\n# GitHub copy never includes local credentials or runtime state\n"
         b"tunnel/\njobs/\nartifacts/\n*.bak\n*.pem\n*.p12\n*.pfx\n"
     )
-    MIRROR.mkdir(parents=True, exist_ok=True)
-    if not (MIRROR / ".git").exists():
-        run("git", "init", "-b", "main", cwd=MIRROR)
-        run("git", "config", "user.name", "YT Research Backup", cwd=MIRROR)
+    print(f"SAFE_FILES={len(extracted)}")
+    if not push:
+        print("CREDENTIAL_SCAN=PASS. Use --push to sync.")
+        return False
+    if not re.fullmatch(r"https://github\.com/[A-Za-z0-9-]+/[A-Za-z0-9_.-]+(?:\.git)?", REMOTE):
+        raise RuntimeError("GitHub remote must be an HTTPS github.com repository.")
+    tmp_parent = SOURCE / "data" / "github-sync-temp"
+    tmp_parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix="yt-share-", dir=tmp_parent) as folder:
+        checkout = Path(folder) / "repository"
+        run(
+            "git",
+            "clone",
+            "--quiet",
+            "--single-branch",
+            "--branch",
+            "main",
+            REMOTE,
+            str(checkout),
+            cwd=SOURCE,
+        )
+        if not (checkout / ".yt-research-share-marker").is_file():
+            raise RuntimeError("Remote is not a verified YT Research share repository.")
+        run("git", "config", "user.name", "YT Research Backup", cwd=checkout)
         run(
             "git",
             "config",
             "user.email",
             "350302801+hammadmadani198-cloud@users.noreply.github.com",
-            cwd=MIRROR,
+            cwd=checkout,
         )
-
-    expected = set(extracted)
-    for old in sorted(MIRROR.rglob("*"), reverse=True):
-        if ".git" in old.relative_to(MIRROR).parts:
-            continue
-        if old.is_file() and old.relative_to(MIRROR).as_posix() not in expected:
-            old.unlink()
-    for relative, blob in extracted.items():
-        dest = MIRROR / relative
-        dest.parent.mkdir(parents=True, exist_ok=True)
-        if not dest.is_file() or dest.read_bytes() != blob:
-            dest.write_bytes(blob)
-    run("git", "add", "--all", cwd=MIRROR)
-    changed = run("git", "diff", "--cached", "--quiet", cwd=MIRROR, check=False)
-    if changed.returncode not in (0, 1):
-        raise RuntimeError("Unable to check staged changes.")
-    if changed.returncode == 1:
-        source_sha = run("git", "rev-parse", "--short", "HEAD", cwd=SOURCE).stdout.strip()
-        run("git", "commit", "-m", f"Sync tested YT Research source {source_sha}", cwd=MIRROR)
-        print(f"Created safe mirror commit from source {source_sha}.")
-    else:
-        print("GitHub mirror already matches committed YT Research source.")
-    print(f"MIRROR_PATH={MIRROR}")
-    print(f"SAFE_FILES={len(extracted)}")
-    return changed.returncode == 1
-
-
-def push() -> None:
-    remote = run("git", "remote", "get-url", "origin", cwd=MIRROR, check=False)
-    if remote.returncode != 0:
-        raise RuntimeError(
-            "GitHub remote is missing. First create a private repository and "
-            "set the mirror origin URL; then retry --push."
-        )
-    if not remote.stdout.strip().startswith(("https://github.com/", "git@github.com:")):
-        raise RuntimeError("Git remote is not an approved github.com destination.")
-    run("git", "push", "--set-upstream", "origin", "main", cwd=MIRROR)
-    print("GITHUB_SYNC=SUCCESS")
+        tracked = run("git", "ls-files", "-z", cwd=checkout).stdout
+        for relative in tracked.split("\x00"):
+            if relative and relative not in extracted:
+                candidate = checkout / relative
+                if candidate.is_file():
+                    candidate.unlink()
+        for relative, blob in extracted.items():
+            dest = checkout / relative
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            if not dest.is_file() or dest.read_bytes() != blob:
+                dest.write_bytes(blob)
+        run("git", "add", "--all", cwd=checkout)
+        changed = run("git", "diff", "--cached", "--quiet", cwd=checkout, check=False)
+        if changed.returncode not in (0, 1):
+            raise RuntimeError("Unable to check staged GitHub changes.")
+        if changed.returncode == 1:
+            sha = run("git", "rev-parse", "--short", "HEAD", cwd=SOURCE).stdout.strip()
+            run("git", "commit", "-m", f"Sync tested YT Research source {sha}", cwd=checkout)
+            print(f"Updated share repository from source {sha}.")
+        local_sha = run("git", "rev-parse", "HEAD", cwd=checkout).stdout.strip()
+        run("git", "push", "origin", "main", cwd=checkout)
+        remote_line = run("git", "ls-remote", "origin", "refs/heads/main", cwd=checkout)
+        remote_sha = remote_line.stdout.split()[0] if remote_line.stdout.strip() else ""
+        if local_sha != remote_sha:
+            raise RuntimeError("GitHub push verification failed: remote commit differs.")
+        print("GITHUB_SYNC=SUCCESS (temporary clone cleaned automatically)")
+        return changed.returncode == 1
 
 
 def install_hook() -> None:
@@ -240,9 +246,7 @@ def main() -> None:
     ap.add_argument("--push", action="store_true")
     ap.add_argument("--install-hook", action="store_true")
     args = ap.parse_args()
-    sync()
-    if args.push:
-        push()
+    sync(push=args.push)
     if args.install_hook:
         install_hook()
 

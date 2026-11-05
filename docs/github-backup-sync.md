@@ -1,31 +1,29 @@
-# YT Research — GitHub source backup and sharing
+# YT Research — GitHub backup, installer archive and auto-sync
 
-## What is backed up
+## Active locations (5 November 2026)
 
-`scripts/sync-github-share.py` exports only **committed, Git-tracked files** from the current local source branch. It produces a new, clean-history repository at `D:\LocalMCPs\YT-Research-GitHub`. The mirror gets an updated YT Research README and a new commit whenever source files change.
+- **Running MCP code**: `D:\LocalMCPs\YouTubeNicheFinderMCP` (do not move; active Windows tunnel depends on this path).
+- **Setup/shareable source ZIP**: `D:\MCPs Setups\YT-Research-MCP-Share-2026-11-05.zip`.
+- **Online backup**: https://github.com/hammadmadani198-cloud/YT-Research-MCP (PRIVATE, branch `main`).
+- **Sync script**: `scripts/sync-github-share.py` in the running MCP source.
+- **Auto-sync hook**: `.git/hooks/post-commit` in the running MCP source.
 
-## What is never included
+## No duplicate GitHub working folder
 
-The source `.git` history, `.venv`, `.env` secrets, SQLite snapshots, downloaded video/image media, tunnel configuration, personal data under `data`, and separate WatchMCP engine are excluded. A credential-pattern check aborts uploads if common real API tokens or private-key blocks are detected. Always review before making the repository public.
+The former `D:\LocalMCPs\YT-Research-GitHub` working copy is not needed.
+The sync script connects directly to the online private repository via GitHub CLI/Git authentication.
+It creates a temporary checkout under `data/github-sync-temp`, updates sanitized source, commits, pushes, verifies the remote commit, then removes the temporary checkout.
+Only **committed** source changes are synchronized. Source `data`, `.env`, tunnel credentials, local video media, Python virtualenv, and full source Git history are never copied.
 
-## GitHub backup activated — 5 November 2026
+## Future edits
 
-- GitHub repository: https://github.com/hammadmadani198-cloud/YT-Research-MCP
-- Visibility: **Private**, default branch: `main`.
-- Initial source upload: completed, with a clean, separate Git history.
-- GitHub CLI: authenticated as `hammadmadani198-cloud`.
-- Post-commit hook: installed at `.git/hooks/post-commit` in the original Windows project.
-- Local mirror: `D:\LocalMCPs\YT-Research-GitHub`.
-- Manual recovery: `python scripts/sync-github-share.py --push` from the source project, with GitHub authentication.
+After editing source, run `git add ...` and `git commit -m "description"` in the actual MCP directory.
+The installed post-commit hook calls `python scripts/sync-github-share.py --push` automatically.
+If GitHub is offline or authentication expires, the local commit remains valid; inspect `.git/yt-share-sync.log` and rerun `python scripts/sync-github-share.py --push` when available.
+To check remote status: `git ls-remote https://github.com/hammadmadani198-cloud/YT-Research-MCP.git refs/heads/main`.
 
-## After future edits
+## Sharing and scope
 
-Every committed source change triggers the local post-commit hook, which updates the sanitized mirror and pushes `main` to GitHub. It cannot sync uncommitted changes. Internet/authentication failures are written to `.git/yt-share-sync.log`; rerun `python scripts/sync-github-share.py --push` after resolving the problem. Check `git -C D:\LocalMCPs\YT-Research-GitHub status` and `git -C D:\LocalMCPs\YT-Research-GitHub log -1 --oneline` for local state.
-
-## Sharing
-
-Private repositories can be shared by inviting selected collaborators in GitHub Settings → Collaborators. To allow anyone to view the repository, explicitly change visibility to Public after privacy and copyright review. Public access does **not** imply an open-source license.
-
-## Limits
-
-The 14-tool general profile is enabled by setting `YT_RESEARCH_GENERAL=1`. Historical F1–F23 modules remain in source for rollback but disabled in active profile. Video inspection requires separately configured WatchMCP and working YouTube download access, which is currently deferred. No automated data snapshots are scheduled.
+The online GitHub repository stays private until the owner explicitly changes visibility. Invite specific collaborators via GitHub's repository settings. No open-source license was selected.
+The setup ZIP is a shareable source archive, **not** a standalone one-click installer; the receiving computer still needs Python dependencies, MCP host config, and its own authorized API keys.
+Separate WatchMCP code and live media inspection credentials are not included; Watch network reliability is on future-fix HOLD.

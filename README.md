@@ -35,7 +35,8 @@ For public sharing, first review privacy, copyrights and dependencies.
 To sync future committed changes, authorize GitHub CLI and install
 the source post-commit hook using:
   python scripts/sync-github-share.py --install-hook
-Each push uses a temporary checkout (removed afterwards), not a permanent local copy.
+Each push uses a temporary GitHub checkout on D: and removes it after
+pushing. No permanent duplicate checkout is required.
 
 No open-source license has been selected. Public visibility by itself
 does not grant third-party reuse rights.

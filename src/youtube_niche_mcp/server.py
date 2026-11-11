@@ -11,6 +11,7 @@ from youtube_niche_mcp import (
     inspection_research,
     outlier_research,
     snapshot_research,
+    transcript_research,
 )
 from youtube_niche_mcp.collectors.nexlev.contracts import capability_report
 from youtube_niche_mcp.config import ConfigurationError, Settings
@@ -85,6 +86,7 @@ def create_server(settings: Settings | None = None, **runtime_options) -> Public
             "youtube_view_snapshot",
             "youtube_view_history",
             "youtube_export_outliers",
+            "youtube_get_transcript",
         }
 
         @server.resource("yt-research://status", mime_type="application/json")
@@ -108,6 +110,7 @@ def create_server(settings: Settings | None = None, **runtime_options) -> Public
         inspection_research.register(server, settings)
         snapshot_research.register(server, settings)
         export_research.register(server, settings)
+        transcript_research.register(server)
         return server
     server = PublicMCPServer(
         "YouTubeNicheFinderMCP",

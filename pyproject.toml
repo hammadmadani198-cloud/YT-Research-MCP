@@ -12,6 +12,7 @@ dependencies = ["mcp>=2.2,<3", "pydantic>=2.10,<3", "httpx>=0.28,<1"]
 
 [project.optional-dependencies]
 dev = ["pytest>=8,<10", "ruff>=0.11,<1"]
+transcripts = ["youtube-transcript-api>=1.2,<2", "yt-dlp>=2026.10.26"]
 
 [project.scripts]
 youtube-niche-mcp = "youtube_niche_mcp.cli:main"

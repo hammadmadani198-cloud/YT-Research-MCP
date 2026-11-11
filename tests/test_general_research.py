@@ -33,6 +33,7 @@ async def test_general_profile_has_no_niche_or_watchlist_tools(monkeypatch):
             "youtube_view_snapshot",
             "youtube_view_history",
             "youtube_export_outliers",
+            "youtube_get_transcript",
         }
         status = await client.read_resource("yt-research://status")
         data = json.loads(status.contents[0].text)

@@ -40,3 +40,19 @@ Use the returned `next_offset` to paginate long videos.
   independent yt-dlp fallback 428 cues at time of acceptance.
 - These checks do not guarantee every video has public captions or that
   external providers will remain available.
+
+## 2026-11-12 provider diagnostics
+- The metadata.provider_diagnostics array shows sanitized per-provider reason
+  codes: rate_limited, access_denied, ip_blocked, request_blocked,
+  authentication_required, language_unavailable, captions_disabled,
+  video_unavailable, captions_unavailable, timeout, or provider_error.
+- Successful primary responses return an empty diagnostics array. If yt-dlp
+  succeeds, the primary failure code remains. If both fail, the overall
+  state is unavailable, with one reason for each provider.
+- Rate limits should be respected; do not hammer endpoints or bypass
+  YouTube's protections.
+- November 12 live verification: all seven previously failing videos worked
+  through connected MCP. On Original OT08, the primary caption API worked,
+  but independent yt-dlp attempt returned HTTP 429 Too Many Requests.
+  Historical failures were not logged with reason codes; their exact cause
+  cannot be reconstructed retroactively.

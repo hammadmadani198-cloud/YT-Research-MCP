@@ -21,6 +21,64 @@ LANGUAGE = re.compile(r"^[a-zA-Z]{2,3}(?:[-_][a-zA-Z0-9]{2,8}){0,2}$")
 TIMESTAMP = re.compile(r"(?:(\d{2}):)?(\d{2}):(\d{2})[.,](\d{3})")
 
 
+class CaptionProviderError(RuntimeError):
+    """Only a fixed non-sensitive reason code leaves the provider boundary."""
+
+    def __init__(self, reason: str):
+        super().__init__(reason)
+        self.reason = reason
+
+
+def _error_code(error: Exception) -> str:
+    if isinstance(error, CaptionProviderError):
+        return error.reason
+    name = type(error).__name__
+    if name == "IpBlocked":
+        return "ip_blocked"
+    if name in {"RequestBlocked", "FailedToCreateConsentCookie"}:
+        return "request_blocked"
+    if name in {"NoTranscriptFound", "TranslationLanguageNotAvailable"}:
+        return "language_unavailable"
+    if name == "TranscriptsDisabled":
+        return "captions_disabled"
+    if name in {"VideoUnavailable", "VideoUnplayable"}:
+        return "video_unavailable"
+    if name in {"AgeRestricted", "PoTokenRequired"}:
+        return "authentication_required"
+    if isinstance(error, (TimeoutError, subprocess.TimeoutExpired)):
+        return "timeout"
+    if isinstance(error, (ImportError, ModuleNotFoundError)):
+        return "dependency_missing"
+    if isinstance(error, (ConnectionError, OSError)):
+        return "network_error"
+    # Inspect only locally: never return raw provider error messages or URLs.
+    message = str(error).lower()
+    if re.search(r"\b429\b|too many requests", message):
+        return "rate_limited"
+    if re.search(r"\b403\b|forbidden", message):
+        return "access_denied"
+    if "sign in" in message or "login required" in message:
+        return "authentication_required"
+    return "provider_error"
+
+
+def _ytdlp_code(stderr: str, stdout: str, returncode: int) -> str:
+    diagnostics = (stderr + "\n" + stdout).lower()
+    if re.search(r"\b429\b|too many requests", diagnostics):
+        return "rate_limited"
+    if re.search(r"\b403\b|forbidden", diagnostics):
+        return "access_denied"
+    if "sign in" in diagnostics or "login required" in diagnostics:
+        return "authentication_required"
+    if "unsupported url" in diagnostics or "video unavailable" in diagnostics:
+        return "video_unavailable"
+    if "no subtitles" in diagnostics or "subtitles are not available" in diagnostics:
+        return "captions_unavailable"
+    if "timed out" in diagnostics or "timeout" in diagnostics:
+        return "timeout"
+    return "provider_error" if returncode else "captions_unavailable"
+
+
 class TranscriptRequest(BaseModel):
     video_id: str = Field(
         default="", max_length=2048, description="11-character ID or HTTPS YouTube URL"
@@ -146,9 +204,11 @@ def _fallback(video_id: str, languages: list[str]) -> tuple[list[dict], str, str
         )
         files = sorted(Path(directory).glob("*.vtt"))
         if proc.returncode != 0 or not files:
-            raise RuntimeError("captions not available from yt-dlp")
+            raise CaptionProviderError(_ytdlp_code(proc.stderr, proc.stdout, proc.returncode))
         chosen = files[0]
         rows = _parse_vtt(chosen.read_text(encoding="utf-8-sig", errors="replace"))
+        if not rows:
+            raise CaptionProviderError("captions_unreadable")
         lang = chosen.stem.removeprefix(video_id + ".")
         return rows, lang, "unknown"
 
@@ -168,6 +228,7 @@ async def get_transcript(req: TranscriptRequest) -> GeneralResult:
             state="invalid_input", summary="Invalid YouTube ID/URL or language codes"
         )
     warnings = []
+    provider_diagnostics: list[dict[str, str]] = []
     try:
         rows, language, caption_type = await asyncio.wait_for(
             asyncio.to_thread(_primary, video_id, req.languages), timeout=25
@@ -175,17 +236,24 @@ async def get_transcript(req: TranscriptRequest) -> GeneralResult:
         provider = "youtube_transcript_api"
         if not rows:
             raise ValueError("empty captions")
-    except Exception:
-        warnings.append("Primary caption provider unavailable; attempted yt-dlp fallback.")
+    except Exception as exc:
+        primary_reason = _error_code(exc)
+        provider_diagnostics.append(
+            {"provider": "youtube_transcript_api", "reason": primary_reason}
+        )
+        warnings.append(f"Primary caption provider failed ({primary_reason}); tried yt-dlp.")
         try:
             rows, language, caption_type = await asyncio.wait_for(
                 asyncio.to_thread(_fallback, video_id, req.languages), timeout=65
             )
             provider = "yt_dlp"
-        except Exception:
+        except Exception as exc:
+            fallback_reason = _error_code(exc)
+            provider_diagnostics.append({"provider": "yt_dlp", "reason": fallback_reason})
             return GeneralResult(
                 state="unavailable",
                 summary="Captions unavailable from both providers",
+                metadata={"video_id": video_id, "provider_diagnostics": provider_diagnostics},
                 warnings=["No verified transcript; no speech or video content inferred."],
             )
     if not rows:
@@ -213,6 +281,7 @@ async def get_transcript(req: TranscriptRequest) -> GeneralResult:
             "video_id": video_id,
             "language": language,
             "caption_type": caption_type,
+            "provider_diagnostics": provider_diagnostics,
             "total_segments": len(rows),
             "offset": req.offset,
             "next_offset": next_offset,

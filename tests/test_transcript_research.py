@@ -85,3 +85,50 @@ async def test_rejects_untrusted_url(monkeypatch):
         t.TranscriptRequest(video_id="https://bad.example/watch?v=abcdefghijk")
     )
     assert result.state == "invalid_input"
+
+
+def test_sanitized_provider_reason_codes():
+    assert t._ytdlp_code("HTTP Error 429: Too Many Requests", "", 1) == "rate_limited"
+    assert t._ytdlp_code("HTTP Error 403: Forbidden", "", 1) == "access_denied"
+    assert t._ytdlp_code("sign in to confirm", "", 1) == "authentication_required"
+    assert t._ytdlp_code("", "no subtitles", 0) == "captions_unavailable"
+    assert t._error_code(TimeoutError()) == "timeout"
+    assert t._error_code(t.CaptionProviderError("rate_limited")) == "rate_limited"
+    assert t._error_code(RuntimeError("token=secret-value")) == "provider_error"
+
+
+@pytest.mark.anyio
+async def test_both_failures_report_codes_not_sensitive_text(monkeypatch):
+    def blocked(*args):
+        raise RuntimeError("Too Many Requests 429; secret=must-never-leak")
+
+    def other(*args):
+        raise t.CaptionProviderError("captions_unavailable")
+
+    monkeypatch.setattr(t, "_primary", blocked)
+    monkeypatch.setattr(t, "_fallback", other)
+    result = await t.get_transcript(t.TranscriptRequest(video_id="abcdefghijk"))
+    assert result.state == "unavailable"
+    assert result.metadata["provider_diagnostics"] == [
+        {"provider": "youtube_transcript_api", "reason": "rate_limited"},
+        {"provider": "yt_dlp", "reason": "captions_unavailable"},
+    ]
+    assert "must-never-leak" not in result.model_dump_json()
+
+
+@pytest.mark.anyio
+async def test_fallback_success_retains_primary_failure_code(monkeypatch):
+    def primary(*args):
+        raise TimeoutError("sensitive provider message")
+
+    monkeypatch.setattr(t, "_primary", primary)
+    monkeypatch.setattr(
+        t,
+        "_fallback",
+        lambda *args: ([{"start": 1.0, "duration": 1.0, "text": "Example"}], "en", "unknown"),
+    )
+    result = await t.get_transcript(t.TranscriptRequest(video_id="abcdefghijk"))
+    assert result.state == "ok" and result.source == "yt_dlp"
+    assert result.metadata["provider_diagnostics"] == [
+        {"provider": "youtube_transcript_api", "reason": "timeout"}
+    ]

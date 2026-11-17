@@ -4,6 +4,9 @@ from __future__ import annotations
 
 import asyncio
 import html
+import json
+import math
+import os
 import re
 import subprocess
 import sys
@@ -213,6 +216,93 @@ def _fallback(video_id: str, languages: list[str]) -> tuple[list[dict], str, str
         return rows, lang, "unknown"
 
 
+def _go_available() -> bool:
+    """Third-party local executable is opt-in; it is never bundled or redistributed."""
+    return bool(os.environ.get("YT_RESEARCH_GO_TRANSCRIPT_BIN", "").strip())
+
+
+def _go_fallback(video_id: str, languages: list[str]) -> tuple[list[dict], str, str]:
+    binary = Path(os.environ.get("YT_RESEARCH_GO_TRANSCRIPT_BIN", "").strip())
+    if not binary.is_absolute() or not binary.is_file():
+        raise CaptionProviderError("dependency_missing")
+    if not VIDEO_ID.fullmatch(video_id):
+        raise CaptionProviderError("invalid_input")
+
+    # A single Go request; no concurrent calls, cookies, remote scripts, or video downloads.
+    command = [
+        str(binary),
+        f"https://www.youtube.com/watch?v={video_id}",
+        "--lang",
+        languages[0],
+        "--json",
+    ]
+    try:
+        proc = subprocess.run(
+            command,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            stdin=subprocess.DEVNULL,
+            timeout=50,
+            check=False,
+            creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0),
+        )
+    except subprocess.TimeoutExpired as exc:
+        raise CaptionProviderError("timeout") from exc
+    if len(proc.stdout) > 8_000_000:
+        raise CaptionProviderError("provider_error")
+    if proc.returncode != 0:
+        raise CaptionProviderError(_ytdlp_code(proc.stderr, proc.stdout, proc.returncode))
+    try:
+        items = json.loads(proc.stdout)
+    except (ValueError, TypeError) as exc:
+        raise CaptionProviderError("provider_error") from exc
+    if not isinstance(items, list) or len(items) != 1 or not isinstance(items[0], dict):
+        raise CaptionProviderError("provider_error")
+    item = items[0]
+    if item.get("videoId") != video_id:
+        raise CaptionProviderError("provider_error")
+    if item.get("error"):
+        raise CaptionProviderError(_ytdlp_code(str(item["error"]), "", 1))
+    language = item.get("language")
+    if not isinstance(language, str) or not any(
+        language.lower() == x.lower() or language.lower().startswith(x.lower() + "-")
+        for x in languages
+    ):
+        raise CaptionProviderError("language_unavailable")
+    segments = item.get("segments")
+    if not isinstance(segments, list) or len(segments) > 30000:
+        raise CaptionProviderError("provider_error")
+    rows = []
+    for item in segments:
+        if not isinstance(item, dict):
+            raise CaptionProviderError("provider_error")
+        try:
+            start = float(item["start"])
+            duration = float(item["dur"])
+            content = item["text"]
+        except (KeyError, ValueError, TypeError) as exc:
+            raise CaptionProviderError("provider_error") from exc
+        if (
+            not math.isfinite(start)
+            or not math.isfinite(duration)
+            or start < 0
+            or duration < 0
+            or duration > 3600
+            or not isinstance(content, str)
+            or len(content) > 5000
+        ):
+            raise CaptionProviderError("provider_error")
+        if content.strip():
+            rows.append(
+                {"start": round(start, 3), "duration": round(duration, 3), "text": content.strip()}
+            )
+    if not rows:
+        raise CaptionProviderError("captions_unavailable")
+    return rows, language, "unknown"
+
+
 def _clock(seconds: float) -> str:
     n = round(max(0, seconds) * 1000)
     h, rem = divmod(n, 3600000)
@@ -250,12 +340,37 @@ async def get_transcript(req: TranscriptRequest) -> GeneralResult:
         except Exception as exc:
             fallback_reason = _error_code(exc)
             provider_diagnostics.append({"provider": "yt_dlp", "reason": fallback_reason})
-            return GeneralResult(
-                state="unavailable",
-                summary="Captions unavailable from both providers",
-                metadata={"video_id": video_id, "provider_diagnostics": provider_diagnostics},
-                warnings=["No verified transcript; no speech or video content inferred."],
-            )
+            if _go_available():
+                warnings.append("yt-dlp unavailable; attempted local Go InnerTube fallback.")
+                try:
+                    rows, language, caption_type = await asyncio.wait_for(
+                        asyncio.to_thread(_go_fallback, video_id, req.languages),
+                        timeout=55,
+                    )
+                    provider = "go_innertube"
+                except Exception as go_exc:
+                    provider_diagnostics.append(
+                        {"provider": "go_innertube", "reason": _error_code(go_exc)}
+                    )
+                    return GeneralResult(
+                        state="unavailable",
+                        summary="Captions unavailable from all three providers",
+                        metadata={
+                            "video_id": video_id,
+                            "provider_diagnostics": provider_diagnostics,
+                        },
+                        warnings=["No verified transcript; no speech or video content inferred."],
+                    )
+            else:
+                return GeneralResult(
+                    state="unavailable",
+                    summary="Captions unavailable from both configured providers",
+                    metadata={
+                        "video_id": video_id,
+                        "provider_diagnostics": provider_diagnostics,
+                    },
+                    warnings=["Go InnerTube fallback not configured; no transcript inferred."],
+                )
     if not rows:
         return GeneralResult(
             state="unavailable", summary="Caption track contained no readable cues"
@@ -282,6 +397,7 @@ async def get_transcript(req: TranscriptRequest) -> GeneralResult:
             "language": language,
             "caption_type": caption_type,
             "provider_diagnostics": provider_diagnostics,
+            "go_fallback_configured": _go_available(),
             "total_segments": len(rows),
             "offset": req.offset,
             "next_offset": next_offset,
@@ -299,8 +415,8 @@ def register(server) -> None:
     @server.tool(
         name="youtube_get_transcript",
         description="Get public captions by ID or YouTube URL. Transcript API first, "
-        "yt-dlp subtitle-only fallback. Supports pagination, JSON, text and SRT. "
-        "Independent of Watch Videos; never downloads video media.",
+        "yt-dlp subtitle-only fallback, then optional local Go InnerTube fallback. "
+        "Supports pagination, JSON, text and SRT. Watch Videos stays separate.",
         structured_output=True,
         annotations=ToolAnnotations(
             read_only_hint=True,

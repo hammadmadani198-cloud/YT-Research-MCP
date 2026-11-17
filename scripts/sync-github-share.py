@@ -59,8 +59,9 @@ A Python MCP server for evidence-grounded public YouTube research.
 - Plan four video-inspection stages and review evidence-labelled Watch jobs.
 - Save public view snapshots for future actual historical view checkpoints.
 - Export evidence as local JSON/CSV. Local data is not shared.
-- Retrieve public YouTube captions with timestamps using youtube_get_transcript:
-  youtube-transcript-api first, yt-dlp subtitle-only fallback.
+- Retrieve public captions with timestamps using youtube_get_transcript:
+  transcript API first, yt-dlp second, optional local Go InnerTube third.
+  Go source/binary are not included in this shared repository.
 
 ## Install (Python 3.12+)
 Create a virtualenv and install dependencies:

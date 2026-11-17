@@ -132,3 +132,134 @@ async def test_fallback_success_retains_primary_failure_code(monkeypatch):
     assert result.metadata["provider_diagnostics"] == [
         {"provider": "youtube_transcript_api", "reason": "timeout"}
     ]
+
+
+@pytest.mark.anyio
+async def test_go_fallback_is_third_provider(monkeypatch):
+    monkeypatch.setenv("YT_RESEARCH_GO_TRANSCRIPT_BIN", "C:/yt-go.exe")
+    monkeypatch.setattr(
+        t, "_primary", lambda *_: (_ for _ in ()).throw(t.CaptionProviderError("timeout"))
+    )
+    monkeypatch.setattr(
+        t, "_fallback", lambda *_: (_ for _ in ()).throw(t.CaptionProviderError("rate_limited"))
+    )
+    called = []
+
+    def fake_go(vid, langs):
+        called.append((vid, langs))
+        return [{"start": 1.2, "duration": 2.4, "text": "Caption"}], "en", "unknown"
+
+    monkeypatch.setattr(t, "_go_fallback", fake_go)
+    result = await t.get_transcript(
+        t.TranscriptRequest(video_id="abcdefghijk", output_format="srt")
+    )
+    assert result.state == "ok"
+    assert result.source == "go_innertube"
+    assert "00:00:01,200 --> 00:00:03,600" in result.metadata["content"]
+    assert result.metadata["provider_diagnostics"] == [
+        {"provider": "youtube_transcript_api", "reason": "timeout"},
+        {"provider": "yt_dlp", "reason": "rate_limited"},
+    ]
+    assert called == [("abcdefghijk", ["en"])]
+
+
+@pytest.mark.anyio
+async def test_go_fallback_failure_is_sanitized(monkeypatch):
+    monkeypatch.setenv("YT_RESEARCH_GO_TRANSCRIPT_BIN", "C:/yt-go.exe")
+    monkeypatch.setattr(
+        t, "_primary", lambda *_: (_ for _ in ()).throw(RuntimeError("primary secret"))
+    )
+    monkeypatch.setattr(
+        t, "_fallback", lambda *_: (_ for _ in ()).throw(RuntimeError("fallback secret"))
+    )
+    monkeypatch.setattr(
+        t,
+        "_go_fallback",
+        lambda *_: (_ for _ in ()).throw(t.CaptionProviderError("captions_unavailable")),
+    )
+    result = await t.get_transcript(t.TranscriptRequest(video_id="abcdefghijk"))
+    assert result.state == "unavailable"
+    assert len(result.metadata["provider_diagnostics"]) == 3
+    assert result.metadata["provider_diagnostics"][-1] == {
+        "provider": "go_innertube",
+        "reason": "captions_unavailable",
+    }
+    assert "secret" not in result.model_dump_json()
+
+
+def test_go_fallback_json_response(monkeypatch, tmp_path):
+    import json
+    from types import SimpleNamespace
+
+    binary = tmp_path / "yt-transcript.exe"
+    binary.write_bytes(b"test-fixture")
+    monkeypatch.setenv("YT_RESEARCH_GO_TRANSCRIPT_BIN", str(binary))
+    commands = []
+
+    def fake_run(command, **_kwargs):
+        commands.append(command)
+        return SimpleNamespace(
+            returncode=0,
+            stderr="",
+            stdout=json.dumps(
+                [
+                    {
+                        "videoId": "abcdefghijk",
+                        "language": "en",
+                        "segments": [
+                            {"start": 0.5, "dur": 1.2, "text": "Hello"},
+                            {"start": 1.7, "dur": 2.0, "text": "World"},
+                        ],
+                    }
+                ]
+            ),
+        )
+
+    monkeypatch.setattr(t.subprocess, "run", fake_run)
+    rows, language, kind = t._go_fallback("abcdefghijk", ["en"])
+    assert rows == [
+        {"start": 0.5, "duration": 1.2, "text": "Hello"},
+        {"start": 1.7, "duration": 2.0, "text": "World"},
+    ]
+    assert language == "en"
+    assert kind == "unknown"
+    assert commands[0][-1] == "--json"
+    assert commands[0][1] == "https://www.youtube.com/watch?v=abcdefghijk"
+
+
+def test_go_fallback_rejects_wrong_video_id(monkeypatch, tmp_path):
+    import json
+    from types import SimpleNamespace
+
+    binary = tmp_path / "yt-transcript.exe"
+    binary.write_bytes(b"test-fixture")
+    monkeypatch.setenv("YT_RESEARCH_GO_TRANSCRIPT_BIN", str(binary))
+    monkeypatch.setattr(
+        t.subprocess,
+        "run",
+        lambda *_args, **_kwargs: SimpleNamespace(
+            returncode=0,
+            stderr="",
+            stdout=json.dumps(
+                [
+                    {
+                        "videoId": "zyxwvutsrqp",
+                        "language": "en",
+                        "segments": [{"start": 1, "dur": 2, "text": "Wrong video"}],
+                    }
+                ]
+            ),
+        ),
+    )
+    with pytest.raises(t.CaptionProviderError, match="provider_error"):
+        t._go_fallback("abcdefghijk", ["en"])
+
+
+def test_go_fallback_rejects_missing_or_invalid_binary(monkeypatch):
+    monkeypatch.delenv("YT_RESEARCH_GO_TRANSCRIPT_BIN", raising=False)
+    assert not t._go_available()
+    with pytest.raises(t.CaptionProviderError, match="dependency_missing"):
+        t._go_fallback("abcdefghijk", ["en"])
+    monkeypatch.setenv("YT_RESEARCH_GO_TRANSCRIPT_BIN", "C:/not-found.exe")
+    with pytest.raises(t.CaptionProviderError, match="dependency_missing"):
+        t._go_fallback("abcdefghijk", ["en"])

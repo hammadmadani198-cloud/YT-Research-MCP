@@ -56,3 +56,25 @@ Use the returned `next_offset` to paginate long videos.
   but independent yt-dlp attempt returned HTTP 429 Too Many Requests.
   Historical failures were not logged with reason codes; their exact cause
   cannot be reconstructed retroactively.
+
+
+## 2026-11-17: optional third Go InnerTube fallback
+1. Existing route order remains: youtube-transcript-api, then yt-dlp, then Go.
+2. Configure `YT_RESEARCH_GO_TRANSCRIPT_BIN` as an absolute local executable
+   path. This Windows installation uses
+   `D:\LocalMCPs\YouTubeNicheFinderMCP\data\vendor-go-transcript\yt-transcript.exe`.
+   The local MCP launcher sets the variable automatically.
+3. Upstream reference: https://github.com/edouard-claude/yt-transcript ,
+   revision `69796edb8ecb14603105e287efde68665304a6ae`.
+   Source and binary were locally copied after user-reported developer
+   permission; local `data/` is git-ignored and is not shared on GitHub.
+4. Go only executes if both earlier providers fail and the local executable is
+   configured. Results use `source=go_innertube`; previous failure codes remain
+   in `metadata.provider_diagnostics`; a successful result includes
+   `metadata.go_fallback_configured`. Fallback uses the first requested
+   language and rejects an unexpected language or video ID.
+5. This method fetches existing captions, not speech-to-text or audio media.
+   Sustained access, provider-side restrictions, and complete uptime are not
+   guaranteed. Do not hammer endpoints after HTTP 429.
+6. Integration acceptance: targeted tests and forced-fallback live checks
+   with two Romanov videos confirmed 1,137 and 835 caption cues respectively.
